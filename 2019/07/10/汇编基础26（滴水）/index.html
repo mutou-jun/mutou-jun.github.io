@@ -144,6 +144,13 @@
   <title> 汇编基础26（滴水） | mutou-jun's blog </title>
 </head>
 
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
@@ -380,11 +387,11 @@
 <p>第一个为0的话      和无符号位的编码规则一样<br>第一个为1的话     表示负号，     其余的和无符号位的编码规则一样<br>1.有符号书的编码规则 1A ==即十进制26==</p>
 <p>0 | 0 | 0 | 1 | 1 | 0 | 1 | 0 |</p>
 <p>证明一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt; </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int x=0x1A000000;//二进制为 ‭0001 1010 0000 0000 0000 0000 0000 0000第一个为0‬</span><br><span class="line">	printf(&quot;0x1A000000无符号格式显示:%u\n&quot;,x);//十进制输出</span><br><span class="line">	printf(&quot;0x1A000000有符号形式显示:%d\n&quot;,x);//十进制输出</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">0x1A000000</span>;<span class="comment">//二进制为 ‭0001 1010 0000 0000 0000 0000 0000 0000第一个为0‬</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"0x1A000000无符号格式显示:%u\n"</span>,x);<span class="comment">//十进制输出</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"0x1A000000有符号形式显示:%d\n"</span>,x);<span class="comment">//十进制输出</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.ax1x.com/2019/07/10/Z60jjs.png" alt="Z60jjs.png"></p>
 <p>同样方式测试下 0x9A000000</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt; </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int x=0x9A000000;//二进制为 1001 1010 0000 0000 0000 0000 0000第一个为1 </span><br><span class="line">	printf(&quot;0x9A000000无符号格式显示:%u\n&quot;,x);//十进制输出</span><br><span class="line">	printf(&quot;0x9A000000有符号形式显示:%d\n&quot;,x);//十进制输出</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">0x9A000000</span>;<span class="comment">//二进制为 1001 1010 0000 0000 0000 0000 0000第一个为1 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"0x9A000000无符号格式显示:%u\n"</span>,x);<span class="comment">//十进制输出</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"0x9A000000有符号形式显示:%d\n"</span>,x);<span class="comment">//十进制输出</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.ax1x.com/2019/07/10/Z6BCNT.png" alt="Z6BCNT.png"></p>
 <h2 id="原码-反码-补码"><a href="#原码-反码-补码" class="headerlink" title="原码-反码-补码"></a>原码-反码-补码</h2><blockquote>
@@ -397,7 +404,7 @@
 <p>补码：<br><br>正数：补码与原码相同<br><br>负数：符号位为1，<br>其余位对原码取反加1//即对其反码加1</p>
 </blockquote>
 <p>做个实验一下：<br>//字节  8   Bit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt; </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	char x=-1;</span><br><span class="line">	printf(&quot;%x\n&quot;,x);</span><br><span class="line">	</span><br><span class="line">	return 0;&lt;br&gt;</span><br><span class="line">	//贴上《C primer plus》中关于%X的定义：使用十六进制数字0~F的无符号十六进制整数&lt;br&gt;</span><br><span class="line">	//电脑中一般默认定义的char是有符号类型，</span><br><span class="line">	//所以这个值就是-86，转换成int类型之后就变成了ff ff ff aa。所以最后的输出结果就是ffffffaa </span><br><span class="line">	//而把char类型变成unsigned char类型，x的值0xAA表示的就是170，那么把它转换成int类型之后就变成了00 00 00 AA。所以把用unsigned char定义后输出的结果就是aa了</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> x=<span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>,x);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;&lt;br&gt;</span><br><span class="line">	<span class="comment">//贴上《C primer plus》中关于%X的定义：使用十六进制数字0~F的无符号十六进制整数&lt;br&gt;</span></span><br><span class="line">	<span class="comment">//电脑中一般默认定义的char是有符号类型，</span></span><br><span class="line">	<span class="comment">//所以这个值就是-86，转换成int类型之后就变成了ff ff ff aa。所以最后的输出结果就是ffffffaa </span></span><br><span class="line">	<span class="comment">//而把char类型变成unsigned char类型，x的值0xAA表示的就是170，那么把它转换成int类型之后就变成了00 00 00 AA。所以把用unsigned char定义后输出的结果就是aa了</span></span><br></pre></td></tr></table></figure>
 
 <p>-1的</p>
 <p>原码：1 0 0 0 0 0 0 1<br><br>反码：1 1 1 1 1 1 1 1<br><br>补码：1 1 1 1 1 1 1 1 //FF（16进制表示）<br><img src="https://s2.ax1x.com/2019/07/10/Z6B9EV.png" alt="Z6B9EV.png"></p>
@@ -419,11 +426,11 @@
 <p>对应C语言   只有一个   &gt;&gt; ==//默认是有符号位==    左端补符号位<br>如果是无符号数的话    用unsigned 提前声明</p>
 <p>shr(&gt;&gt;)：<br><br>1101 0101  0011 0101<br><br>。。。。。shr 2运算等于<br><br>?</p>
 <p>对应C语言（&gt;&gt;）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unsigned int a=10;</span><br><span class="line">printf(&quot;%d\n&quot;,a&gt;&gt;2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a&gt;&gt;<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
 <p>sar(&gt;&gt;)：<br><br>1101 0101  1111 0101<br><br>。。。。。sar 2运算等于<br><br>?</p>
 <p>对应C语言（&gt;&gt;）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a=10;</span><br><span class="line">printf(&quot;%d\n&quot;,a&gt;&gt;2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a=<span class="number">10</span>;</span><br><span class="line">printf(<span class="string">"%d<span class="subst">\n</span>"</span>,a&gt;&gt;<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="8-位运算实现四则运算"><a href="#8-位运算实现四则运算" class="headerlink" title="8.位运算实现四则运算"></a>8.位运算实现四则运算</h2><h3 id="加法"><a href="#加法" class="headerlink" title="加法:"></a>加法:</h3><p><img src="https://s2.ax1x.com/2019/07/10/Z60xun.png" alt="Z60xun.png"></p>
 <h3 id="减法-："><a href="#减法-：" class="headerlink" title="减法 ："></a>减法 ：</h3><p><img src="https://s2.ax1x.com/2019/07/10/Z6Btbt.png" alt="Z6Btbt.png"></p>
@@ -437,52 +444,52 @@
 <h3 id="内存地址"><a href="#内存地址" class="headerlink" title="内存地址"></a>内存地址</h3><p>1.内存是一个线性地址，每个数据都占有一定的内存，而他们存的位置就是他们的地址.成为内存地址，我们可以往内里存储数据或读取数据都会用到它<br>2.32位的话可  存房00000000到 FFFFFFFF（16进制）<br>也是上面每个进程都是4G的虚拟空间</p>
 <p>mov ax,1     //放入寄存器  ax即说明了放入ax中，16位的<br>mov eax,1     //eax  即说明放入到了  32位的</p>
 <p>而放入内存里，就得先说明放入多大//宽度的内存里<br><br>==mov byte ptr ds:[0018FFF0],1==<br><br>//不是每个内存地址都能使用的，使用前得提前申请<br>  但可以测试时使用堆栈区的地址，那的都可以使用<br>立即数 写入到寄存器<br><br>寄存器的值  写入到内存<br><br>内存的值  写到 寄存器<br><br>另外  寄存器可到寄存器  <br> <strong>内存目前的指令不可以到内存（有指令是能实现的）</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov dword PTR ds:[18fffc],12345678</span><br><span class="line">mov dword PTR ds:[18fffc],eax</span><br><span class="line">mov eax,dword PTR ds:[18fff8]</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[18fffc],<span class="number">12345678</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[18fffc],<span class="built_in">eax</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[18fff8]</span><br></pre></td></tr></table></figure>
 
 <p>注意宽度：<br>Byte：8字节<br>word：16字节<br>dword：32字节</p>
 <h2 id="13-内存地址的五种形式"><a href="#13-内存地址的五种形式" class="headerlink" title="13.内存地址的五种形式"></a>13.内存地址的五种形式</h2><p>1.形式一：[立即数]<br><br>略过<br>2.形式二：reg(寄存器)可以是8个通用寄存器中的任一个<br></p>
 <blockquote>
 <p>读取内存的值</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov ecx,0x13FFD0</span><br><span class="line">mov eax,dword PTR ds:[eax]</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">ecx</span>,<span class="number">0x13FFD0</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">eax</span>]</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>向内存中写入数据</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov EDx,0x13FFD8</span><br><span class="line">mov dword PTR ds:[eax],0x87654321</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">EDx</span>,<span class="number">0x13FFD8</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">eax</span>],<span class="number">0x87654321</span></span><br></pre></td></tr></table></figure>
 
 <p>3.形式3：[reg+立即数]</p>
 <blockquote>
 <p>读取内存的值</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov ecx,0x13FFD0</span><br><span class="line">mov eax,dword PTR ds:[ecx+4]</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">ecx</span>,<span class="number">0x13FFD0</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">ecx</span>+<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>向内存中写入数据</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov EDx,0x13FFD8</span><br><span class="line">mov dword PTR ds:[eax+0xC],0x87654321</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">EDx</span>,<span class="number">0x13FFD8</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">eax</span>+<span class="number">0xC</span>],<span class="number">0x87654321</span></span><br></pre></td></tr></table></figure>
 
 <p>4.形式4：[reg+reg*（1,2,4,8）]</p>
 <blockquote>
 <p>读取内存的值</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov eax,0x13FFC4</span><br><span class="line">mov ecx,2</span><br><span class="line">mov edx,dword PTR ds:[ecx+ecx*4]</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="number">0x13FFC4</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">ecx</span>,<span class="number">2</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">edx</span>,<span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">ecx</span>+<span class="built_in">ecx</span>*<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>向内存中写入数据</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov Eax,0x13FFC4</span><br><span class="line">mov eax,2</span><br><span class="line">mov dword PTR ds:[eax+ecx*4],87654321</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">Eax</span>,<span class="number">0x13FFC4</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="number">2</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">eax</span>+<span class="built_in">ecx</span>*<span class="number">4</span>],<span class="number">87654321</span></span><br></pre></td></tr></table></figure>
 
 <p>5.形式5：[reg+reg*（1,2,4,8）+立即数]</p>
 <blockquote>
 <p>读取内存的值</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov eax,0x13FFC4</span><br><span class="line">mov ecx,2</span><br><span class="line">mov edx,dword PTR ds:[ecx+ecx*4+4]</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="number">0x13FFC4</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">ecx</span>,<span class="number">2</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">edx</span>,<span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">ecx</span>+<span class="built_in">ecx</span>*<span class="number">4</span>+<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>向内存中写入数据</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov Eax,0x13FFC4</span><br><span class="line">mov eax,2</span><br><span class="line">mov dword PTR ds:[eax+ecx*4+4],87654321</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">Eax</span>,<span class="number">0x13FFC4</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>,<span class="number">2</span></span><br><span class="line"><span class="keyword">mov</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[<span class="built_in">eax</span>+<span class="built_in">ecx</span>*<span class="number">4</span>+<span class="number">4</span>],<span class="number">87654321</span></span><br></pre></td></tr></table></figure>
 
 <p>//数据是如何存放的：小端存储（大小端百度）</p>
 <h2 id="15-汇编常用指令-参考资料Intel白皮书"><a href="#15-汇编常用指令-参考资料Intel白皮书" class="headerlink" title="15.汇编常用指令//参考资料Intel白皮书"></a>15.汇编常用指令//参考资料Intel白皮书</h2><h2 id="mov指令"><a href="#mov指令" class="headerlink" title="mov指令"></a>mov指令</h2><p><img src="https://s2.ax1x.com/2019/07/10/Z6BW5T.png" alt="Z6BW5T.png"></p>
@@ -490,12 +497,12 @@
 <h2 id="sub指令"><a href="#sub指令" class="headerlink" title="sub指令"></a>sub指令</h2><p><img src="https://s2.ax1x.com/2019/07/10/Z6Bcbq.png" alt="Z6Bcbq.png"></p>
 <h2 id="and指令"><a href="#and指令" class="headerlink" title="and指令"></a>and指令</h2><p><a href="https://imgchr.com/i/Z6BRaV" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/07/10/Z6BRaV.png" alt="Z6BRaV.png"></a></p>
 <p>做个实验：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and dword PTR ds:[18FFA0],EAX</span><br><span class="line">//内存  ds:[18FFA0]  为00000002   //2 二进制0010</span><br><span class="line">  寄存器  EAX  为      00000001   //  1  二进制0001</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[18FFA0],<span class="built_in">EAX</span></span><br><span class="line">//内存  <span class="built_in">ds</span>:[18FFA0]  为<span class="number">00000002</span>   //<span class="number">2</span> 二进制<span class="number">0010</span></span><br><span class="line">  寄存器  <span class="built_in">EAX</span>  为      <span class="number">00000001</span>   //  <span class="number">1</span>  二进制<span class="number">0001</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="or指令"><a href="#or指令" class="headerlink" title="or指令"></a>or指令</h2><p><img src="https://s2.ax1x.com/2019/07/10/Z6B6rn.png" alt="Z6B6rn.png"></p>
 <h2 id="xor指令"><a href="#xor指令" class="headerlink" title="xor指令"></a>xor指令</h2><p><img src="https://s2.ax1x.com/2019/07/10/Z6BhPU.png" alt="Z6BhPU.png"></p>
 <h2 id="not指令"><a href="#not指令" class="headerlink" title="not指令"></a>not指令</h2><p><img src="https://s2.ax1x.com/2019/07/10/Z6B4GF.png" alt="Z6B4GF.png"><br>试验下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">not Dword PTR ds:[18FFA0]   //本来里面全为0</span><br><span class="line">执行后ds:[18FFA0]里面   为  FFFFFFFF</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">not</span> <span class="built_in">Dword</span> <span class="built_in">PTR</span> <span class="built_in">ds</span>:[18FFA0]   //本来里面全为<span class="number">0</span></span><br><span class="line">执行后<span class="built_in">ds</span>:[18FFA0]里面   为  FFFFFFFF</span><br></pre></td></tr></table></figure>
 
 <h2 id="16-汇编常用指令（二）"><a href="#16-汇编常用指令（二）" class="headerlink" title="16.汇编常用指令（二）"></a>16.汇编常用指令（二）</h2><p>前面提到：<br><br>寄存器可到寄存器，<br>内存当时说不可以直接到内存，而接下来这个指令可以实现<br><br>==movs==</p>
 <p><img src="https://s2.ax1x.com/2019/07/10/Z6BP4U.png" alt="Z6BP4U.png"></p>
@@ -503,7 +510,7 @@
 <p>程序会在两个地方停下来:</p>
 <p>1.刚加载时<br><br>2.程序入口点</p>
 <p>1.movs指令：移动数据  内存–》内存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">byte/word/dword</span><br><span class="line"></span><br><span class="line">movs byte PTR ES:[EDI],byte PTR DS:[EsI]</span><br><span class="line">movs word PTR ES:[EDI],word PTR DS:[EsI]</span><br><span class="line">movs dword PTR ES:[EDI],dword PTR DS:[EsI]</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">byte</span>/<span class="built_in">word</span>/<span class="built_in">dword</span></span><br><span class="line"></span><br><span class="line">movs <span class="built_in">byte</span> <span class="built_in">PTR</span> <span class="built_in">ES</span>:[<span class="built_in">EDI</span>],<span class="built_in">byte</span> <span class="built_in">PTR</span> <span class="built_in">DS</span>:[<span class="built_in">EsI</span>]</span><br><span class="line">movs <span class="built_in">word</span> <span class="built_in">PTR</span> <span class="built_in">ES</span>:[<span class="built_in">EDI</span>],<span class="built_in">word</span> <span class="built_in">PTR</span> <span class="built_in">DS</span>:[<span class="built_in">EsI</span>]</span><br><span class="line">movs <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ES</span>:[<span class="built_in">EDI</span>],<span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">DS</span>:[<span class="built_in">EsI</span>]</span><br></pre></td></tr></table></figure>
 
 <p>了解下 标志寄存器     elf</p>
 <p>elf ：00000246</p>
@@ -514,10 +521,10 @@
 <p><img src="https://s2.ax1x.com/2019/07/10/Z6BzxH.png" alt="Z6BzxH.png"><br><img src="https://s2.ax1x.com/2019/07/10/Z6BxRe.png" alt="Z6BxRe.png"></p>
 <p>ESi从   0018FF8C  到0018FF88   减了16<br>Edi从   0018FFA0  到0018FF9C   减了16       //原因是  elf中的D方向标志为1；</p>
 <p>STOS指令：讲AL/AX/EAX的值存储到[EDI]指定的内存单元</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">STOS </span><br><span class="line"></span><br><span class="line">STOS  byte PTR ES:[EDI];简写为STOSB</span><br><span class="line">STOS  word PTR ES:[EDI];简写为STOSW</span><br><span class="line">STOS  dword PTR ES:[EDI];简写为STOSD</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">STOS </span><br><span class="line"></span><br><span class="line">STOS  <span class="built_in">byte</span> <span class="built_in">PTR</span> <span class="built_in">ES</span>:[<span class="built_in">EDI</span>]<span class="comment">;简写为STOSB</span></span><br><span class="line">STOS  <span class="built_in">word</span> <span class="built_in">PTR</span> <span class="built_in">ES</span>:[<span class="built_in">EDI</span>]<span class="comment">;简写为STOSW</span></span><br><span class="line">STOS  <span class="built_in">dword</span> <span class="built_in">PTR</span> <span class="built_in">ES</span>:[<span class="built_in">EDI</span>]<span class="comment">;简写为STOSD</span></span><br></pre></td></tr></table></figure>
 
 <p>REP指令：按计数寄存器（ECX）中的指定的次数重复执行字符串指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov eax，10;//这里的值是  16进制   10即代表 会执行16次</span><br><span class="line">rep movs movsd</span><br><span class="line"></span><br><span class="line">rep stosd；</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mov</span> <span class="built_in">eax</span>，<span class="number">10</span><span class="comment">;//这里的值是  16进制   10即代表 会执行16次</span></span><br><span class="line"><span class="keyword">rep</span> movs <span class="keyword">movsd</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">rep</span> <span class="keyword">stosd</span>；</span><br></pre></td></tr></table></figure>
 
 <h2 id="17-什么是堆栈"><a href="#17-什么是堆栈" class="headerlink" title="17.什么是堆栈"></a>17.什么是堆栈</h2>
       
@@ -626,7 +633,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -709,7 +716,9 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -718,6 +727,14 @@
   </span>
   <span class="author" itemprop="copyrightHolder">木头</span>
 </div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动

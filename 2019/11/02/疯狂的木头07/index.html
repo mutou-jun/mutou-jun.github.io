@@ -1,0 +1,664 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="疯狂的木头,">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="前端时间电脑崩了，丢失了太多文件与数据，糟心啊！说不难受都是假的！又因为unctf比赛，所以今天才把博客给恢复过来！不过我觉得我这次是要好好思考一番了！">
+<meta name="keywords" content="疯狂的木头">
+<meta property="og:type" content="article">
+<meta property="og:title" content="疯狂的木头07">
+<meta property="og:url" content="http://yoursite.com/2019/11/02/疯狂的木头07/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="前端时间电脑崩了，丢失了太多文件与数据，糟心啊！说不难受都是假的！又因为unctf比赛，所以今天才把博客给恢复过来！不过我觉得我这次是要好好思考一番了！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/02/KLL6BT.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/02/KLL6BT.jpg">
+<meta property="og:updated_time" content="2019-11-02T14:30:51.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="疯狂的木头07">
+<meta name="twitter:description" content="前端时间电脑崩了，丢失了太多文件与数据，糟心啊！说不难受都是假的！又因为unctf比赛，所以今天才把博客给恢复过来！不过我觉得我这次是要好好思考一番了！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/02/KLL6BT.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 疯狂的木头07 | mutou-jun's blog </title>
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                疯狂的木头07
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-11-02T19:27:12+08:00" content="2019-11-02">
+              2019-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端时间电脑崩了，丢失了太多文件与数据，糟心啊！说不难受都是假的！又因为unctf比赛，所以今天才把博客给恢复过来！不过我觉得我这次是要好好思考一番了！</p>
+<a id="more"></a>
+<h2 id="起初，我也是带着美好的愿望出发的！"><a href="#起初，我也是带着美好的愿望出发的！" class="headerlink" title="起初，我也是带着美好的愿望出发的！"></a>起初，我也是带着美好的愿望出发的！</h2><blockquote>
+<p>从小的时候，就梦想着以后能够强大起来，像赛亚人保护地球那种！哈，我呢！对长大后的希望就是“在朋友们不顺心或者失意的时候可以随时出现在他们身边”，然后再有一个稳定的工作，工作之余去做自己喜欢的事，见相见的人！与他们一起去看漫展，一起搭火烤串，一起抓鱼，一起“开会”，一起畅谈，一起看书，一起建个大的室内体育场，一起打着乒乓，羽毛与篮球，一起再去外面世界转个一转，闻闻花香，见见海涌！而一定，我的想要不止这些！或许早有些，已忘记，早有些，不允许再提起！于是我便朝着这个方向去走着，因为决心不够，没能够清楚看清大局势！输了高考！</p>
+</blockquote>
+<h2 id="其实它们很遥远，走着真的来不及！"><a href="#其实它们很遥远，走着真的来不及！" class="headerlink" title="其实它们很遥远，走着真的来不及！"></a>其实它们很遥远，走着真的来不及！</h2><blockquote>
+<p>还好上天眷顾，又给了我一次觉醒的机会，进了很普通的二本学校，比整个大学二本专业最低录取线高1分！真的感谢，被命运原谅了，但原谅归原谅，再被相信就难了，我可要好好抓住这次改过的机会并且不能再失败，我计划的期望时间是2年，要找到自信的自我，进而再稳定朝着第一步的工作努力！之后的就暂且后面再说！前期没有人能指引着大学我该建立一个怎样的大路线去走，只好自己摸索着走！加学生会，各种社团…,然后就这样还挺开心的过了1月（或许吧），突然发现，我并不能去走社交这条路！进了计算机行业，当然是允许去选择做其他事情的，但必须要保证自己的专业知识要过关，甚至佼佼者水平！可我连C语言都还看不明白呢！</p>
+</blockquote>
+<h2 id="当方向错了，停止就是进步"><a href="#当方向错了，停止就是进步" class="headerlink" title="当方向错了，停止就是进步"></a>当方向错了，停止就是进步</h2><blockquote>
+<p>刚好学校有个信息安全实验室，2017创建的，主要正是招向我们这个渗透测试班的（恍然明白了，如果那年没有新开这个专业，我或许就写不了这篇反思了）当时很明白，在一所普通的院校，也许用专业比赛证书去弥补下学校层次的缺陷！不管怎么样，必须要加入！想的很美好，可学生会那边已经退不了了！我就这样，丢掉了一年有效时间！这一年下来，经历了总归是有用的，也认识了几个有趣的朋友，但内心深处我觉得大一一年，我对自己很失望！暑假的时候，组长和大三的杨学长带我去西安打了场CTF比赛，和大佬们相处，我还认识到自己，真的太弱了，不会说话，像个木头！我自己都觉得这已经涉及到尊重与修养上了！可我还是像个木头一样！失望至极！</p>
+</blockquote>
+<h2 id="不胜感激，不止前进！"><a href="#不胜感激，不止前进！" class="headerlink" title="不胜感激，不止前进！"></a>不胜感激，不止前进！</h2><blockquote>
+<p>西安之行，有高铁，有华山，还有第一次的线下比赛，长见识啊，还有一部K3，兴奋呐！组长给说，学习一定要有计划，今天要做什么，这周要完成什么，这个月要完成什么，都要做个规划！另外把去年丢的时间要补回来！我觉得，真的，有人带着的感觉真好！但一定接下来的总归要自己走！不过路上有人给了正确的指引，都要铭记在心！不胜感激。不止前进！</p>
+</blockquote>
+<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><blockquote>
+<p>而处于大二阶段的我，可没有想象中的跑起来！我本着多学实验室的内容，绝大部分不曾听过班课！发现到其实是得不偿失的选择！觉得到从进入大学到现在做的得不偿失的事太多了！心里满满的愧疚，离我自己的目标里的太远了，就拿这1，2周来说吧，有些上进心不够，或许是因为一直学却得不到反馈而着急了吧,不过这事，急不得的，所以，今天不得不写个稍长的文章来反思下自己，要一步一步来，谁内心慌了，就会出局的！上面定的2年时间马上就快到了，没有事情是突然做成的，必然是个渐进的过程！除此之外，要活跃起来呢，要舒展起来呢！</p>
+</blockquote>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><blockquote>
+<p>近期计划：英语四级，二进制学习，期末考试，下年ACM，ISCC，强网杯</p>
+</blockquote>
+<h2 id="高度自律即绝对自由"><a href="#高度自律即绝对自由" class="headerlink" title="高度自律即绝对自由"></a>高度自律即绝对自由</h2><blockquote>
+<p>这部分就不多说了，坚持就是了！每天早起，每天锻炼，每天反思，每天静心，每天进步！<br>我还有个梦想：寻找小伙伴，走进新世界！野心，就请你一起膨胀起来吧！</p>
+</blockquote>
+<h2 id="我心永恒！"><a href="#我心永恒！" class="headerlink" title="我心永恒！"></a>我心永恒！</h2><blockquote>
+<p><img src="https://s2.ax1x.com/2019/11/02/KLL6BT.jpg" alt="KLL6BT.jpg"></p>
+</blockquote>
+<hr>
+<p>title: 疯狂的木头07<br>date: 2019-11-2 19:27:12<br>tags: 疯狂的木头</p>
+<hr>
+<p>前端时间电脑崩了，丢失了太多文件与数据，糟心啊！说不难受都是假的！又因为unctf比赛，所以今天才把博客给恢复过来！不过我觉得我这次是要好好思考一番了！</p>
+<!-- more-->
+<h2 id="起初，我也是带着美好的愿望出发的！-1"><a href="#起初，我也是带着美好的愿望出发的！-1" class="headerlink" title="起初，我也是带着美好的愿望出发的！"></a>起初，我也是带着美好的愿望出发的！</h2><blockquote>
+<p>从小的时候，就梦想着以后能够强大起来，像赛亚人保护地球那种！哈，我呢！对长大后的希望就是“在朋友们不顺心或者失意的时候可以随时出现在他们身边”，然后再有一个稳定的工作，工作之余去做自己喜欢的事，见相见的人！与他们一起去看漫展，一起搭火烤串，一起抓鱼，一起“开会”，一起畅谈，一起看书，一起建个大的室内体育场，一起打着乒乓，羽毛与篮球，一起再去外面世界转个一转，闻闻花香，见见海涌！而一定，我的想要不止这些！或许早有些，已忘记，早有些，不允许再提起！于是我便朝着这个方向去走着，因为决心不够，没能够清楚看清大局势！输了高考！</p>
+</blockquote>
+<h2 id="其实它们很遥远，走着真的来不及！-1"><a href="#其实它们很遥远，走着真的来不及！-1" class="headerlink" title="其实它们很遥远，走着真的来不及！"></a>其实它们很遥远，走着真的来不及！</h2><blockquote>
+<p>还好上天眷顾，又给了我一次觉醒的机会，进了很普通的二本学校，比整个大学二本专业最低录取线高1分！真的感谢，被命运原谅了，但原谅归原谅，再被相信就难了，我可要好好抓住这次改过的机会并且不能再失败，我计划的期望时间是2年，要找到自信的自我，进而再稳定朝着第一步的工作努力！之后的就暂且后面再说！前期没有人能指引着大学我该建立一个怎样的大路线去走，只好自己摸索着走！加学生会，各种社团…,然后就这样还挺开心的过了1月（或许吧），突然发现，我并不能去走社交这条路！进了计算机行业，当然是允许去选择做其他事情的，但必须要保证自己的专业知识要过关，甚至佼佼者水平！可我连C语言都还看不明白呢！</p>
+</blockquote>
+<h2 id="当方向错了，停止就是进步-1"><a href="#当方向错了，停止就是进步-1" class="headerlink" title="当方向错了，停止就是进步"></a>当方向错了，停止就是进步</h2><blockquote>
+<p>刚好学校有个信息安全实验室，2017创建的，主要正是招向我们这个渗透测试班的（恍然明白了，如果那年没有新开这个专业，我或许就写不了这篇反思了）当时很明白，在一所普通的院校，也许用专业比赛证书去弥补下学校层次的缺陷！不管怎么样，必须要加入！想的很美好，可学生会那边已经退不了了！我就这样，丢掉了一年有效时间！这一年下来，经历了总归是有用的，也认识了几个有趣的朋友，但内心深处我觉得大一一年，我对自己很失望！暑假的时候，组长和大三的杨学长带我去西安打了场CTF比赛，和大佬们相处，我还认识到自己，真的太弱了，不会说话，像个木头！我自己都觉得这已经涉及到尊重与修养上了！可我还是像个木头一样！失望至极！</p>
+</blockquote>
+<h2 id="不胜感激，不止前进！-1"><a href="#不胜感激，不止前进！-1" class="headerlink" title="不胜感激，不止前进！"></a>不胜感激，不止前进！</h2><blockquote>
+<p>西安之行，有高铁，有华山，还有第一次的线下比赛，长见识啊，还有一部K3，兴奋呐！组长给说，学习一定要有计划，今天要做什么，这周要完成什么，这个月要完成什么，都要做个规划！另外把去年丢的时间要补回来！我觉得，真的，有人带着的感觉真好！但一定接下来的总归要自己走！不过路上有人给了正确的指引，都要铭记在心！不胜感激。不止前进！</p>
+</blockquote>
+<h2 id="反思-1"><a href="#反思-1" class="headerlink" title="反思"></a>反思</h2><blockquote>
+<p>而处于大二阶段的我，可没有想象中的跑起来！我本着多学实验室的内容，绝大部分不曾听过班课！发现到其实是得不偿失的选择！觉得到从进入大学到现在做的得不偿失的事太多了！心里满满的愧疚，离我自己的目标里的太远了，就拿这1，2周来说吧，有些上进心不够，或许是因为一直学却得不到反馈而着急了吧,不过这事，急不得的，所以，今天不得不写个稍长的文章来反思下自己，要一步一步来，谁内心慌了，就会出局的！上面定的2年时间马上就快到了，没有事情是突然做成的，必然是个渐进的过程！除此之外，要活跃起来呢，要舒展起来呢！</p>
+</blockquote>
+<h2 id="计划-1"><a href="#计划-1" class="headerlink" title="计划"></a>计划</h2><blockquote>
+<p>近期计划：英语四级，二进制学习，期末考试，下年ACM，ISCC，强网杯</p>
+</blockquote>
+<h2 id="高度自律即绝对自由-1"><a href="#高度自律即绝对自由-1" class="headerlink" title="高度自律即绝对自由"></a>高度自律即绝对自由</h2><blockquote>
+<p>这部分就不多说了，坚持就是了！每天早起，每天锻炼，每天反思，每天静心，每天进步！<br>我还有个梦想：寻找小伙伴，走进新世界！野心，就请你一起膨胀起来吧！</p>
+</blockquote>
+<h2 id="我心永恒！-1"><a href="#我心永恒！-1" class="headerlink" title="我心永恒！"></a>我心永恒！</h2><blockquote>
+<p><img src="https://s2.ax1x.com/2019/11/02/KLL6BT.jpg" alt="KLL6BT.jpg"></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/疯狂的木头/" rel="tag">#疯狂的木头</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/14/Nctf WxyVM/" rel="next" title="Nctf WxyVM">
+                <i class="fa fa-chevron-left"></i> Nctf WxyVM
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起初，我也是带着美好的愿望出发的！"><span class="nav-number">1.</span> <span class="nav-text">起初，我也是带着美好的愿望出发的！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其实它们很遥远，走着真的来不及！"><span class="nav-number">2.</span> <span class="nav-text">其实它们很遥远，走着真的来不及！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当方向错了，停止就是进步"><span class="nav-number">3.</span> <span class="nav-text">当方向错了，停止就是进步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不胜感激，不止前进！"><span class="nav-number">4.</span> <span class="nav-text">不胜感激，不止前进！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反思"><span class="nav-number">5.</span> <span class="nav-text">反思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计划"><span class="nav-number">6.</span> <span class="nav-text">计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高度自律即绝对自由"><span class="nav-number">7.</span> <span class="nav-text">高度自律即绝对自由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我心永恒！"><span class="nav-number">8.</span> <span class="nav-text">我心永恒！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#起初，我也是带着美好的愿望出发的！-1"><span class="nav-number">9.</span> <span class="nav-text">起初，我也是带着美好的愿望出发的！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其实它们很遥远，走着真的来不及！-1"><span class="nav-number">10.</span> <span class="nav-text">其实它们很遥远，走着真的来不及！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当方向错了，停止就是进步-1"><span class="nav-number">11.</span> <span class="nav-text">当方向错了，停止就是进步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不胜感激，不止前进！-1"><span class="nav-number">12.</span> <span class="nav-text">不胜感激，不止前进！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反思-1"><span class="nav-number">13.</span> <span class="nav-text">反思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计划-1"><span class="nav-number">14.</span> <span class="nav-text">计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高度自律即绝对自由-1"><span class="nav-number">15.</span> <span class="nav-text">高度自律即绝对自由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我心永恒！-1"><span class="nav-number">16.</span> <span class="nav-text">我心永恒！</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -153,6 +153,13 @@
   <title> C语言的汇编表示之堆栈图 | mutou-jun's blog </title>
 </head>
 
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
@@ -322,7 +329,7 @@
       
         <p>前天把C语言的汇编表示给看完了，但却没有怎么自己操作过，不过看懂了永远不能代表学会了，今天的话就从中挑选一个简单例子完整的再操作一遍，加深自己对它的理解！（之所以没怎么操作是因为VC6.0环境总是出问题！！！）</p>
 <a id="more"></a>
-<h2 id="1-在VC6-0创建一个文件"><a href="#1-在VC6-0创建一个文件" class="headerlink" title="1. 在VC6.0创建一个文件"></a>1. 在VC6.0创建一个文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib&gt;</span><br><span class="line">#include&lt;windows.h&gt;</span><br><span class="line">int plus(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x+y;</span><br><span class="line">&#125;;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a=10;</span><br><span class="line">    push(2,3);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-在VC6-0创建一个文件"><a href="#1-在VC6-0创建一个文件" class="headerlink" title="1. 在VC6.0创建一个文件"></a>1. 在VC6.0创建一个文件</h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="built_in">int</span> plus(<span class="built_in">int</span> x,<span class="built_in">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y<span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line"><span class="built_in">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> a=<span class="number">10</span><span class="comment">;</span></span><br><span class="line">    push(<span class="number">2</span>,<span class="number">3</span>)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Cral+s    保存<br><br>F7    bluid（构建exe）</p>
@@ -491,7 +498,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -574,7 +581,9 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -583,6 +592,14 @@
   </span>
   <span class="author" itemprop="copyrightHolder">木头</span>
 </div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动

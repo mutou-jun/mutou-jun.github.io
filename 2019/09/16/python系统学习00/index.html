@@ -121,6 +121,13 @@
   <title> python系统学习00 | mutou-jun's blog </title>
 </head>
 
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
@@ -291,11 +298,11 @@
         <p>python经常会用到的，虽然萝卜建议不系统学，但系统学完后会有成就感呐！所以，来吧！//基于python 3.x</p>
 <a id="more"></a>
 <h2 id="注释"><a href="#注释" class="headerlink" title="注释:"></a>注释:</h2><ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">print(&apos;hello&apos;)</span><br><span class="line">print(&apos;hello,world!&apos;)</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">'''</span><br><span class="line">print(<span class="emphasis">'hello'</span>)</span><br><span class="line">print(<span class="emphasis">'hello,world!'</span>)</span><br><span class="line">'''</span><br></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">print(&apos;hello&apos;)</span><br><span class="line">print(&apos;hello,world!&apos;)</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">print('hello')</span></span><br><span class="line"><span class="string">print('hello,world!')</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -308,7 +315,7 @@
 <li>集合：set</li>
 <li>字典（键值对）：dict</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//type()函数返回数据类型</span><br><span class="line">name=&apos;mutou&apos;</span><br><span class="line">print(type(name))</span><br><span class="line">#&lt;type &apos;str&apos;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//type()函数返回数据类型</span></span><br><span class="line"><span class="keyword">name</span>=<span class="string">'mutou'</span></span><br><span class="line">print(<span class="keyword">type</span>(<span class="keyword">name</span>))</span><br><span class="line">#&lt;<span class="keyword">type</span> <span class="string">'str'</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="格式化输出："><a href="#格式化输出：" class="headerlink" title="格式化输出："></a>格式化输出：</h2><h3 id="格式符号"><a href="#格式符号" class="headerlink" title="格式符号"></a>格式符号</h3><p><img src="https://s2.ax1x.com/2019/09/16/nRigzj.png" alt="nRigzj.png"></p>
 <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><ol>
@@ -317,15 +324,15 @@
 <li><p>%0.2f,表示小数点后显示的小数位数</p>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf8</span><br><span class="line">age=20</span><br><span class="line">name=&apos;mutou&apos;</span><br><span class="line">weight=75.5</span><br><span class="line">stu_id=1</span><br><span class="line"></span><br><span class="line">print(&apos;我的名字是%s&apos; %name)</span><br><span class="line">#我的名字是mutou</span><br><span class="line">print(&apos;我的今年%d岁&apos; %age)</span><br><span class="line">#我的今年20岁</span><br><span class="line">print(&apos;我的名字是%s,今年%d岁&apos; %(name,age))</span><br><span class="line">#我的名字是mutou,今年20岁</span><br><span class="line">print(&apos;我的名字是%s,我今年%d岁,体重是%.2f公斤,学号是%06d&apos; %(name,age,weight,stu_id))</span><br><span class="line">#我的名字是mutou,我今年20岁,体重是75.50公斤,学号是000001</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="attribute">age</span>=20</span><br><span class="line"><span class="attribute">name</span>=<span class="string">'mutou'</span></span><br><span class="line"><span class="attribute">weight</span>=75.5</span><br><span class="line"><span class="attribute">stu_id</span>=1</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'我的名字是%s'</span> %name)</span><br><span class="line"><span class="comment">#我的名字是mutou</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'我的今年%d岁'</span> %age)</span><br><span class="line"><span class="comment">#我的今年20岁</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'我的名字是%s,今年%d岁'</span> %(name,age))</span><br><span class="line"><span class="comment">#我的名字是mutou,今年20岁</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'我的名字是%s,我今年%d岁,体重是%.2f公斤,学号是%06d'</span> %(name,age,weight,stu_id))</span><br><span class="line"><span class="comment">#我的名字是mutou,我今年20岁,体重是75.50公斤,学号是000001</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="格式化字符串拓展"><a href="#格式化字符串拓展" class="headerlink" title="格式化字符串拓展"></a>格式化字符串拓展</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#可以看出 %s的强大之处！</span><br><span class="line">#coding:utf8</span><br><span class="line">age=20</span><br><span class="line">name=&apos;mutou&apos;</span><br><span class="line">weight=75.5</span><br><span class="line">name=&apos;mutou&apos;</span><br><span class="line">print(&apos;我的名字是%s,今年%s岁,体重%s&apos; %(name,age,weight))</span><br></pre></td></tr></table></figure>
+<h2 id="格式化字符串拓展"><a href="#格式化字符串拓展" class="headerlink" title="格式化字符串拓展"></a>格式化字符串拓展</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#可以看出 %s的强大之处！</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="attribute">age</span>=20</span><br><span class="line"><span class="attribute">name</span>=<span class="string">'mutou'</span></span><br><span class="line"><span class="attribute">weight</span>=75.5</span><br><span class="line"><span class="attribute">name</span>=<span class="string">'mutou'</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'我的名字是%s,今年%s岁,体重%s'</span> %(name,age,weight))</span><br></pre></td></tr></table></figure>
 
-<h2 id="f格式化字符串："><a href="#f格式化字符串：" class="headerlink" title="f格式化字符串："></a>f格式化字符串：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#f-格式化字符串是Python 3.6中新增的格式化方法，该方法更简单易读！</span><br><span class="line">age=20</span><br><span class="line">name=&apos;mutou&apos;</span><br><span class="line">print(&apos;我的名字是%s,今年%d岁&apos; %(name,age))</span><br><span class="line">#我的名字是mutou,今年20岁</span><br><span class="line">print(f&apos;我的名字是&#123;name&#125;,今年&#123;age&#125;岁&apos;)</span><br><span class="line">#我的名字是mutou,今年20岁</span><br></pre></td></tr></table></figure>
+<h2 id="f格式化字符串："><a href="#f格式化字符串：" class="headerlink" title="f格式化字符串："></a>f格式化字符串：</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#f-格式化字符串是Python 3.6中新增的格式化方法，该方法更简单易读！</span></span><br><span class="line"><span class="attribute">age</span>=20</span><br><span class="line"><span class="attribute">name</span>=<span class="string">'mutou'</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'我的名字是%s,今年%d岁'</span> %(name,age))</span><br><span class="line"><span class="comment">#我的名字是mutou,今年20岁</span></span><br><span class="line"><span class="builtin-name">print</span>(f<span class="string">'我的名字是&#123;name&#125;,今年&#123;age&#125;岁'</span>)</span><br><span class="line"><span class="comment">#我的名字是mutou,今年20岁</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf8</span><br><span class="line">print(&quot;hello\nworld!&quot;)#  \ 叫作 反斜杠</span><br><span class="line"></span><br><span class="line"># hello</span><br><span class="line"># world!</span><br><span class="line">print(&quot;helloworld!&quot;)</span><br><span class="line">#helloworld!</span><br><span class="line">print(&quot;hello\tworld!&quot;) #制表符 四个空格长度</span><br><span class="line">#hello	world!</span><br></pre></td></tr></table></figure>
+<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"hello\nworld!"</span>)#  \ 叫作 反斜杠</span><br><span class="line"></span><br><span class="line"><span class="comment"># hello</span></span><br><span class="line"><span class="comment"># world!</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"helloworld!"</span>)</span><br><span class="line"><span class="comment">#helloworld!</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"hello\tworld!"</span>) #制表符 四个空格长度</span><br><span class="line"><span class="comment">#hello	world!</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="print结束符"><a href="#print结束符" class="headerlink" title="print结束符"></a>print结束符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#结束符用户可以修改</span><br><span class="line">#coding:utf8</span><br><span class="line">print(&apos;hello&apos;, end=&quot;\t&quot;)</span><br><span class="line">print(&apos;world&apos;, end=&quot;......&quot;)</span><br><span class="line">print(&apos;hello&apos;, end=&quot; &quot;)</span><br><span class="line">print(&apos;world&apos;, end=&quot;真好&quot;)</span><br><span class="line">#hello	world......hello world真好</span><br></pre></td></tr></table></figure>
+<h2 id="print结束符"><a href="#print结束符" class="headerlink" title="print结束符"></a>print结束符</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#结束符用户可以修改</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'hello'</span>, <span class="attribute">end</span>=<span class="string">"\t"</span>)</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'world'</span>, <span class="attribute">end</span>=<span class="string">"......"</span>)</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'hello'</span>, <span class="attribute">end</span>=<span class="string">" "</span>)</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'world'</span>, <span class="attribute">end</span>=<span class="string">"真好"</span>)</span><br><span class="line"><span class="comment">#hello	world......hello world真好</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><blockquote>
 <p>格式化符号</p>
@@ -351,7 +358,7 @@
 <blockquote>
 <p>print结束符</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;内容&apos;,end=&quot;&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">print</span>(<span class="string">'内容'</span>,<span class="attribute">end</span>=<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.ax1x.com/2019/09/16/nRiWyn.jpg" alt="nRiWyn.jpg"></p>
 
@@ -461,7 +468,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -544,7 +551,9 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -553,6 +562,14 @@
   </span>
   <span class="author" itemprop="copyrightHolder">木头</span>
 </div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
