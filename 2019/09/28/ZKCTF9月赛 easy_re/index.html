@@ -1,0 +1,630 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="re,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="实验室每月举行比赛了，害怕又期待！认真学就好了！">
+<meta name="keywords" content="re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZKCTF9月赛 easy_re">
+<meta property="og:url" content="http://yoursite.com/2019/09/28/ZKCTF9月赛 easy_re/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="实验室每月举行比赛了，害怕又期待！认真学就好了！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uuZ39J.png">
+<meta property="og:updated_time" content="2019-09-28T14:42:26.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ZKCTF9月赛 easy_re">
+<meta name="twitter:description" content="实验室每月举行比赛了，害怕又期待！认真学就好了！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/27/uuZ39J.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ZKCTF9月赛 easy_re | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ZKCTF9月赛 easy_re
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-09-28T22:07:24+08:00" content="2019-09-28">
+              2019-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>实验室每月举行比赛了，害怕又期待！认真学就好了！</p>
+<a id="more"></a>
+<h1 id="easy-re"><a href="#easy-re" class="headerlink" title="easy_re"></a>easy_re</h1><p> 这道题真的懂得话，会很简单，但我没有做过RC4的题，做题太少了。</p>
+<h2 id="拖入ida"><a href="#拖入ida" class="headerlink" title="拖入ida"></a>拖入ida</h2><blockquote>
+<p>代码还看着还很清晰：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall main(__int64 a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  unsigned __int16 v3; // ax</span><br><span class="line">  unsigned __int16 v4; // ax</span><br><span class="line">  char buf; // [rsp+20h] [rbp-140h]</span><br><span class="line">  char s1[8]; // [rsp+30h] [rbp-130h]</span><br><span class="line">  char v8; // [rsp+38h] [rbp-128h]</span><br><span class="line">  char s[8]; // [rsp+40h] [rbp-120h]</span><br><span class="line">  char v10; // [rsp+50h] [rbp-110h]</span><br><span class="line">  unsigned __int64 v11; // [rsp+158h] [rbp-8h]</span><br><span class="line"></span><br><span class="line">  v11 = __readfsqword(0x28u);</span><br><span class="line">  v8 = 0;</span><br><span class="line">  s1[0] = 0x7E;</span><br><span class="line">  s1[1] = 0x1E;</span><br><span class="line">  s1[2] = 0xD4u;</span><br><span class="line">  s1[3] = 0x81u;</span><br><span class="line">  s1[4] = 0x42;</span><br><span class="line">  s1[5] = 0xB2u;</span><br><span class="line">  s1[6] = 0xA0u;</span><br><span class="line">  s1[7] = 0x8Fu;</span><br><span class="line">  memset(&amp;v10, 0, 0x100uLL);</span><br><span class="line">  strcpy(s, &quot;ilovectf&quot;);                        // s=ilovectf</span><br><span class="line">  sub_40095F();                     //输入信息，不用分析:puts(&quot;Please reverse me!&quot;);</span><br><span class="line">  puts(&quot;input flag:&quot;);</span><br><span class="line">  read(0, &amp;buf, 8uLL);</span><br><span class="line">  v3 = strlen(s);                               // 8</span><br><span class="line">  sub_400666(&amp;v10, s, v3);</span><br><span class="line">  v4 = strlen(&amp;buf);</span><br><span class="line">  sub_400823(&amp;v10, &amp;buf, v4);</span><br><span class="line">  if ( !strcmp(s1, &amp;buf) )</span><br><span class="line">    puts(&quot;success!,Please submit with flag&#123;your input&#125;&quot;);</span><br><span class="line">  else</span><br><span class="line">    puts(&quot;fail!&quot;);</span><br><span class="line">  return 0LL;                                   // buf=[0x7E,0x1E,0xD4,0x81,0x42,0xB2,0xA0,0x8F]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们看下sub_400666(&amp;v10, s, v3);这个函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">unsigned __int64 __fastcall sub_400666(__int64 a1, __int64 a2, unsigned __int16 a3)</span><br><span class="line">&#123;</span><br><span class="line">  unsigned int v3; // eax          a1=v10[256]         a2 = s&quot;ilovectf&quot;     a3=8    </span><br><span class="line">  char v4; // ST27_1</span><br><span class="line">  signed int i; // [rsp+28h] [rbp-118h]</span><br><span class="line">  signed int j; // [rsp+28h] [rbp-118h]</span><br><span class="line">  int v8; // [rsp+2Ch] [rbp-114h]</span><br><span class="line">  char v9[264]; // [rsp+30h] [rbp-110h]</span><br><span class="line">  unsigned __int64 v10; // [rsp+138h] [rbp-8h]</span><br><span class="line"></span><br><span class="line">  v10 = __readfsqword(0x28u);</span><br><span class="line">  v8 = 0;</span><br><span class="line">  memset(v9, 0, 0x100uLL);</span><br><span class="line">  for ( i = 0; i &lt;= 255; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    *(i + a1) = i;                              // a1[256]=0-255</span><br><span class="line">    v9[i] = *(i % a3 + a2);                     // v9=  a[i%8]  (ilovectf)</span><br><span class="line">  &#125;</span><br><span class="line">  for ( j = 0; j &lt;= 255; ++j )</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = ((v9[j] + v8 + *(j + a1)) &gt;&gt; 31) &gt;&gt; 24;// v3=v9[j]+v8+(al[j]&gt;&gt;31)&gt;&gt;24</span><br><span class="line">    v8 = (v3 + v9[j] + v8 + *(j + a1)) - v3;    //    v8=v9+v8+al[j]</span><br><span class="line">    v4 = *(j + a1);                             // v4=al[j]</span><br><span class="line">    *(a1 + j) = *(v8 + a1);                     // a[j]=al[v8]</span><br><span class="line">    *(a1 + v8) = v4;                            // al[v8]=v4</span><br><span class="line">  &#125;</span><br><span class="line">  return __readfsqword(0x28u) ^ v10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里面注意下，函数里面有太多移位操作了，但大多数都相当于没有这些操作，一个字是2个字节，16位，双字就是32位，&gt;&gt;31后就等于0了，又&gt;&gt;24还是零，我们将其化简，见上面注释</p>
+</blockquote>
+<blockquote>
+<p>我们接着看下sub_400823(&amp;v10, &amp;buf, v4);这个函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall sub_400823(__int64 a1, __int64 a2, unsigned __int16 a3)</span><br><span class="line">&#123;</span><br><span class="line">  signed int v3; // ST20_4 a1=v10[256]   a2 =buf[8]          a3=8</span><br><span class="line">  unsigned int v4; // eax</span><br><span class="line">  char v5; // ST19_1</span><br><span class="line">  __int64 result; // rax</span><br><span class="line">  unsigned __int16 i; // [rsp+16h] [rbp-Eh]</span><br><span class="line">  int v8; // [rsp+18h] [rbp-Ch]</span><br><span class="line"></span><br><span class="line">  v8 = 0;</span><br><span class="line">  for ( i = 0; ; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    result = i;</span><br><span class="line">    if ( i &gt;= a3 )                              // 循环 8次</span><br><span class="line">      break;                                    // v3=v8+1</span><br><span class="line">    v3 = ((((v8 + 1) &gt;&gt; 31) &gt;&gt; 24) + v8 + 1) - (((v8 + 1) &gt;&gt; 31) &gt;&gt; 24);</span><br><span class="line">    v4 = ((v8 + *(v3 + a1)) &gt;&gt; 31) &gt;&gt; 24;   // v4=0，相当于没有 v4没有存在过</span><br><span class="line">    v8 = (v4 + v8 + *(v3 + a1)) - v4;           // v8=v8+v10[v3]</span><br><span class="line">    v5 = *(v3 + a1);                            // v5=v10[v3]</span><br><span class="line">    *(a1 + v3) = *(v8 + a1);                    // v10[v3]=v10[v8]</span><br><span class="line">    *(a1 + v8) = v5;                            // v10[v8] = v5</span><br><span class="line">    *(i + a2) ^= *((*(v3 + a1) + *(v8 + a1)) + a1);// a2[i]=a2[i]^ (v10[v10[v3]+v10[v8]])</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="脚本编写："><a href="#脚本编写：" class="headerlink" title="脚本编写："></a>脚本编写：</h2><blockquote>
+<p>这道题其实是RC4算法，看到一篇很好的链接讲的很详细：<a href="https://www.52pojie.cn/thread-800115-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-800115-1-1.html</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf8</span><br><span class="line">key=&quot;ilovectf&quot;					#密钥key</span><br><span class="line">S=[]							#S盒 S[256]</span><br><span class="line">T=[]							#暂时向量T</span><br><span class="line">J=0</span><br><span class="line">tmp=&quot;&quot;</span><br><span class="line">for i in range(256):</span><br><span class="line">	S.append(i)				#将0-255的互不重复的元素装入S盒，S[256]</span><br><span class="line">	T.append(chr(ord(key[i%8])))#暂时向量T: 将密钥的长度为单位将密钥循环放入其中   这里是v9[256]</span><br><span class="line">#print(v9)</span><br><span class="line">for i in range(256):</span><br><span class="line">	v3=0</span><br><span class="line">	J=(S[i]+ord(T[i])+J)&amp;0xff#保证是一个字节（0-256范围内）</span><br><span class="line">	tmp=S[i] </span><br><span class="line">	S[i]=S[J]</span><br><span class="line">	S[J]=tmp				#交换s[i]和s[j]</span><br><span class="line">#print(S)					#根据密钥key打乱S盒，i保证每个元素都得到处理，j保证S盒的打乱是随机的</span><br><span class="line"></span><br><span class="line">#参数一：被打乱的S-box；参数二：是需要加密的数据data；参数3是data的长度</span><br><span class="line">j=0</span><br><span class="line">flag=[]</span><br><span class="line">miwen=[0x7E,0x1E,0xD4,0x81,0x42,0xB2,0xA0,0x8F]#要加密的数据   加密后得到 V3rygo0d 明文</span><br><span class="line">for k in range(len(miwen)):</span><br><span class="line">	i=(j+1)&amp;0xff 		#这题或许  这一点和标准的RC4不同吧，标准的是  （i=i+1）&amp;0xff</span><br><span class="line">	j=(j+S[i])&amp;0xff</span><br><span class="line">	tmp=S[i]</span><br><span class="line">	S[i]=S[j]</span><br><span class="line">	S[j]=tmp</span><br><span class="line">	#print(S[(S[v3]+S[v80])&amp;0xff])</span><br><span class="line">	flag.append(S[(S[i]+S[j])&amp;0xff])</span><br><span class="line">print(flag)</span><br><span class="line">flagg=&quot;&quot;</span><br><span class="line">for i in range(8):</span><br><span class="line">	flagg+=chr(flag[i]^miwen[i])</span><br><span class="line">print(flagg)</span><br></pre></td></tr></table></figure>
+
+<h2 id="脑子啊"><a href="#脑子啊" class="headerlink" title="脑子啊"></a>脑子啊</h2><blockquote>
+<p>这道题起初我看到256就想到RC4了，但不熟悉它，因为平时没太多怎么对elf程序动态调试过，所以刚好拿它熟悉下，ida动态调试，get到了。下面是我调试做的记录，分析过程的记录都在备注上，（动态调试不应该像我这样用，而是应该静态某步或某个函数没太懂，猜测下然后去验证使用，不然花时间会很长，主要花在变量与寄存器的对应关系上），不管，就是要使用动态调试，因为时间结束时间还很很长嘛！</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">easy_re:0000000000400745 ; ---------------------------------------------------------------------------</span><br><span class="line">easy_re:0000000000400745</span><br><span class="line">easy_re:0000000000400745 loc_400745:                             ; CODE XREF: easy_re:0000000000400806↓j</span><br><span class="line">easy_re:0000000000400745 mov     eax, [rbp-118h]                 ; eax=i</span><br><span class="line">easy_re:000000000040074B movsxd  rdx, eax                        ; rdx=i</span><br><span class="line">easy_re:000000000040074E mov     rax, [rbp-128h]                 ; 指向al[0]的指针</span><br><span class="line">easy_re:0000000000400755 add     rax, rdx                        ; 指向al[i]的指针</span><br><span class="line">easy_re:0000000000400758 movzx   eax, byte ptr [rax]             ; al[i]=rbp-128[1]=0xC  ;  al[3]=0x87</span><br><span class="line">easy_re:000000000040075B movzx   edx, al                         ; edx=0xC；  将al[3] 0x87暂时放在 edx中</span><br><span class="line">easy_re:000000000040075E mov     eax, [rbp-114h]                 ; eax=0  C 0x95  v8(我觉的)</span><br><span class="line">easy_re:0000000000400764 add     edx, eax                        ; edx=0xC+0=0xC   0xC+0x89=0x95 我觉得v8+al[j]=0x11c</span><br><span class="line">easy_re:0000000000400766 mov     eax, [rbp-118h]                 ; eax=i</span><br><span class="line">easy_re:000000000040076C cdqe</span><br><span class="line">easy_re:000000000040076E movzx   eax, byte ptr [rbp+rax-110h]    ; 猜是v9[i]指针</span><br><span class="line">easy_re:0000000000400776 movsx   eax, al</span><br><span class="line">easy_re:0000000000400779 add     edx, eax                        ; edx=v8+al[j]  + v9[j]</span><br><span class="line">easy_re:000000000040077B mov     eax, edx</span><br><span class="line">easy_re:000000000040077D sar     eax, 1Fh                        ; (v8+al[j]  + v9[j])&gt;&gt;31</span><br><span class="line">easy_re:0000000000400780 shr     eax, 18h                        ; 算出  v3  存在 eax</span><br><span class="line">easy_re:0000000000400783 add     edx, eax                        ; edx存的v8+al[j]+v9[j] 0x11C</span><br><span class="line">easy_re:0000000000400785 movzx   edx, dl                         ; edx=byte（v8+al[j]  + v9[j]=0x11C）=0x1c</span><br><span class="line">easy_re:0000000000400788 sub     edx, eax                        ; -v3  算出  v8存在  edx中</span><br><span class="line">easy_re:000000000040078A mov     eax, edx                        ; v8暂时 放在eax中</span><br><span class="line">easy_re:000000000040078C mov     [rbp-114h], eax                 ; 将  v8   0x1C入栈  存在[rbp-114h]</span><br><span class="line">easy_re:0000000000400792 mov     eax, [rbp-118h]                 ; eax=i</span><br><span class="line">easy_re:0000000000400798 movsxd  rdx, eax                        ; edx=i</span><br><span class="line">easy_re:000000000040079B mov     rax, [rbp-128h]                 ; al[0]</span><br><span class="line">easy_re:00000000004007A2 add     rax, rdx</span><br><span class="line">easy_re:00000000004007A5 movzx   eax, byte ptr [rax]</span><br><span class="line">easy_re:00000000004007A8 mov     [rbp-119h], al                  ; v4= al[2]=0x89;al[3]=0x87 暂时放在 [rbp-119]处</span><br><span class="line">easy_re:00000000004007AE mov     eax, [rbp-118h]</span><br><span class="line">easy_re:00000000004007B4 movsxd  rdx, eax                        ; rdx=i=2</span><br><span class="line">easy_re:00000000004007B7 mov     rax, [rbp-128h]                 ; al[0]</span><br><span class="line">easy_re:00000000004007BE add     rdx, rax                        ; rdx=指向al[i=3]</span><br><span class="line">easy_re:00000000004007C1 mov     eax, [rbp-114h]                 ; v8  95;eax=v8=0x1C</span><br><span class="line">easy_re:00000000004007C7 movsxd  rcx, eax                        ; rcx=0x95;0x1C</span><br><span class="line">easy_re:00000000004007CA mov     rax, [rbp-128h]                 ; rax为  al[]指针</span><br><span class="line">easy_re:00000000004007D1 add     rax, rcx                        ; al[48]得指针处;  指向 al[v8=1C]地址</span><br><span class="line">easy_re:00000000004007D4 movzx   eax, byte ptr [rax]             ; eax=0x65；取出al[v8]地址数据  0x77</span><br><span class="line">easy_re:00000000004007D7 mov     [rdx], al                       ; al[3]=0x77</span><br><span class="line">easy_re:00000000004007D9 mov     eax, [rbp-114h]                 ; 取出   v8=0x1C</span><br><span class="line">easy_re:00000000004007DF movsxd  rdx, eax                        ; rdx=v8=0x1C</span><br><span class="line">easy_re:00000000004007E2 mov     rax, [rbp-128h]</span><br><span class="line">easy_re:00000000004007E9 add     rdx, rax</span><br><span class="line">easy_re:00000000004007EC movzx   eax, byte ptr [rbp-119h]        ; al[v8]=v4=0x87</span><br><span class="line">easy_re:00000000004007F3 mov     [rdx], al</span><br><span class="line">easy_re:00000000004007F5 add     dword ptr [rbp-118h], 1         ; i</span><br><span class="line">easy_re:00000000004007FC</span><br><span class="line">easy_re:00000000004007FC loc_4007FC:                             ; CODE XREF: easy_re:0000000000400740↑j</span><br><span class="line">easy_re:00000000004007FC cmp     dword ptr [rbp-118h], 0FFh</span><br><span class="line">easy_re:0000000000400806 jle     loc_400745                      ; eax=i</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个动态调试只是记录下！总之呢，熟悉了RC4算法。</p>
+</blockquote>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><blockquote>
+<p>我的方法不是正解，周三晚上组长讲了正规解法，因为精神不佳，我怎么记不清了，哭！！！ 得不偿失的事情，我或许做的太多啦！<br><a href="https://imgchr.com/i/uuZ39J" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/27/uuZ39J.png" alt="uuZ39J.png"></a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag">#re</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/27/BUUCTF re部分题解1/" rel="next" title="BUUCTF re部分题解1">
+                <i class="fa fa-chevron-left"></i> BUUCTF re部分题解1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/30/国庆七天之pwn00/" rel="prev" title="国庆七天之pwn00">
+                国庆七天之pwn00 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#easy-re"><span class="nav-number">1.</span> <span class="nav-text">easy_re</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拖入ida"><span class="nav-number">1.1.</span> <span class="nav-text">拖入ida</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本编写："><span class="nav-number">1.2.</span> <span class="nav-text">脚本编写：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脑子啊"><span class="nav-number">1.3.</span> <span class="nav-text">脑子啊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">1.4.</span> <span class="nav-text">总结：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

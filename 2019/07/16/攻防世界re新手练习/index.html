@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="逆向,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="本来暑假前期学基础，后期刷逆向题，不过后来想想在练习中学习或许效果会更好，加油吧！今天博客：攻防世界re新手练习部分题解。（后会更新！）">
+<meta name="keywords" content="逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻防世界re新手练习">
+<meta property="og:url" content="http://yoursite.com/2019/07/16/攻防世界re新手练习/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="本来暑假前期学基础，后期刷逆向题，不过后来想想在练习中学习或许效果会更好，加油吧！今天博客：攻防世界re新手练习部分题解。（后会更新！）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/16/ZHQlGV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/16/ZHQ3xU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/14/Z5Sho6.png">
+<meta property="og:updated_time" content="2019-07-16T08:42:18.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="攻防世界re新手练习">
+<meta name="twitter:description" content="本来暑假前期学基础，后期刷逆向题，不过后来想想在练习中学习或许效果会更好，加油吧！今天博客：攻防世界re新手练习部分题解。（后会更新！）">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/ZHQlGV.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 攻防世界re新手练习 | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                攻防世界re新手练习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-07-16T16:27:57+08:00" content="2019-07-16">
+              2019-07-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本来暑假前期学基础，后期刷逆向题，不过后来想想在练习中学习或许效果会更好，加油吧！今天博客：攻防世界re新手练习部分题解。（后会更新！）</p>
+<a id="more"></a>
+
+
+
+<h1 id="0x01-re1"><a href="#0x01-re1" class="headerlink" title="0x01   re1"></a>0x01   re1</h1><blockquote>
+<p>F5  反编译</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  int v3; // eax</span><br><span class="line">  __int128 v5; // [esp+0h] [ebp-44h]</span><br><span class="line">  __int64 v6; // [esp+10h] [ebp-34h]</span><br><span class="line">  int v7; // [esp+18h] [ebp-2Ch]</span><br><span class="line">  __int16 v8; // [esp+1Ch] [ebp-28h]</span><br><span class="line">  char v9; // [esp+20h] [ebp-24h]</span><br><span class="line"></span><br><span class="line">  _mm_storeu_si128((__m128i *)&amp;v5, _mm_loadu_si128((const __m128i *)&amp;xmmword_413E34));</span><br><span class="line">  v7 = 0;</span><br><span class="line">  v6 = qword_413E44;</span><br><span class="line">  v8 = 0;</span><br><span class="line">  printf(&amp;byte_413E4C);</span><br><span class="line">  printf(&amp;byte_413E60);</span><br><span class="line">  printf(&amp;byte_413E80);</span><br><span class="line">  scanf(&quot;%s&quot;, &amp;v9);</span><br><span class="line">  v3 = strcmp((const char *)&amp;v5, &amp;v9);</span><br><span class="line">  if ( v3 )</span><br><span class="line">    v3 = -(v3 &lt; 0) | 1;</span><br><span class="line">  if ( v3 )</span><br><span class="line">    printf(aFlag);</span><br><span class="line">  else</span><br><span class="line">    printf((const char *)&amp;unk_413E90);</span><br><span class="line">  system(&quot;pause&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>if 我们输入的v5等于v9（说明 flag字符串已经保存在内存中） 便输出flag</p>
+</blockquote>
+<p>可F12却不能找到找到 flag 这个字符串</p>
+<h4 id="查阅资料了解到，反编译的结果不是一定正确的，IDA采用递归下降法进行反编译，它的优点在于很少会在反编译时把数据当作代码来处理，不过这次IDA很明显把flag当成代码，进行了反编译，因此在string界面无法找到flag"><a href="#查阅资料了解到，反编译的结果不是一定正确的，IDA采用递归下降法进行反编译，它的优点在于很少会在反编译时把数据当作代码来处理，不过这次IDA很明显把flag当成代码，进行了反编译，因此在string界面无法找到flag" class="headerlink" title="查阅资料了解到，反编译的结果不是一定正确的，IDA采用递归下降法进行反编译，它的优点在于很少会在反编译时把数据当作代码来处理，不过这次IDA很明显把flag当成代码，进行了反编译，因此在string界面无法找到flag"></a>查阅资料了解到，反编译的结果不是一定正确的，IDA采用递归下降法进行反编译，它的优点在于很少会在反编译时把数据当作代码来处理，不过这次IDA很明显把flag当成代码，进行了反编译，因此在string界面无法找到flag</h4><p>解决方法<br></p>
+<ol>
+<li>是在IDA打开文件时选择binaryfile,在此模式下IDA不会进行反编译，此时Shift +F12再打开strings界面就可发现flag</li>
+<li>在HXD  16进制编辑软件   Cral+F  搜索DTUCTF </li>
+<li>在IDAHex View-1窗口   seacher 寻找DTUCTF<br><a href="https://imgchr.com/i/ZHQlGV" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/07/16/ZHQlGV.png" alt="ZHQlGV.png"></a></li>
+</ol>
+<h1 id="0x02-game"><a href="#0x02-game" class="headerlink" title="0x02    game"></a>0x02    game</h1><p><a href="https://imgchr.com/i/ZHQ3xU" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/07/16/ZHQ3xU.png" alt="ZHQ3xU.png"></a><br>不过这并不重要</p>
+<blockquote>
+<p>拖入idaF5    反编译</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br></pre></td><td class="code"><pre><span class="line">int sub_45E940()</span><br><span class="line">&#123;</span><br><span class="line">  signed int i; // [esp+D0h] [ebp-94h]</span><br><span class="line">  char v2; // [esp+DCh] [ebp-88h]</span><br><span class="line">  char v3; // [esp+DDh] [ebp-87h]</span><br><span class="line">  char v4; // [esp+DEh] [ebp-86h]</span><br><span class="line">  char v5; // [esp+DFh] [ebp-85h]</span><br><span class="line">  char v6; // [esp+E0h] [ebp-84h]</span><br><span class="line">  char v7; // [esp+E1h] [ebp-83h]</span><br><span class="line">  char v8; // [esp+E2h] [ebp-82h]</span><br><span class="line">  char v9; // [esp+E3h] [ebp-81h]</span><br><span class="line">  char v10; // [esp+E4h] [ebp-80h]</span><br><span class="line">  char v11; // [esp+E5h] [ebp-7Fh]</span><br><span class="line">  char v12; // [esp+E6h] [ebp-7Eh]</span><br><span class="line">  char v13; // [esp+E7h] [ebp-7Dh]</span><br><span class="line">  char v14; // [esp+E8h] [ebp-7Ch]</span><br><span class="line">  char v15; // [esp+E9h] [ebp-7Bh]</span><br><span class="line">  char v16; // [esp+EAh] [ebp-7Ah]</span><br><span class="line">  char v17; // [esp+EBh] [ebp-79h]</span><br><span class="line">  char v18; // [esp+ECh] [ebp-78h]</span><br><span class="line">  char v19; // [esp+EDh] [ebp-77h]</span><br><span class="line">  char v20; // [esp+EEh] [ebp-76h]</span><br><span class="line">  char v21; // [esp+EFh] [ebp-75h]</span><br><span class="line">  char v22; // [esp+F0h] [ebp-74h]</span><br><span class="line">  char v23; // [esp+F1h] [ebp-73h]</span><br><span class="line">  char v24; // [esp+F2h] [ebp-72h]</span><br><span class="line">  char v25; // [esp+F3h] [ebp-71h]</span><br><span class="line">  char v26; // [esp+F4h] [ebp-70h]</span><br><span class="line">  char v27; // [esp+F5h] [ebp-6Fh]</span><br><span class="line">  char v28; // [esp+F6h] [ebp-6Eh]</span><br><span class="line">  char v29; // [esp+F7h] [ebp-6Dh]</span><br><span class="line">  char v30; // [esp+F8h] [ebp-6Ch]</span><br><span class="line">  char v31; // [esp+F9h] [ebp-6Bh]</span><br><span class="line">  char v32; // [esp+FAh] [ebp-6Ah]</span><br><span class="line">  char v33; // [esp+FBh] [ebp-69h]</span><br><span class="line">  char v34; // [esp+FCh] [ebp-68h]</span><br><span class="line">  char v35; // [esp+FDh] [ebp-67h]</span><br><span class="line">  char v36; // [esp+FEh] [ebp-66h]</span><br><span class="line">  char v37; // [esp+FFh] [ebp-65h]</span><br><span class="line">  char v38; // [esp+100h] [ebp-64h]</span><br><span class="line">  char v39; // [esp+101h] [ebp-63h]</span><br><span class="line">  char v40; // [esp+102h] [ebp-62h]</span><br><span class="line">  char v41; // [esp+103h] [ebp-61h]</span><br><span class="line">  char v42; // [esp+104h] [ebp-60h]</span><br><span class="line">  char v43; // [esp+105h] [ebp-5Fh]</span><br><span class="line">  char v44; // [esp+106h] [ebp-5Eh]</span><br><span class="line">  char v45; // [esp+107h] [ebp-5Dh]</span><br><span class="line">  char v46; // [esp+108h] [ebp-5Ch]</span><br><span class="line">  char v47; // [esp+109h] [ebp-5Bh]</span><br><span class="line">  char v48; // [esp+10Ah] [ebp-5Ah]</span><br><span class="line">  char v49; // [esp+10Bh] [ebp-59h]</span><br><span class="line">  char v50; // [esp+10Ch] [ebp-58h]</span><br><span class="line">  char v51; // [esp+10Dh] [ebp-57h]</span><br><span class="line">  char v52; // [esp+10Eh] [ebp-56h]</span><br><span class="line">  char v53; // [esp+10Fh] [ebp-55h]</span><br><span class="line">  char v54; // [esp+110h] [ebp-54h]</span><br><span class="line">  char v55; // [esp+111h] [ebp-53h]</span><br><span class="line">  char v56; // [esp+112h] [ebp-52h]</span><br><span class="line">  char v57; // [esp+113h] [ebp-51h]</span><br><span class="line">  char v58; // [esp+114h] [ebp-50h]</span><br><span class="line">  char v59; // [esp+120h] [ebp-44h]</span><br><span class="line">  char v60; // [esp+121h] [ebp-43h]</span><br><span class="line">  char v61; // [esp+122h] [ebp-42h]</span><br><span class="line">  char v62; // [esp+123h] [ebp-41h]</span><br><span class="line">  char v63; // [esp+124h] [ebp-40h]</span><br><span class="line">  char v64; // [esp+125h] [ebp-3Fh]</span><br><span class="line">  char v65; // [esp+126h] [ebp-3Eh]</span><br><span class="line">  char v66; // [esp+127h] [ebp-3Dh]</span><br><span class="line">  char v67; // [esp+128h] [ebp-3Ch]</span><br><span class="line">  char v68; // [esp+129h] [ebp-3Bh]</span><br><span class="line">  char v69; // [esp+12Ah] [ebp-3Ah]</span><br><span class="line">  char v70; // [esp+12Bh] [ebp-39h]</span><br><span class="line">  char v71; // [esp+12Ch] [ebp-38h]</span><br><span class="line">  char v72; // [esp+12Dh] [ebp-37h]</span><br><span class="line">  char v73; // [esp+12Eh] [ebp-36h]</span><br><span class="line">  char v74; // [esp+12Fh] [ebp-35h]</span><br><span class="line">  char v75; // [esp+130h] [ebp-34h]</span><br><span class="line">  char v76; // [esp+131h] [ebp-33h]</span><br><span class="line">  char v77; // [esp+132h] [ebp-32h]</span><br><span class="line">  char v78; // [esp+133h] [ebp-31h]</span><br><span class="line">  char v79; // [esp+134h] [ebp-30h]</span><br><span class="line">  char v80; // [esp+135h] [ebp-2Fh]</span><br><span class="line">  char v81; // [esp+136h] [ebp-2Eh]</span><br><span class="line">  char v82; // [esp+137h] [ebp-2Dh]</span><br><span class="line">  char v83; // [esp+138h] [ebp-2Ch]</span><br><span class="line">  char v84; // [esp+139h] [ebp-2Bh]</span><br><span class="line">  char v85; // [esp+13Ah] [ebp-2Ah]</span><br><span class="line">  char v86; // [esp+13Bh] [ebp-29h]</span><br><span class="line">  char v87; // [esp+13Ch] [ebp-28h]</span><br><span class="line">  char v88; // [esp+13Dh] [ebp-27h]</span><br><span class="line">  char v89; // [esp+13Eh] [ebp-26h]</span><br><span class="line">  char v90; // [esp+13Fh] [ebp-25h]</span><br><span class="line">  char v91; // [esp+140h] [ebp-24h]</span><br><span class="line">  char v92; // [esp+141h] [ebp-23h]</span><br><span class="line">  char v93; // [esp+142h] [ebp-22h]</span><br><span class="line">  char v94; // [esp+143h] [ebp-21h]</span><br><span class="line">  char v95; // [esp+144h] [ebp-20h]</span><br><span class="line">  char v96; // [esp+145h] [ebp-1Fh]</span><br><span class="line">  char v97; // [esp+146h] [ebp-1Eh]</span><br><span class="line">  char v98; // [esp+147h] [ebp-1Dh]</span><br><span class="line">  char v99; // [esp+148h] [ebp-1Ch]</span><br><span class="line">  char v100; // [esp+149h] [ebp-1Bh]</span><br><span class="line">  char v101; // [esp+14Ah] [ebp-1Ah]</span><br><span class="line">  char v102; // [esp+14Bh] [ebp-19h]</span><br><span class="line">  char v103; // [esp+14Ch] [ebp-18h]</span><br><span class="line">  char v104; // [esp+14Dh] [ebp-17h]</span><br><span class="line">  char v105; // [esp+14Eh] [ebp-16h]</span><br><span class="line">  char v106; // [esp+14Fh] [ebp-15h]</span><br><span class="line">  char v107; // [esp+150h] [ebp-14h]</span><br><span class="line">  char v108; // [esp+151h] [ebp-13h]</span><br><span class="line">  char v109; // [esp+152h] [ebp-12h]</span><br><span class="line">  char v110; // [esp+153h] [ebp-11h]</span><br><span class="line">  char v111; // [esp+154h] [ebp-10h]</span><br><span class="line">  char v112; // [esp+155h] [ebp-Fh]</span><br><span class="line">  char v113; // [esp+156h] [ebp-Eh]</span><br><span class="line">  char v114; // [esp+157h] [ebp-Dh]</span><br><span class="line">  char v115; // [esp+158h] [ebp-Ch]</span><br><span class="line"></span><br><span class="line">  sub_45A7BE(&quot;done!!! the flag is &quot;);</span><br><span class="line">  v59 = 18;</span><br><span class="line">  v60 = 64;</span><br><span class="line">  v61 = 98;</span><br><span class="line">  v62 = 5;</span><br><span class="line">  v63 = 2;</span><br><span class="line">  v64 = 4;</span><br><span class="line">  v65 = 6;</span><br><span class="line">  v66 = 3;</span><br><span class="line">  v67 = 6;</span><br><span class="line">  v68 = 48;</span><br><span class="line">  v69 = 49;</span><br><span class="line">  v70 = 65;</span><br><span class="line">  v71 = 32;</span><br><span class="line">  v72 = 12;</span><br><span class="line">  v73 = 48;</span><br><span class="line">  v74 = 65;</span><br><span class="line">  v75 = 31;</span><br><span class="line">  v76 = 78;</span><br><span class="line">  v77 = 62;</span><br><span class="line">  v78 = 32;</span><br><span class="line">  v79 = 49;</span><br><span class="line">  v80 = 32;</span><br><span class="line">  v81 = 1;</span><br><span class="line">  v82 = 57;</span><br><span class="line">  v83 = 96;</span><br><span class="line">  v84 = 3;</span><br><span class="line">  v85 = 21;</span><br><span class="line">  v86 = 9;</span><br><span class="line">  v87 = 4;</span><br><span class="line">  v88 = 62;</span><br><span class="line">  v89 = 3;</span><br><span class="line">  v90 = 5;</span><br><span class="line">  v91 = 4;</span><br><span class="line">  v92 = 1;</span><br><span class="line">  v93 = 2;</span><br><span class="line">  v94 = 3;</span><br><span class="line">  v95 = 44;</span><br><span class="line">  v96 = 65;</span><br><span class="line">  v97 = 78;</span><br><span class="line">  v98 = 32;</span><br><span class="line">  v99 = 16;</span><br><span class="line">  v100 = 97;</span><br><span class="line">  v101 = 54;</span><br><span class="line">  v102 = 16;</span><br><span class="line">  v103 = 44;</span><br><span class="line">  v104 = 52;</span><br><span class="line">  v105 = 32;</span><br><span class="line">  v106 = 64;</span><br><span class="line">  v107 = 89;</span><br><span class="line">  v108 = 45;</span><br><span class="line">  v109 = 32;</span><br><span class="line">  v110 = 65;</span><br><span class="line">  v111 = 15;</span><br><span class="line">  v112 = 34;</span><br><span class="line">  v113 = 18;</span><br><span class="line">  v114 = 16;</span><br><span class="line">  v115 = 0;</span><br><span class="line">  v2 = 123;</span><br><span class="line">  v3 = 32;</span><br><span class="line">  v4 = 18;</span><br><span class="line">  v5 = 98;</span><br><span class="line">  v6 = 119;</span><br><span class="line">  v7 = 108;</span><br><span class="line">  v8 = 65;</span><br><span class="line">  v9 = 41;</span><br><span class="line">  v10 = 124;</span><br><span class="line">  v11 = 80;</span><br><span class="line">  v12 = 125;</span><br><span class="line">  v13 = 38;</span><br><span class="line">  v14 = 124;</span><br><span class="line">  v15 = 111;</span><br><span class="line">  v16 = 74;</span><br><span class="line">  v17 = 49;</span><br><span class="line">  v18 = 83;</span><br><span class="line">  v19 = 108;</span><br><span class="line">  v20 = 94;</span><br><span class="line">  v21 = 108;</span><br><span class="line">  v22 = 84;</span><br><span class="line">  v23 = 6;</span><br><span class="line">  v24 = 96;</span><br><span class="line">  v25 = 83;</span><br><span class="line">  v26 = 44;</span><br><span class="line">  v27 = 121;</span><br><span class="line">  v28 = 104;</span><br><span class="line">  v29 = 110;</span><br><span class="line">  v30 = 32;</span><br><span class="line">  v31 = 95;</span><br><span class="line">  v32 = 117;</span><br><span class="line">  v33 = 101;</span><br><span class="line">  v34 = 99;</span><br><span class="line">  v35 = 123;</span><br><span class="line">  v36 = 127;</span><br><span class="line">  v37 = 119;</span><br><span class="line">  v38 = 96;</span><br><span class="line">  v39 = 48;</span><br><span class="line">  v40 = 107;</span><br><span class="line">  v41 = 71;</span><br><span class="line">  v42 = 92;</span><br><span class="line">  v43 = 29;</span><br><span class="line">  v44 = 81;</span><br><span class="line">  v45 = 107;</span><br><span class="line">  v46 = 90;</span><br><span class="line">  v47 = 85;</span><br><span class="line">  v48 = 64;</span><br><span class="line">  v49 = 12;</span><br><span class="line">  v50 = 43;</span><br><span class="line">  v51 = 76;</span><br><span class="line">  v52 = 86;</span><br><span class="line">  v53 = 13;</span><br><span class="line">  v54 = 114;</span><br><span class="line">  v55 = 1;</span><br><span class="line">  v56 = 117;</span><br><span class="line">  v57 = 126;</span><br><span class="line">  v58 = 0;</span><br><span class="line">  for ( i = 0; i &lt; 56; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    *(&amp;v2 + i) ^= *(&amp;v59 + i);</span><br><span class="line">    *(&amp;v2 + i) ^= 0x13u;</span><br><span class="line">  &#125;</span><br><span class="line">  return sub_45A7BE(&quot;%s\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>根据反编译写脚本输出flag</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a=[18,64,98,5,2,4,6,3,6,48,49,65,32,12,48,65,31,78,62,32,49,32,1,57,96,3,21,9,4,62,3,5,4,1,2,3,44,65,78,32,16,97,54,16,44,52,32,64,89,45,32,65,15,34,18,16,0]</span><br><span class="line">b=[123,32,18,98,119,108,65,41,124,80,125,38,124,111,74,49,83,108,94,108,84,6,96,83,44,121,104,110,32,95,117,101,99,123,127,119,96,48,107,71,92,29,81,107,90,85,64,12,43,76,86,13,114,1,117,126,0]</span><br><span class="line">i=0</span><br><span class="line">c=&apos;&apos;</span><br><span class="line">while (i&lt;56):</span><br><span class="line">    a[i]^=b[i]</span><br><span class="line">    a[i]^=19</span><br><span class="line">    c=c+chr(a[i])</span><br><span class="line">    i=i+1</span><br><span class="line"></span><br><span class="line">print(c);</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本flag即出来 <br> zsctf{T9is_tOpic_1s_v5ry_int7resting_b6t_others_are_n0t}</p>
+<h1 id="0x03-Hello-CTF"><a href="#0x03-Hello-CTF" class="headerlink" title="0x03    Hello,CTF"></a>0x03    Hello,CTF</h1><blockquote>
+<p>F5    反编译<br>里面有一些不熟悉的函数，网上搜索查询</p>
+</blockquote>
+<ol>
+<li><p>memset函数说明：<br><br>void *memset(void *s,int c,size_t n)<br>总的作用：将已开辟内存空间 s 的首 n 个字节的值设为值 c。<br>参考链接<br><br><a href="https://blog.csdn.net/yangsen2016/article/details/1638503" target="_blank" rel="noopener">https://blog.csdn.net/yangsen2016/article/details/1638503</a><br><a href="http://c.biancheng.net/view/231.html" target="_blank" rel="noopener">http://c.biancheng.net/view/231.html</a></p>
+</li>
+<li><p>sprintf 函数说明：<br><br>格式化数字字符串sprintf 最常见的应用之一莫过于把整数打印到字符串中<br></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//把整数123 打印成一个字符串保存在s 中。</span><br><span class="line">sprintf(s, &quot;%d&quot;, 123); //产生&quot;123&quot;</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<br><a href="https://baike.baidu.com/item/sprintf/9703430?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/sprintf/9703430?fr=aladdin</a></p>
+<blockquote>
+<p>写脚本 把v10 写出来，flag便会输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [0x43,0x72,0x61,0x63,0x6b,0x4d,0x65,0x4a,0x75,0x73,0x74,0x46,0x6f,0x72,0x46,0x75,0x6e]</span><br><span class="line">c = &quot;&quot;</span><br><span class="line">for x in a:</span><br><span class="line">    c += chr(x)</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
+
+<p>即flag为   CrackMeJustForFun  </p>
+<h1 id="0x04-open-source"><a href="#0x04-open-source" class="headerlink" title="0x04     open-source"></a>0x04     open-source</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main(int 0xcafe, char *argv[]) &#123;</span><br><span class="line">    if (argc != 4) &#123;</span><br><span class="line">    	printf(&quot;what?\n&quot;);</span><br><span class="line">    	exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    unsigned int first = atoi(argv[1]);</span><br><span class="line">    if (first != 0xcafe) &#123;</span><br><span class="line">    	printf(&quot;you are wrong, sorry.\n&quot;);</span><br><span class="line">    	exit(2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    unsigned int second = atoi(argv[2]);</span><br><span class="line">    if (second % 5 == 3 || second % 17 != 8) &#123;</span><br><span class="line">    	printf(&quot;ha, you won&apos;t get it!\n&quot;);</span><br><span class="line">    	exit(3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (strcmp(&quot;h4cky0u&quot;, argv[3])) &#123;</span><br><span class="line">    	printf(&quot;so close, dude!\n&quot;);</span><br><span class="line">    	exit(4);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    printf(&quot;Brr wrrr grr\n&quot;);</span><br><span class="line"></span><br><span class="line">    unsigned int hash = first * 31337 + (second % 17) * 11 + strlen(argv[3]) - 1615810207;</span><br><span class="line"></span><br><span class="line">    printf(&quot;Get your key: &quot;);</span><br><span class="line">    printf(&quot;%x\n&quot;, hash);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//这个好像不属于逆向题<br><br>flag为：c0ffee</p>
+<h1 id="0x05-simple-unpack"><a href="#0x05-simple-unpack" class="headerlink" title="0x05    simple-unpack"></a>0x05    simple-unpack</h1><p>unpack<br><br>英 [ˌʌn’pæk] <br><br>v. 打开取出；卸下</p>
+<blockquote>
+<p>查壳（深度查  也没查出来）</p>
+</blockquote>
+<p>拖入ida 发现是文件里面头upx关键字</p>
+<blockquote>
+<p>于是linux  脱upx壳   终端执行  upx -d simple-unpack<br><br>然后再拖入ida<br><br>string窗口中发现flag</p>
+</blockquote>
+<p>linux没安装upx的话    执行sudo apt install upx命令进行安装<br>//说到这就要停一下了，挺长时间没用linux，突然一用，脑子一时间没转过来，安装都给忘记了，一个超简单问题请教了青衣，不多说了。再有报错问题，记得首先复制下来，贴百度谷歌上搜索！</p>
+<h1 id="0x06-logmein"><a href="#0x06-logmein" class="headerlink" title="0x06     logmein"></a>0x06     logmein</h1><blockquote>
+<p>找到main函数f5  反编译</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  size_t v3; // rsi</span><br><span class="line">  int i; // [rsp+3Ch] [rbp-54h]</span><br><span class="line">  char s[36]; // [rsp+40h] [rbp-50h]</span><br><span class="line">  int v6; // [rsp+64h] [rbp-2Ch]</span><br><span class="line">  __int64 v7; // [rsp+68h] [rbp-28h]</span><br><span class="line">  char v8[8]; // [rsp+70h] [rbp-20h]</span><br><span class="line">  int v9; // [rsp+8Ch] [rbp-4h]</span><br><span class="line"></span><br><span class="line">  v9 = 0;</span><br><span class="line">  strcpy(v8, &quot;:\&quot;AL_RT^L*.?+6/46&quot;);</span><br><span class="line">  v7 = 28537194573619560LL;</span><br><span class="line">  v6 = 7;</span><br><span class="line">  printf(&quot;Welcome to the RC3 secure password guesser.\n&quot;, a2, a3);</span><br><span class="line">  printf(&quot;To continue, you must enter the correct password.\n&quot;);</span><br><span class="line">  printf(&quot;Enter your guess: &quot;);</span><br><span class="line">  __isoc99_scanf(&quot;%32s&quot;, s);</span><br><span class="line">  v3 = strlen(s);</span><br><span class="line">  if ( v3 &lt; strlen(v8) )</span><br><span class="line">    sub_4007C0(v8);</span><br><span class="line">  for ( i = 0; i &lt; strlen(s); ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( i &gt;= strlen(v8) )</span><br><span class="line">      ((void (*)(void))sub_4007C0)();</span><br><span class="line">    if ( s[i] != (char)(*((_BYTE *)&amp;v7 + i % v6) ^ v8[i]) )</span><br><span class="line">      ((void (*)(void))sub_4007C0)();</span><br><span class="line">  &#125;</span><br><span class="line">  sub_4007F0();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写脚本写出s,then  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	long long a=28537194573619560;</span><br><span class="line">	char *p=(char*)&amp;a;</span><br><span class="line">	char b[]= &quot;:\&quot;AL_RT^L*.?+6/46&quot;;</span><br><span class="line">	for(int i=0;b[i]!=0;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		b[i]=b[i]^p[i%7];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;sizeof(b);i++)</span><br><span class="line">	printf(&quot;%c&quot;,b[i]);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出flag<br><br>RC3-2016-XORISGUD</p>
+</blockquote>
+<h1 id="0x07-insanity"><a href="#0x07-insanity" class="headerlink" title="0x07  insanity"></a>0x07  insanity</h1><blockquote>
+<p>额，strings 窗口就看到了flg<br>9447{This_is_a_flag}</p>
+</blockquote>
+<h1 id="0x11-getit"><a href="#0x11-getit" class="headerlink" title="0x11     getit"></a>0x11     getit</h1><p>f5  反编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  char v3; // al</span><br><span class="line">  __int64 v5; // [rsp+0h] [rbp-40h]</span><br><span class="line">  int i; // [rsp+4h] [rbp-3Ch]</span><br><span class="line">  FILE *stream; // [rsp+8h] [rbp-38h]</span><br><span class="line">  char filename[8]; // [rsp+10h] [rbp-30h]</span><br><span class="line">  unsigned __int64 v9; // [rsp+28h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  v9 = __readfsqword(0x28u);</span><br><span class="line">  LODWORD(v5) = 0;</span><br><span class="line">  while ( (signed int)v5 &lt; strlen(s) )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( v5 &amp; 1 )</span><br><span class="line">      v3 = 1;</span><br><span class="line">    else</span><br><span class="line">      v3 = -1;</span><br><span class="line">    *(&amp;t + (signed int)v5 + 10) = s[(signed int)v5] + v3;</span><br><span class="line">    LODWORD(v5) = v5 + 1;</span><br><span class="line">  &#125;</span><br><span class="line">  strcpy(filename, &quot;/tmp/flag.txt&quot;);</span><br><span class="line">  stream = fopen(filename, &quot;w&quot;);</span><br><span class="line">  fprintf(stream, &quot;%s\n&quot;, u, v5);</span><br><span class="line">  for ( i = 0; i &lt; strlen(&amp;t); ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    fseek(stream, p[i], 0);</span><br><span class="line">    fputc(*(&amp;t + p[i]), stream);</span><br><span class="line">    fseek(stream, 0LL, 0);</span><br><span class="line">    fprintf(stream, &quot;%s\n&quot;, u);</span><br><span class="line">  &#125;</span><br><span class="line">  fclose(stream);</span><br><span class="line">  remove(filename);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写脚本：打印出  flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char s[] = &quot;c61b68366edeb7bdce3c6820314b7498&quot;;</span><br><span class="line">    char t[100] = &quot;harifCTF&#123;????????????????????????????????&#125;&quot;;</span><br><span class="line">    int v5 = 0;</span><br><span class="line">    char v3;</span><br><span class="line">    while (v5 &lt; strlen(s))</span><br><span class="line">    &#123;</span><br><span class="line">        if (v5 &amp; 1)</span><br><span class="line">            v3 = 1;</span><br><span class="line">        else </span><br><span class="line">            v3 = -1;</span><br><span class="line">        t[v5 +9] = s[v5] + v3;</span><br><span class="line">        v5 = v5 + 1;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%c&quot;, 0x53);</span><br><span class="line">    printf(&quot;%s\n&quot;,t);</span><br><span class="line">     </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>flag为   <br><br>SharifCTF{b70c59275fcfa8aebf2d5911223c6589}</p>
+<p>登高自卑，慢慢进阶！平静地学习，不可浮躁.<br>优质电脑壁纸奉上！<br><img src="https://s2.ax1x.com/2019/07/14/Z5Sho6.png" alt="Z5Sho6.png"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/逆向/" rel="tag">#逆向</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/13/C语言的汇编表示之堆栈图/" rel="next" title="C语言的汇编表示之堆栈图">
+                <i class="fa fa-chevron-left"></i> C语言的汇编表示之堆栈图
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/16/疯狂的木头01/" rel="prev" title="疯狂的木头01">
+                疯狂的木头01 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-re1"><span class="nav-number">1.</span> <span class="nav-text">0x01   re1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查阅资料了解到，反编译的结果不是一定正确的，IDA采用递归下降法进行反编译，它的优点在于很少会在反编译时把数据当作代码来处理，不过这次IDA很明显把flag当成代码，进行了反编译，因此在string界面无法找到flag"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">查阅资料了解到，反编译的结果不是一定正确的，IDA采用递归下降法进行反编译，它的优点在于很少会在反编译时把数据当作代码来处理，不过这次IDA很明显把flag当成代码，进行了反编译，因此在string界面无法找到flag</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-game"><span class="nav-number">2.</span> <span class="nav-text">0x02    game</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-Hello-CTF"><span class="nav-number">3.</span> <span class="nav-text">0x03    Hello,CTF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-open-source"><span class="nav-number">4.</span> <span class="nav-text">0x04     open-source</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05-simple-unpack"><span class="nav-number">5.</span> <span class="nav-text">0x05    simple-unpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06-logmein"><span class="nav-number">6.</span> <span class="nav-text">0x06     logmein</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07-insanity"><span class="nav-number">7.</span> <span class="nav-text">0x07  insanity</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x11-getit"><span class="nav-number">8.</span> <span class="nav-text">0x11     getit</span></a></li></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

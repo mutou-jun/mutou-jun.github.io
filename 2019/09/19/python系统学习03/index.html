@@ -1,0 +1,752 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="稳住，我可以的！今天学了脱壳，明天正确把De1CTF的Re_Sign给做出来！">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python系统学习03">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/python系统学习03/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="稳住，我可以的！今天学了脱壳，明天正确把De1CTF的Re_Sign给做出来！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nOsgw4.jpg">
+<meta property="og:updated_time" content="2019-09-19T18:12:40.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python系统学习03">
+<meta name="twitter:description" content="稳住，我可以的！今天学了脱壳，明天正确把De1CTF的Re_Sign给做出来！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/19/nOsgw4.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> python系统学习03 | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python系统学习03
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-09-19T23:55:47+08:00" content="2019-09-19">
+              2019-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>稳住，我可以的！今天学了脱壳，明天正确把De1CTF的Re_Sign给做出来！</p>
+<a id="more"></a>
+
+<h1 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h1><blockquote>
+<p>列表可以一次性存储多个数据，且可以为不同的数据类型。类似C语言中的数组</p>
+</blockquote>
+<blockquote>
+<p>列表是可变类型</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line">print(name_list)</span><br><span class="line">print(name_list[2])</span><br><span class="line">print(name_list[0])</span><br><span class="line"></span><br><span class="line"># [&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;]</span><br><span class="line"># luobo</span><br><span class="line"># Yang1k</span><br></pre></td></tr></table></figure>
+
+<h2 id="列表的而常用操作：增删改查"><a href="#列表的而常用操作：增删改查" class="headerlink" title="列表的而常用操作：增删改查"></a>列表的而常用操作：增删改查</h2><h3 id="查："><a href="#查：" class="headerlink" title="查："></a>查：</h3><h4 id="index"><a href="#index" class="headerlink" title="index()"></a>index()</h4><blockquote>
+<p>返回指定数据所在的而下标</p>
+</blockquote>
+<blockquote>
+<p>列表序列.index(数据,开始位置下标,结束位置下表)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">print(name_list.index(&apos;mutou&apos;,0,2))#1</span><br><span class="line"></span><br><span class="line">print(name_list.index(&apos;yangmutou&apos;,0,2))#不存在则报错</span><br></pre></td></tr></table></figure>
+
+<h4 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h4><blockquote>
+<p>统计指定数据在当前列表中出现的次数。</p>
+</blockquote>
+<blockquote>
+<p>列表序列.count(数据)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">print(name_list.count(&apos;Yang1k&apos;))#1</span><br></pre></td></tr></table></figure>
+
+<h4 id="len"><a href="#len" class="headerlink" title="len()"></a>len()</h4><blockquote>
+<p>返回列表长度，即列表中的数据的个数</p>
+</blockquote>
+<blockquote>
+<p>语法count(列表)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">print(len(name_list))#3</span><br></pre></td></tr></table></figure>
+
+<h4 id="in"><a href="#in" class="headerlink" title="in"></a>in</h4><blockquote>
+<p>判断指定数据在某个列表序列，如果在 返回True，否则返回Flase</p>
+</blockquote>
+<h4 id="not-in"><a href="#not-in" class="headerlink" title="not in"></a>not in</h4><blockquote>
+<p>tongsah</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">print(&apos;luobo&apos; in name_list)#True</span><br><span class="line">print(&apos;Tom&apos; in name_list) #False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(&apos;luobo&apos; not in name_list)#False</span><br><span class="line"></span><br><span class="line">print(&apos;Tom&apos; not in name_list)#True</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#小举例：</span><br><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">name=input(&apos;请输入你搜索的名字&apos;)</span><br><span class="line">if name in name_list:</span><br><span class="line">    print(f&apos;您输入的名字是&#123;name&#125;，名字已经存在&apos;)</span><br><span class="line">else:</span><br><span class="line">    print(f&apos;您输入的名字是&#123;name&#125;，名字不存在&apos;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><blockquote>
+<p>增加指定数据列表中</p>
+</blockquote>
+<h4 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h4><blockquote>
+<p>append():列表结尾追加数据</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.append(数据)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">name_list.append(&apos;Tom&apos;)</span><br><span class="line"></span><br><span class="line">print(name_list)#[&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;, &apos;Tom&apos;]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">name_list.append([&apos;xiaoming&apos;,&apos;xiaohong&apos;])</span><br><span class="line"></span><br><span class="line">print(name_list) #[&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;, [&apos;xiaoming&apos;, &apos;xiaohong&apos;]]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里注意下append()追加的数据是一个数据，则追加整个序列到列表</p>
+</blockquote>
+<h4 id="extend"><a href="#extend" class="headerlink" title="extend()"></a>extend()</h4><blockquote>
+<p>extend():列表结尾追加数据，如果数据是一个序列，则将这个序列逐一添加到列表</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.exterd(数据)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">name_list.extend([&apos;xiaoming&apos;,&apos;xiaohong&apos;])</span><br><span class="line"></span><br><span class="line">print(name_list) #[&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;, &apos;xiaoming&apos;, &apos;xiaohong&apos;]</span><br><span class="line"></span><br><span class="line">name_list.extend(&apos;tom&apos;)</span><br><span class="line">print(name_list)</span><br><span class="line">#[&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;, &apos;xiaoming&apos;, &apos;xiaohong&apos;, &apos;t&apos;, &apos;o&apos;, &apos;m&apos;]</span><br></pre></td></tr></table></figure>
+
+<h4 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h4><blockquote>
+<p>insert():列表指定位置（下标）追加数据</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.insert(位置下表,数据)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">name_list.insert(1,&apos;Tom&apos;)</span><br><span class="line"></span><br><span class="line">print(name_list)#[&apos;Yang1k&apos;,&apos;Tom&apos;,&apos;mutou&apos;, &apos;luobo&apos;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4><blockquote>
+<p>删除整个列表 或者 列表中指定下表的而数据</p>
+</blockquote>
+<blockquote>
+<p>语法：del 数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line">del name_list[1]</span><br><span class="line">print(name_list)</span><br><span class="line"></span><br><span class="line">del name_list</span><br><span class="line">print(name_list)</span><br><span class="line">#name &apos;name_list&apos; is not defined  说明这个列表被删了，不存在了！</span><br></pre></td></tr></table></figure>
+
+<h4 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h4><blockquote>
+<p>删除列表中指定下表的而数据，如果不指定下标的话，默认删除最后一个数据，这个要注意  删除的数据可以返回</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.pop()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line">a= name_list.pop()</span><br><span class="line"></span><br><span class="line">print(name_list)#[&apos;Yang1k&apos;, &apos;mutou&apos;]</span><br><span class="line">print(a)#luobo</span><br><span class="line"></span><br><span class="line">b=name_list.pop(1)</span><br><span class="line">print(name_list)#[&apos;Yang1k&apos;]</span><br><span class="line">print(b)#mutou</span><br></pre></td></tr></table></figure>
+
+<h4 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h4><blockquote>
+<p>删除列表中指定数据</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.remove(数据)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">name_list.remove(&apos;mutou&apos;)</span><br><span class="line">print(name_list)#[&apos;Yang1k&apos;, &apos;luobo&apos;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><h4 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h4><blockquote>
+<p>排序</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.sort(key=None,reverse=False) </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reverse=True：降序</span><br><span class="line">reverse=False：升序（默认）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">num_list=[1,4,6,2,7,3]</span><br><span class="line">num_list.sort()</span><br><span class="line">print(num_list)#[1, 2, 3, 4, 6, 7]</span><br><span class="line"></span><br><span class="line">num_list.sort(reverse=True)</span><br><span class="line">print(num_list)#[7, 6, 4, 3, 2, 1]</span><br></pre></td></tr></table></figure>
+
+<h4 id="copy"><a href="#copy" class="headerlink" title="copy()"></a>copy()</h4><blockquote>
+<p>拷贝</p>
+</blockquote>
+<blockquote>
+<p>语法：列表序列.copy</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#数据很重要，操作前要记得备份一份原始数据</span><br><span class="line">name_list1=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">name_list2=name_list1.copy()</span><br><span class="line"></span><br><span class="line">print(name_list1)</span><br><span class="line">print(name_list2)</span><br><span class="line"></span><br><span class="line"># [&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;]</span><br><span class="line"># [&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="列表循环遍历"><a href="#列表循环遍历" class="headerlink" title="列表循环遍历"></a>列表循环遍历</h2><blockquote>
+<p>一次性访问列表的每个数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#while</span><br><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line">i=0</span><br><span class="line">while i&lt;len(name_list):</span><br><span class="line">    print(name_list[i])</span><br><span class="line">    i+=1</span><br><span class="line">    </span><br><span class="line">  # Yang1k</span><br><span class="line">    # mutou</span><br><span class="line">    # luobo</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#for</span><br><span class="line">name_list=[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;]</span><br><span class="line"></span><br><span class="line">for i in name_list:</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> # Yang1k</span><br><span class="line">    # mutou</span><br><span class="line">    # luobo</span><br></pre></td></tr></table></figure>
+
+<h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><blockquote>
+<p>列表里包含着其它子列表</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">name_list=[[&apos;小明&apos;,&apos;小红&apos;,&apos;小兰&apos;],[&apos;Yang1k&apos;,&apos;mutou&apos;,&apos;luobo&apos;],[&apos;aaa&apos;,&apos;bbb&apos;,&apos;ccc&apos;]]</span><br><span class="line">#找到 luobo</span><br><span class="line"></span><br><span class="line">#第一步:按下标找到luobo在的列表</span><br><span class="line">print(name_list[1])#[&apos;Yang1k&apos;, &apos;mutou&apos;, &apos;luobo&apos;]</span><br><span class="line">#第二步:从luobo在的列表，再按下标找到数据找到luobo</span><br><span class="line">print(name_list[1][2])#luobo</span><br></pre></td></tr></table></figure>
+
+<h2 id="随机分配办公室"><a href="#随机分配办公室" class="headerlink" title="随机分配办公室"></a>随机分配办公室</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">    # 1.需求: 8位老师， 3个办公室，将8位老师随机分配到3个办公室2</span><br><span class="line">    #</span><br><span class="line">    #   步骤:</span><br><span class="line">    #   1.：准备数据</span><br><span class="line">    #   1.1： 8位老师-- 列表</span><br><span class="line">    #   1.2 ：3个办公室-列表联套</span><br><span class="line">    #</span><br><span class="line">    #   2.分配老师到办公有</span><br><span class="line">    #   ***随机分配</span><br><span class="line">    #   就是把老师的名字写入到办公室列表--办公在列表追加老师务产数据</span><br><span class="line">    #   3.总证是否分配成功</span><br><span class="line">    #   打印办公金详细信息:每个办公室的人数和对应的老师名字</span><br><span class="line"></span><br><span class="line">import random</span><br><span class="line"># 1.准备数据</span><br><span class="line">teachers=[&apos;A&apos;,&apos;B&apos;,&apos;C&apos;, &apos;D&apos;,&apos;E&apos;,&apos;F&apos;,&apos;G&apos;,&apos;H&apos;]</span><br><span class="line">offices = [[], [],[]]</span><br><span class="line"># 2.分配老师到办公室-- 取到每个老师放到办公室列表--遍历老师列表数据</span><br><span class="line">for name in teachers:</span><br><span class="line">#列表追加数据-- append (选中) extend insert</span><br><span class="line"># xx[0] --不能指定是具体某个下标--随机</span><br><span class="line">    num = random.randint(0,2)</span><br><span class="line">    offices[num].append(name)</span><br><span class="line">#print(num)</span><br><span class="line">#print(offices)</span><br><span class="line"></span><br><span class="line"># 为了更贴合生活，把各个办公室子列表加一个办公室编号1. 2， 3</span><br><span class="line">i=1</span><br><span class="line"># 3.验证是否分配成功</span><br><span class="line">for office in offices:</span><br><span class="line"># 打印办公室人数-- 子列表数据的个数 len()</span><br><span class="line">    print(f&apos;办公室&#123;i&#125;的人数是&#123;len(office)&#125;，老师分别是: &apos;)  # 打印老师的名字</span><br><span class="line"># print( ) --  每仁子列表里面的名字个数不一定--遍历--子列表</span><br><span class="line">    for name in office:</span><br><span class="line">        print(name)</span><br><span class="line">i += 1</span><br></pre></td></tr></table></figure>
+
+<h1 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h1><blockquote>
+<p>一次性可以存储多个数据，但同列表不同的是  数据不可以修改</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num_list = (10, 20, 30)</span><br><span class="line">print(num_list[2])#30</span><br><span class="line">print(type(num_list))#&lt;class &apos;tuple&apos;&gt;</span><br><span class="line">num_list[0] = 100  #TypeError: &apos;tuple&apos; object does not support item assignment</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>但是元组里如果有列表，修改列表里面的数据则是支持的，故自觉很重要</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tuple2 = (10, 20,[&apos;aaaa&apos;,&apos;bbbbb&apos;,&apos;ccccc&apos;],30)</span><br><span class="line"></span><br><span class="line">print(tuple2)#(10, 20, [&apos;aaaa&apos;, &apos;bbbbb&apos;, &apos;ccccc&apos;], 30)</span><br><span class="line"></span><br><span class="line">tuple2[2][1]=&apos;a&apos;</span><br><span class="line">print(tuple2)#(10, 20, [&apos;aaaa&apos;, &apos;a&apos;, &apos;ccccc&apos;], 30)</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义数组："><a href="#定义数组：" class="headerlink" title="定义数组："></a>定义数组：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#多个数据元组定义</span><br><span class="line">t1=(10,20,&apos;aa&apos;)</span><br><span class="line">print(type(t1))# &lt;class &apos;tuple&apos;&gt;</span><br><span class="line">#单个数据元组定义</span><br><span class="line">t2=(50,)</span><br><span class="line">print(type(t2))# &lt;class &apos;tuple&apos;&gt;</span><br><span class="line">#必须加个逗号，否则数据类型就变成单个数据的类型的类型</span><br><span class="line">t3=(50)</span><br><span class="line">print(type(t3))# &lt;class &apos;int&apos;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>##常用操作:查</p>
+<blockquote>
+<p>因为元组为不可变类型，所以只有 查 操作</p>
+</blockquote>
+<h3 id="index-1"><a href="#index-1" class="headerlink" title="index()"></a>index()</h3><blockquote>
+<p>查找某个数据，如果数据存在，返回对应的的下标，否则报错，语法和列表，字符串的index方法相同。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t1= (10, 20, &apos;bb&apos;)</span><br><span class="line">print(t1.index(&apos;10&apos;))#0</span><br><span class="line">print(t1.index(&apos;bb&apos;))#2</span><br><span class="line">print(t1.index(&apos;aa&apos;))</span><br><span class="line">#ValueError: tuple.index(x): x not in tuple</span><br></pre></td></tr></table></figure>
+
+<h3 id="count-len"><a href="#count-len" class="headerlink" title="count() len()"></a>count() len()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">count()：返回某个数据在元组中几次</span><br><span class="line">len()：返回元组总共有几个数据</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t1= (10, 20, &apos;bb&apos;,[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;bb&apos;])</span><br><span class="line">print(t1.count(&apos;bb&apos;))#1</span><br><span class="line">print(len(t1))#4</span><br></pre></td></tr></table></figure>
+
+<p>最后，赵丽颖镇楼！<br><img src="https://s2.ax1x.com/2019/09/19/nOsgw4.jpg" alt="nOsgw4.jpg"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/19/python系统学习2/" rel="next" title="python系统学习2">
+                <i class="fa fa-chevron-left"></i> python系统学习2
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/26/BUUCTF re部分题解0/" rel="prev" title="BUUCTF re部分题解0">
+                BUUCTF re部分题解0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#列表："><span class="nav-number">1.</span> <span class="nav-text">列表：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表的而常用操作：增删改查"><span class="nav-number">1.1.</span> <span class="nav-text">列表的而常用操作：增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查："><span class="nav-number">1.1.1.</span> <span class="nav-text">查：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#index"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">index()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">count()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#len"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">len()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#in"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">in</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#not-in"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">not in</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增"><span class="nav-number">1.1.2.</span> <span class="nav-text">增</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#append"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">append()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extend"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">extend()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">insert()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删"><span class="nav-number">1.1.3.</span> <span class="nav-text">删</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#del"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">del</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pop"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">pop()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">remove()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改"><span class="nav-number">1.1.4.</span> <span class="nav-text">改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sort"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">sort()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#copy"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">copy()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表循环遍历"><span class="nav-number">1.2.</span> <span class="nav-text">列表循环遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表嵌套"><span class="nav-number">1.3.</span> <span class="nav-text">列表嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机分配办公室"><span class="nav-number">1.4.</span> <span class="nav-text">随机分配办公室</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元组"><span class="nav-number">2.</span> <span class="nav-text">元组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义数组："><span class="nav-number">2.1.</span> <span class="nav-text">定义数组：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">index()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#count-len"><span class="nav-number">2.1.2.</span> <span class="nav-text">count() len()</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

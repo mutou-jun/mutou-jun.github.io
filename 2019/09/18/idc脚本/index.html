@@ -1,0 +1,626 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="re,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="半成品，有些累了！明天要将它完善！">
+<meta name="keywords" content="re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="idc脚本">
+<meta property="og:url" content="http://yoursite.com/2019/09/18/idc脚本/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="半成品，有些累了！明天要将它完善！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-18T16:19:47.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="idc脚本">
+<meta name="twitter:description" content="半成品，有些累了！明天要将它完善！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> idc脚本 | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                idc脚本
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-09-18T23:51:43+08:00" content="2019-09-18">
+              2019-09-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>半成品，有些累了！明天要将它完善！</p>
+<a id="more"></a>
+
+<h1 id="idc预备基础知识"><a href="#idc预备基础知识" class="headerlink" title="idc预备基础知识"></a>idc预备基础知识</h1><blockquote>
+<p>首先看下了解下执行脚本的常用打开方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File-&gt;Script File:运行独立脚本</span><br><span class="line">File-&gt;IDC Command</span><br><span class="line">File-&gt;Python Command</span><br><span class="line"></span><br><span class="line">//另外，之前运行过的脚本可以在View-&gt;Rencent Script 找到</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果想执行一个临时写的脚本(不长久保存可以在使用IDC Command窗口)或者是输出窗口下面的IDC单行命令行（其实也可以执行多行命令，只需用分号 隔开就好）</p>
+</blockquote>
+<h1 id="IDC语言"><a href="#IDC语言" class="headerlink" title="IDC语言"></a>IDC语言</h1><blockquote>
+<p>ID脚本语言 类似 C语言，C++，并且有着很多IDC函数，很有用！</p>
+</blockquote>
+<h2 id="IDC变量"><a href="#IDC变量" class="headerlink" title="IDC变量"></a>IDC变量</h2><blockquote>
+<p>IDC是一种类型松散的语言，这表示它的变量没有明确的类型。IDC使用3种数据类型，整形(long),字符串，和浮点型。从IDA5.6开始，IDC又加入了许多变量类型，包括对象，引用，和函数指针。</p>
+</blockquote>
+<blockquote>
+<p>声明变量：使用任何变量前都必须声明变量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//IDC关键字auto 用于引用一个局部变量</span><br><span class="line">auto addr;</span><br><span class="line">auto reg,val;</span><br><span class="line">auto count=0;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//IDC关键字autoextern用于引用一个全局变量</span><br><span class="line">extern outsideGlobal;</span><br><span class="line"></span><br><span class="line">static main()</span><br><span class="line">&#123;</span><br><span class="line">    extern insideGlobal;</span><br><span class="line">    outsideGlobal=&quot;Global&quot;;</span><br><span class="line">    insideGlobal=1;</span><br><span class="line">&#125;</span><br><span class="line">//这里要注意，用户自己定义的函数只能运行独立脚本的时候才有效。</span><br></pre></td></tr></table></figure>
+
+<h1 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h1><p>我们用VS2015 生成下release版本的32程序，然后ida打开分析。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">//the xor key is &apos;B&apos; ，异或的key</span><br><span class="line"></span><br><span class="line">int Verify(char *Flag) &#123;</span><br><span class="line">	int i;</span><br><span class="line">	int tar[10] = &#123; 00, 43, 44, 29, 14, 47, 47, 10, 29, 1 &#125;; //这里是关键数据</span><br><span class="line">	for (i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">		if (Flag[i] != tar[i]) &#123;</span><br><span class="line">			printf(&quot;You are wrong\n&quot;); //错误提示</span><br><span class="line">			return -1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;Congratulations...\n&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">	int i;</span><br><span class="line">	char flag[11] = &quot;\0&quot;;</span><br><span class="line">	scanf_s(&quot;%s&quot;, flag, sizeof(flag));//输入的flag</span><br><span class="line">	printf(&quot;%s\n&quot;, flag);</span><br><span class="line">	for (i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">		flag[i] = flag[i] ^ 66; //将输入异或</span><br><span class="line">	&#125;</span><br><span class="line">	Verify(flag);//调用检测函数</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>明天继续编辑吧！有些累了！关键数据在数据段的00102140 和 00402150</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">rdata:00402100                                         ; DATA XREF: ___report_gsfailure+ED↑o</span><br><span class="line">.rdata:00402108 aYouAreWrong    db &apos;You are wrong&apos;,0Ah,0</span><br><span class="line">.rdata:00402108                                         ; DATA XREF: _main:loc_4010A8↑o</span><br><span class="line">.rdata:00402117                 align 4</span><br><span class="line">.rdata:00402118 aCongratulation db &apos;Congratulations...&apos;,0Ah,0</span><br><span class="line">.rdata:00402118                                         ; DATA XREF: _main+A1↑o</span><br><span class="line">.rdata:0040212C aS              db &apos;%s&apos;,0               ; DATA XREF: _main+22↑o</span><br><span class="line">.rdata:0040212F                 align 10h</span><br><span class="line">.rdata:00402130 aS_0            db &apos;%s&apos;,0Ah,0           ; DATA XREF: _main+35↑o</span><br><span class="line">.rdata:00402134                 align 10h</span><br><span class="line">.rdata:00402140 xmmword_402140  xmmword 0A0000002F0000002F0000000Eh</span><br><span class="line">.rdata:00402140                                         ; DATA XREF: _main+7E↑r</span><br><span class="line">.rdata:00402150 xmmword_402150  xmmword 1D0000002C0000002B00000000h</span><br><span class="line">.rdata:00402150                                         ; DATA XREF: _main+3F↑r</span><br><span class="line">.rdata:00402160 ; Debug Directory entries</span><br><span class="line">.rdata:00402160                 dd 0                    ; Characteristics</span><br></pre></td></tr></table></figure>
+
+<h2 id="我们使用idc编写脚本（很方便）"><a href="#我们使用idc编写脚本（很方便）" class="headerlink" title="我们使用idc编写脚本（很方便）"></a>我们使用idc编写脚本（很方便）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">auto from1 = 0x00402150;</span><br><span class="line">auto from2 = 0x00402140;</span><br><span class="line">auto i,x;</span><br><span class="line"></span><br><span class="line">for(i=0;i&lt;4;i=i+1)</span><br><span class="line">    &#123;</span><br><span class="line">        x=Dword(from1);</span><br><span class="line">        Message(&quot;%s&quot;,x^0x42);</span><br><span class="line">        from1=from1+4;</span><br><span class="line">    &#125;</span><br><span class="line">for(i=0;i&lt;4;i=i+1)</span><br><span class="line">    &#123;</span><br><span class="line">        x=Dword(from2);</span><br><span class="line">        Message(&quot;%s&quot;,x^0x42);</span><br><span class="line">        from2=from2+4;</span><br><span class="line">    &#125;</span><br><span class="line">Message(&quot;%s&quot;,0x1D^0x42);</span><br><span class="line">Message(&quot;%s&quot;,0x01^0x42);</span><br><span class="line">#Bin_LmmH_C</span><br></pre></td></tr></table></figure>
+
+<p>参考<a href="https://www.cnblogs.com/binlmmhc/p/6166286.html更详细" target="_blank" rel="noopener">https://www.cnblogs.com/binlmmhc/p/6166286.html更详细</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag">#re</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/17/python系统学习1/" rel="next" title="python系统学习1">
+                <i class="fa fa-chevron-left"></i> python系统学习1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/19/python系统学习2/" rel="prev" title="python系统学习2">
+                python系统学习2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#idc预备基础知识"><span class="nav-number">1.</span> <span class="nav-text">idc预备基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDC语言"><span class="nav-number">2.</span> <span class="nav-text">IDC语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDC变量"><span class="nav-number">2.1.</span> <span class="nav-text">IDC变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例："><span class="nav-number">3.</span> <span class="nav-text">实例：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#我们使用idc编写脚本（很方便）"><span class="nav-number">3.1.</span> <span class="nav-text">我们使用idc编写脚本（很方便）</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

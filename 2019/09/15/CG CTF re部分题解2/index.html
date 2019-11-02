@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="re,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="嗯，为何我又看了遍汇编，当是温故知新了。。。">
+<meta name="keywords" content="re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CG CTF re部分题解2">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/CG CTF re部分题解2/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="嗯，为何我又看了遍汇编，当是温故知新了。。。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/18/Zjtpuj.png">
+<meta property="og:updated_time" content="2019-09-14T17:00:51.427Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CG CTF re部分题解2">
+<meta name="twitter:description" content="嗯，为何我又看了遍汇编，当是温故知新了。。。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/18/Zjtpuj.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> CG CTF re部分题解2 | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CG CTF re部分题解2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-09-15T00:24:26+08:00" content="2019-09-15">
+              2019-09-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>嗯，为何我又看了遍汇编，当是温故知新了。。。</p>
+<a id="more"></a>
+<h2 id="你大概需要一个优秀的mac"><a href="#你大概需要一个优秀的mac" class="headerlink" title="你大概需要一个优秀的mac"></a>你大概需要一个优秀的mac</h2><blockquote>
+<p>//虽然是iso下的程序,但并不一定真的要有mac….<br>我首先想到的就是拖入  ida中</p>
+</blockquote>
+<p>我们直接进去main()函数   F5<br>哦哦对了,这里最好再深入了解下memset()函数<br><a href="https://blog.csdn.net/dan15188387481/article/details/49621447" target="_blank" rel="noopener">https://blog.csdn.net/dan15188387481/article/details/49621447</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  char v4; // [rsp+40h] [rbp-70h]</span><br><span class="line">  __int64 v5; // [rsp+A8h] [rbp-8h]</span><br><span class="line"></span><br><span class="line">  memset(input, 0, 0x64uLL);</span><br><span class="line">  memset(&amp;v4, 0, 0x64uLL);</span><br><span class="line">  scanf(&quot;%s&quot;, &amp;v4);                             // 输入字符串并将它存在v4所在地址上（指针）</span><br><span class="line">  if ( strlen(&amp;v4) != 56 )                      // 输入字符串 长度  要等于56</span><br><span class="line">  &#123;</span><br><span class="line">    puts((const char *)err);</span><br><span class="line">    exit(0);</span><br><span class="line">  &#125;</span><br><span class="line">  __strcpy_chk((__int64)input, (__int64)&amp;v4, 100LL);// 将v4我们输入的字符串 复制到input地址（指针处）</span><br><span class="line">                                                // 我们输入的字符串是char类型</span><br><span class="line">                                                // 但strcpy函数却将它赋值到了__int64类型，</span><br><span class="line">                                                // 所以相当于赋值到了每个__int64的最后两位</span><br><span class="line">  func1((__int64)input);</span><br><span class="line">  xfun1();</span><br><span class="line">  xfun2();</span><br><span class="line">  xfun3();</span><br><span class="line">  xfun4();                                      // 将我们输入的字符串经过func1 xfun1 xfun2 xfun3 xfun4xfun5处理</span><br><span class="line">  xfun5();</span><br><span class="line">  check();                                      // 最后再check 看看是否正确</span><br><span class="line">  if ( __stack_chk_guard != v5 )</span><br><span class="line">    __stack_chk_fail(input, &amp;v4);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们可以看出大概流程：<br><br>我们输入的字符串经过6个加密函数处理最后在check函数判断是否正确<br>我们看下每个加密函数</p>
+<ul>
+<li><p>func1((__int64)input)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall func1(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 result; // rax</span><br><span class="line">  signed int i; // [rsp+0h] [rbp-Ch]</span><br><span class="line"></span><br><span class="line">  for ( i = 0; i &lt; 57; ++i )                    // 循环（字符串长度）56 次</span><br><span class="line">  &#123;</span><br><span class="line">    *(_BYTE *)(a1 + i) ^= 0xDEu;                // 这里注意：</span><br><span class="line">                                                // al是__int64类型（双字（8字节））</span><br><span class="line">                                                // al+i相当于al[i](__int64(双字（8字节）))</span><br><span class="line">                                                // *(_BYTE *)(a1 + i)就相当于al[i]的最后2字节</span><br><span class="line">                                                // （char类型即是我们最初输入的字符）</span><br><span class="line">                                                //   </span><br><span class="line">                                                // ord（输入的字符）=ord（输入的字符）^0xDE</span><br><span class="line">    result = (unsigned int)(i + 1);</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>xfun1()</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-char *xfun1()</span><br><span class="line">&#123;</span><br><span class="line">  char *result; // rax</span><br><span class="line">  signed int i; // [rsp+Ch] [rbp-4h]</span><br><span class="line"></span><br><span class="line">  result = input;</span><br><span class="line">  for ( i = 0; i &lt; 10; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    input[i] ^= 0xADu;                          // 输入字符串的前10个ord（字符）^=0xAD</span><br><span class="line">    result = (char *)(unsigned int)(i + 1);</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>xfun2()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">char *xfun2()</span><br><span class="line">&#123;</span><br><span class="line">  char *result; // rax</span><br><span class="line">  signed int i; // [rsp+Ch] [rbp-4h]</span><br><span class="line"></span><br><span class="line">  result = &amp;input[10];</span><br><span class="line">  for ( i = 0; i &lt; 10; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    input[i + 10] ^= 0xBEu;                     // 输入字符串的10到20个ord（字符）^=0x0xBE</span><br><span class="line">    result = (char *)(unsigned int)(i + 1);</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>xfun3()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 输入字符串的20到30个ord（字符）^=0xEFu</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>xfun4()</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 输入字符串的30到40个ord（字符）^=0xABu</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>xfun5()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 输入字符串的40到56个ord（字符）^=0x0xEFu</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最后我们看下check函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int check()</span><br><span class="line">&#123;</span><br><span class="line">  signed int i; // [rsp+Ch] [rbp-F4h]</span><br><span class="line">  int v2[58]; // [rsp+10h] [rbp-F0h]</span><br><span class="line"></span><br><span class="line">  memcpy(v2, &amp;dword_100000ED0, 0xE0uLL);</span><br><span class="line">  for ( i = 0; i &lt; 56; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( input[i] != v2[i] )                    // v2[i]=dword_100000ED0[i] (dword类型)</span><br><span class="line">                                                // 这里input[i]是bety类型2字节</span><br><span class="line">                                                // 所以只需将input[i]与dword_100000ED0[i]的最后两字节比较</span><br><span class="line">    &#123;</span><br><span class="line">      puts((const char *)err);</span><br><span class="line">      exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return puts(success);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序的逻辑是将我们输入的56长字符串<br>先将所有字符亦或0xDEu<br>然后0-19，10-19，20-29，30-39，40-55分别亦或另一个数值</p>
+<p>所以我们思路很清晰了</p>
+<h3 id="逆向："><a href="#逆向：" class="headerlink" title="逆向："></a>逆向：</h3><blockquote>
+<p>首先提取出来dword_100000ED0的每个双字的最后2字节（我需要知道个更简单的方法/哭）我想到了idc但我从来还没接触过，要将它提上日程了！</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	unsigned char ida_chars1[] =</span><br><span class="line">&#123;</span><br><span class="line">   21,   0,   0,   0,  31,   0,   0,   0,  18,   0, </span><br><span class="line">    0,   0,  20,   0,   0,   0,   8,   0,   0,   0, </span><br><span class="line">   58,   0,   0,   0,  70,   0,   0,   0,  44,   0, </span><br><span class="line">    0,   0,   7,   0,   0,   0,  27,   0,   0,   0, </span><br><span class="line">   81,   0,   0,   0,  19,   0,   0,   0,  63,   0, </span><br><span class="line">    0,   0,  87,   0,   0,   0,   8,   0,   0,   0, </span><br><span class="line">    5,   0,   0,   0,  63,   0,   0,   0,  48,   0, </span><br><span class="line">    0,   0,  50,   0,   0,   0,  81,   0,   0,   0, </span><br><span class="line">   82,   0,   0,   0,   2,   0,   0,   0, 110,   0, </span><br><span class="line">    0,   0, 120,   0,   0,   0,  22,   0,   0,   0, </span><br><span class="line">  124,   0,   0,   0, 110,   0,   0,   0,  97,   0, </span><br><span class="line">    0,   0, 112,   0,   0,   0,  72,   0,   0,   0, </span><br><span class="line">   28,   0,   0,   0,  59,   0,   0,   0,  50,   0, </span><br><span class="line">    0,   0,  42,   0,   0,   0,  19,   0,   0,   0, </span><br><span class="line">   69,   0,   0,   0,   7,   0,   0,   0,  42,   0, </span><br><span class="line">    0,   0,  24,   0,   0,   0,  12,   0,   0,   0, </span><br><span class="line">  110,   0,   0,   0,  65,   0,   0,   0, 112,   0, </span><br><span class="line">    0,   0,   4,   0,   0,   0,   6,   0,   0,   0, </span><br><span class="line">  110,   0,   0,   0,  92,   0,   0,   0,   0,   0, </span><br><span class="line">    0,   0,  66,   0,   0,   0,  69,   0,   0,   0, </span><br><span class="line">  112,   0,   0,   0,  90,   0,   0,   0,   2,   0, </span><br><span class="line">    0,   0,   4,   0,   0,   0,  14,   0,   0,   0, </span><br><span class="line">   76,   0,   0,   0</span><br><span class="line">&#125;;</span><br><span class="line">int a=sizeof(ida_chars1);</span><br><span class="line">cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">unsigned char ida_chars2[56];</span><br><span class="line">int j=0;</span><br><span class="line">for(int i=0;i&lt;224;i+=4)</span><br><span class="line">	&#123;</span><br><span class="line">		ida_chars2[j]=ida_chars1[i];</span><br><span class="line">		j++;</span><br><span class="line">	&#125;</span><br><span class="line">for(j=0;j&lt;sizeof(ida_chars2);j++)</span><br><span class="line">	cout&lt;&lt;&quot;0x&quot;&lt;&lt;hex&lt;&lt;int(ida_chars2[j])&lt;&lt;&quot;,&quot;;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后python脚本将flag给跑出来</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">b=[0x15,0x1f,0x12,0x14,0x8,0x3a,0x46,0x2c,0x7,0x1b,0x51,0x13,0x3f,0x57,0x8,0x5,0x3f,0x30,0x32,0x51,0x52,0x2,0x6e,0x78,0x16,0x7c,0x6e,0x61,0x70,0x48,0x1c,0x3b,0x32,0x2a,0x13,0x45,0x7,0x2a,0x18,0xc,0x6e,0x41,0x70,0x4,0x6,0x6e,0x5c,0x0,0x42,0x45,0x70,0x5a,0x2,0x4,0xe,0x4c]</span><br><span class="line">print len(b)</span><br><span class="line">for i in range(0,56):</span><br><span class="line">    b[i]^=0xDE</span><br><span class="line">for i in range(0,10):</span><br><span class="line">    b[i]^=0xAD</span><br><span class="line">for i in range(0,10):</span><br><span class="line">    b[i+10]^=0xBE</span><br><span class="line">for i in range(0,10):</span><br><span class="line">    b[i+20]^=0xEF</span><br><span class="line">for i in range(0,10):</span><br><span class="line">    b[i+30]^=0xAB</span><br><span class="line">for i in range(0,16):</span><br><span class="line">    b[i+40]^=0xEF</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flag = &apos;&apos;</span><br><span class="line">for i in range(0,56):</span><br><span class="line">    flag += chr(b[i])</span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line">#flag&#123;I5_th1s_7he_PR1c3_I&apos;M_PAyiNG_f0r_my_pA57_m1stAk35?&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Our-16bit-wars"><a href="#Our-16bit-wars" class="headerlink" title="Our 16bit wars"></a>Our 16bit wars</h2><blockquote>
+<p>16位汇编学过么？<br>哈哈，我是真了解过！</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOS的系统功能调用。int 21h的0x9号功能是输出字符串，0xA功能是读入字符串。</span><br></pre></td></tr></table></figure>
+
+<p>MS-DOS executable(EXE)[dos.dll] 在ida中无法 反汇编    代码不长，自己读吧！</p>
+<p>我们从代码段的seg001:0000开始耐心地分析吧！</p>
+<p>start函数相当于 main函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">seg001:0000</span><br><span class="line">seg001:0000 ; Attributes: noreturn</span><br><span class="line">seg001:0000</span><br><span class="line">seg001:0000                 public start</span><br><span class="line">seg001:0000 start           proc near</span><br><span class="line">seg001:0000                 mov     ax, seg dseg //seg变量名（地址操作符）:返回段基地址（高16位）</span><br><span class="line">seg001:0003                 mov     ds, ax</span><br><span class="line">seg001:0005                 assume ds:dseg</span><br><span class="line">//伪指令assume为我们指定默认的段寄存器，若不使用assume，那么我们在程序中访问数据时必须人为地明确指定相应的段寄存器</span><br><span class="line">seg001:0005                 call    sub_100AC//我们现在去100AC函数继续分析</span><br><span class="line">seg001:0008                 mov     ah, 4Ch</span><br><span class="line">seg001:000A                 int     21h             ; DOS - 2+ - QUIT WITH EXIT CODE (EXIT)</span><br><span class="line">seg001:000A start           endp                    ; AL = exit code</span><br><span class="line">seg001:000A</span><br><span class="line">seg001:000C</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>首先 调用了 sub_100AC函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">seg001:000C sub_100AC       proc near               ; CODE XREF: start+5↑p</span><br><span class="line">seg001:000C                 mov     di, 3           //di=3</span><br><span class="line">seg001:000F                 call    sub_10115       //去10115函数继续分析</span><br><span class="line">seg001:0012                 mov     di, 24h ; &apos;$&apos;    //di=24h </span><br><span class="line">seg001:0015                 call    sub_10123       //去sub_10123分析</span><br><span class="line">seg001:0018                 mov     bx, 24h ; &apos;$&apos;</span><br><span class="line">seg001:001B                 add     bx, 1</span><br><span class="line">seg001:001E                 cmp     byte ptr [bx], 23h ; &apos;#&apos;</span><br><span class="line">seg001:0021                 jnz     short loc_100DD</span><br><span class="line">seg001:0023                 mov     di, 26h ; &apos;&amp;&apos;</span><br><span class="line">seg001:0026                 call    sub_100F9</span><br><span class="line">seg001:0029                 mov     si, 76h ; &apos;v&apos;</span><br><span class="line">seg001:002C                 mov     dx, 23h ; &apos;#&apos;</span><br><span class="line">seg001:002F                 call    sub_100E4</span><br><span class="line">seg001:0032                 test    ax, ax</span><br><span class="line">seg001:0034                 jnz     short loc_100DD</span><br><span class="line">seg001:0036                 mov     di, 0Fh</span><br><span class="line">seg001:0039                 call    sub_10115</span><br><span class="line">seg001:003C                 retn</span><br><span class="line">seg001:003D ; ---------------------------------------------------------------------------</span><br><span class="line">seg001:003D</span><br><span class="line">seg001:003D loc_100DD:                              ; CODE XREF: sub_100AC+15↑j</span><br><span class="line">seg001:003D                                         ; sub_100AC+28↑j</span><br><span class="line">seg001:003D                 mov     di, 18h</span><br><span class="line">seg001:0040                 call    sub_10115</span><br><span class="line">seg001:0043                 retn</span><br><span class="line">seg001:0043 sub_100AC       endp</span><br></pre></td></tr></table></figure>
+
+<p>然后再seg001:000F   处有调用了sub_10115函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">seg001:0075</span><br><span class="line">seg001:0075 sub_10115       proc near               ; CODE XREF: sub_100AC+3↑p</span><br><span class="line">seg001:0075                                         ; sub_100AC+2D↑p ...</span><br><span class="line">seg001:0075                 mov     dx, di          //dx=di=3</span><br><span class="line">seg001:0077                 mov     ah, 9           </span><br><span class="line">//dos的系统调用 9号功能：打印ds:[dx]的字符串，遇到&apos;$&apos;结束</span><br><span class="line">//这里 ds:[dx]处的  $Input Flag: 字符串</span><br><span class="line">seg001:0079                 int     21h             ; DOS - PRINT STRING</span><br><span class="line">seg001:0079                                         ; DS:DX -&gt; string terminated by &quot;$&quot;</span><br><span class="line">seg001:007B                 mov     dx, 0</span><br><span class="line">seg001:007E                 mov     ah, 9</span><br><span class="line">seg001:0080                 int     21h             ; DOS - PRINT STRING</span><br><span class="line">seg001:0080                                         ; DS:DX -&gt; string terminated by &quot;$&quot;</span><br><span class="line">seg001:0082                 retn      //返回到 seg001:000C的sub_100AC函数   </span><br><span class="line">seg001:0082 sub_10115       endp</span><br><span class="line">seg001:0082</span><br><span class="line">seg001:0083</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>//dx=di=3<br>mov ah, 9 调用DOS的系统功能调用。</p>
+</blockquote>
+<blockquote>
+<p>int 21h的0x9号功能是输出字符串//输出位于DS:DX(di(3))的字符串，并遇到”$”时终止。//即输出 $Input Flag:<br>这里几个例子</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">;eg101.asm</span><br><span class="line">	.model small</span><br><span class="line">	.stack</span><br><span class="line">	.data </span><br><span class="line">msg	db &apos;Hello, Assembly !&apos;,13,10,&apos;$&apos;	</span><br><span class="line">	.code </span><br><span class="line">	.startup</span><br><span class="line">	mov dx,offset msg	;⑴ 字符串偏移地址</span><br><span class="line">	mov ah,9	;⑵ AH赋值9</span><br><span class="line">	int 21h	;⑶ 功能调用显示信息</span><br><span class="line">	.exit</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
+
+<p>接下来seg001:0015处又调用了sub_10123函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">seg001:0083 sub_10123       proc near               ; CODE XREF: sub_100AC+9↑p</span><br><span class="line">seg001:0083                 mov     dx, di          //dx=24h</span><br><span class="line">seg001:0085                 mov     ah, 0Ah        </span><br><span class="line"> //dos系统调用 0ah号功能，不断输入字符 放在ds：dx缓冲区中</span><br><span class="line">seg001:0087                 int     21h             ; DOS - BUFFERED KEYBOARD INPUT</span><br><span class="line">seg001:0087                                         ; DS:DX -&gt; buffer</span><br><span class="line">seg001:0089                 mov     bx, di          </span><br><span class="line">seg001:008B                 add     bx, 1</span><br><span class="line">seg001:008E                 xor     cx, cx         </span><br><span class="line">seg001:0090                 mov     cl, [bx]      </span><br><span class="line">seg001:0092                 add     bx, cx        </span><br><span class="line">seg001:0094                 add     bx, 1</span><br><span class="line">seg001:0097                 mov     byte ptr [bx], 24h ; &apos;$&apos;</span><br><span class="line">seg001:009A                 mov     dx, 0 </span><br><span class="line">seg001:009D                 mov     ah, 9</span><br><span class="line">seg001:009F                 int     21h             ; DOS - PRINT STRING</span><br><span class="line">seg001:009F                                         ; DS:DX -&gt; string terminated by &quot;$&quot;</span><br><span class="line">seg001:00A1                 retn</span><br><span class="line">seg001:00A1 sub_10123       endp</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>函数中调用了系统功能调用的0xA功能即从键盘获得输入，并放入DS:DX中。对之后的流程进行分析可以发现seg001:0089到seg001:0097是获取输入字符串的长度并在字符串尾部加上字符串结尾’$’。</p>
+</blockquote>
+<p>然后我们又回到了sub_100AC函数中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">seg001:000C sub_100AC       proc near               ; CODE XREF: start+5↑p</span><br><span class="line">seg001:000C                 mov     di, 3</span><br><span class="line">seg001:000F                 call    sub_10115</span><br><span class="line">seg001:0012                 mov     di, 24h ; &apos;$&apos;</span><br><span class="line">seg001:0015                 call    sub_10123</span><br><span class="line">seg001:0018                 mov     bx, 24h ; &apos;$&apos;</span><br><span class="line">seg001:001B                 add     bx, 1</span><br><span class="line">seg001:001E                 cmp     byte ptr [bx], 23h ; &apos;#&apos;</span><br><span class="line">seg001:0021                 jnz     short loc_100DD</span><br><span class="line">seg001:0023                 mov     di, 26h ; &apos;&amp;&apos;</span><br><span class="line">seg001:0026                 call    sub_100F9</span><br><span class="line">seg001:0029                 mov     si, 76h ; &apos;v&apos;</span><br><span class="line">seg001:002C                 mov     dx, 23h ; &apos;#&apos;</span><br><span class="line">seg001:002F                 call    sub_100E4</span><br><span class="line">seg001:0032                 test    ax, ax</span><br><span class="line">seg001:0034                 jnz     short loc_100DD</span><br><span class="line">seg001:0036                 mov     di, 0Fh</span><br><span class="line">seg001:0039                 call    sub_10115</span><br><span class="line">seg001:003C                 retn</span><br><span class="line">seg001:003D ; ---------------------------------------------------------------------------</span><br><span class="line">seg001:003D</span><br><span class="line">seg001:003D loc_100DD:                              ; CODE XREF: sub_100AC+15↑j</span><br><span class="line">seg001:003D                                         ; sub_100AC+28↑j</span><br><span class="line">seg001:003D                 mov     di, 18h</span><br><span class="line">seg001:0040                 call    sub_10115</span><br><span class="line">seg001:0043                 retn</span><br><span class="line">seg001:0043 sub_100AC       endp</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>seg001:001E处判断我们输入字符串的长度是否为0x23，不是的话则跳到loc_100DD输出错误：Wrong Flag!<br>继续往下分析sub_100F9函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">seg001:0059 sub_100F9       proc near               ; CODE XREF: sub_100AC+1A↑p</span><br><span class="line">seg001:0059                 mov     bx, di</span><br><span class="line">seg001:005B                 mov     si, 0</span><br><span class="line">seg001:005E</span><br><span class="line">seg001:005E loc_100FE:                              ; CODE XREF: sub_100F9+19↓j</span><br><span class="line">seg001:005E                 mov     al, [bx+si]</span><br><span class="line">seg001:0060                 mov     dl, al</span><br><span class="line">seg001:0062                 mov     cl, 3</span><br><span class="line">seg001:0064                 shr     al, cl</span><br><span class="line">seg001:0066                 mov     cl, 5</span><br><span class="line">seg001:0068                 shl     dl, cl</span><br><span class="line">seg001:006A                 xor     al, dl</span><br><span class="line">seg001:006C                 mov     [bx+si], al</span><br><span class="line">seg001:006E                 inc     si</span><br><span class="line">seg001:006F                 cmp     si, 23h ; &apos;#&apos;</span><br><span class="line">seg001:0072                 jnz     short loc_100FE</span><br><span class="line">seg001:0074                 retn</span><br><span class="line">seg001:0074 sub_100F9       endp</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里便是关键算法：<br>shuru[i]=(shuru[i]&gt;&gt;3)^(shuru[i]&lt;&lt;5）<br>最后看下sub_100E4函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">seg001:0044</span><br><span class="line">seg001:0044 sub_100E4       proc near               ; CODE XREF: sub_100AC+23↑p</span><br><span class="line">seg001:0044                 xor     bx, bx</span><br><span class="line">seg001:0046</span><br><span class="line">seg001:0046 loc_100E6:                              ; CODE XREF: sub_100E4+B↓j</span><br><span class="line">seg001:0046                 mov     al, [bx+si]</span><br><span class="line">seg001:0048                 cmp     al, [bx+di]</span><br><span class="line">seg001:004A                 jnz     short loc_100F5</span><br><span class="line">seg001:004C                 inc     bx</span><br><span class="line">seg001:004D                 cmp     bx, dx</span><br><span class="line">seg001:004F                 jnz     short loc_100E6</span><br><span class="line">seg001:0051                 mov     ax, 0</span><br><span class="line">seg001:0054                 retn</span><br><span class="line">seg001:0055 ; ---------------------------------------------------------------------------</span><br><span class="line">seg001:0055</span><br><span class="line">seg001:0055 loc_100F5:                              ; CODE XREF: sub_100E4+6↑j</span><br><span class="line">seg001:0055                 mov     ax, 1</span><br><span class="line">seg001:0058                 retn</span><br><span class="line">seg001:0058 sub_100E4       endp</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>经简单分析DS:0x76存放着我们的要比较的数据，根据上面的算法 逆向出 flag</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf8</span><br><span class="line">jiami=[0xC9, 0x68, 0x8A, 0xC8, 0x6F, 0x07, 0x06, 0x0F, 0x07, 0xC6, 0xEB, 0x86, 0x6E, 0x6E, 0x66, 0xAD, 0x4C, 0x8D, 0xAC, 0xEB, 0x26, 0x6E, 0xEB, 0xCC, 0xAE, 0xCD, 0x8C, 0x86, 0xAD, 0x66, 0xCD, 0x8E, 0x86, 0x8D, 0xAF]</span><br><span class="line">for i in range(35):</span><br><span class="line">	 print chr(((jiami[i] &lt;&lt; 3) ^ (jiami[i] &gt;&gt; 5)) &amp; 0xff),</span><br><span class="line"></span><br><span class="line"># NCTF&#123;80x86_4ss3mble_1s_fund4m3nt4l&#125;</span><br><span class="line">#我这样输出每两个字符间会有空格，回头得想个更好的脚本！</span><br></pre></td></tr></table></figure>
+
+<p>学习好慢啊！唉！<br><a href="https://imgchr.com/i/Zjtpuj" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/07/18/Zjtpuj.png" alt="Zjtpuj.png"></a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag">#re</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/13/CG CTF WxyVM/" rel="next" title="CG CTF WxyVM">
+                <i class="fa fa-chevron-left"></i> CG CTF WxyVM
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/15/CG CTF re部分题解3/" rel="prev" title="CG CTF re部分题解3">
+                CG CTF re部分题解3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#你大概需要一个优秀的mac"><span class="nav-number">1.</span> <span class="nav-text">你大概需要一个优秀的mac</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逆向："><span class="nav-number">1.1.</span> <span class="nav-text">逆向：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Our-16bit-wars"><span class="nav-number">2.</span> <span class="nav-text">Our 16bit wars</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

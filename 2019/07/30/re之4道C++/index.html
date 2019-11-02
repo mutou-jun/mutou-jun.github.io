@@ -1,0 +1,686 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="re,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="最近碰到四道关于C++类型的题，在之前从来没有遇到过，于是我又把C ++又学一遍，//不如说第一遍！这里记录下！">
+<meta name="keywords" content="re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="re之4道C++">
+<meta property="og:url" content="http://yoursite.com/2019/07/30/re之4道C++/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="最近碰到四道关于C++类型的题，在之前从来没有遇到过，于是我又把C ++又学一遍，//不如说第一遍！这里记录下！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJO5dO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJOTFe.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJOHWd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJO4eK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJOIoD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJO7JH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/30/eJzjIK.jpg">
+<meta property="og:updated_time" content="2019-07-31T13:07:05.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="re之4道C++">
+<meta name="twitter:description" content="最近碰到四道关于C++类型的题，在之前从来没有遇到过，于是我又把C ++又学一遍，//不如说第一遍！这里记录下！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/30/eJO5dO.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> re之4道C++ | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                re之4道C++
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-07-30T23:48:56+08:00" content="2019-07-30">
+              2019-07-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近碰到四道关于C++类型的题，在之前从来没有遇到过，于是我又把C ++又学一遍，//不如说第一遍！这里记录下！</p>
+<a id="more"></a>
+<h1 id="0x01-dmd-50"><a href="#0x01-dmd-50" class="headerlink" title="0x01 dmd-50"></a>0x01 dmd-50</h1><p>题目来源：攻防世界<br>拖入ida64<br>main函数反编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 v3; // rax</span><br><span class="line">  __int64 v4; // rax</span><br><span class="line">  __int64 v5; // rax</span><br><span class="line">  __int64 v6; // rax</span><br><span class="line">  __int64 v7; // rax</span><br><span class="line">  __int64 v8; // rax</span><br><span class="line">  __int64 v9; // rax</span><br><span class="line">  __int64 v10; // rax</span><br><span class="line">  __int64 v11; // rax</span><br><span class="line">  __int64 v12; // rax</span><br><span class="line">  __int64 v13; // rax</span><br><span class="line">  __int64 v14; // rax</span><br><span class="line">  __int64 v15; // rax</span><br><span class="line">  __int64 v16; // rax</span><br><span class="line">  __int64 v17; // rax</span><br><span class="line">  __int64 v18; // rax</span><br><span class="line">  __int64 v19; // rax</span><br><span class="line">  __int64 v20; // rax</span><br><span class="line">  __int64 v21; // rax</span><br><span class="line">  int result; // eax</span><br><span class="line">  __int64 v23; // rax</span><br><span class="line">  __int64 v24; // rax</span><br><span class="line">  __int64 v25; // rax</span><br><span class="line">  __int64 v26; // rax</span><br><span class="line">  __int64 v27; // rax</span><br><span class="line">  __int64 v28; // rax</span><br><span class="line">  __int64 v29; // rax</span><br><span class="line">  __int64 v30; // rax</span><br><span class="line">  __int64 v31; // rax</span><br><span class="line">  __int64 v32; // rax</span><br><span class="line">  __int64 v33; // rax</span><br><span class="line">  __int64 v34; // rax</span><br><span class="line">  __int64 v35; // rax</span><br><span class="line">  __int64 v36; // rax</span><br><span class="line">  __int64 v37; // rax</span><br><span class="line">  char v38; // [rsp+Fh] [rbp-71h]</span><br><span class="line">  char v39; // [rsp+10h] [rbp-70h]</span><br><span class="line">  char v40; // [rsp+20h] [rbp-60h]</span><br><span class="line">  _BYTE *v41; // [rsp+28h] [rbp-58h]</span><br><span class="line">  char v42; // [rsp+30h] [rbp-50h]</span><br><span class="line">  unsigned __int64 v43; // [rsp+68h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  v43 = __readfsqword(0x28u);</span><br><span class="line">  std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(&amp;std::cout, &quot;Enter the valid key!\n&quot;, envp);</span><br><span class="line">  std::operator&gt;&gt;&lt;char,std::char_traits&lt;char&gt;&gt;(&amp;edata, &amp;v42);</span><br><span class="line">  std::allocator&lt;char&gt;::allocator(&amp;v38);</span><br><span class="line">  std::string::string(&amp;v39, &amp;v42, &amp;v38);</span><br><span class="line">  md5(&amp;v40, &amp;v39);</span><br><span class="line">  v41 = (_BYTE *)std::string::c_str((std::string *)&amp;v40);</span><br><span class="line">  std::string::~string((std::string *)&amp;v40);</span><br><span class="line">  std::string::~string((std::string *)&amp;v39);</span><br><span class="line">  std::allocator&lt;char&gt;::~allocator(&amp;v38);</span><br><span class="line">  if ( *v41 != &apos;7&apos;</span><br><span class="line">    || v41[1] != &apos;8&apos;</span><br><span class="line">    || v41[2] != &apos;0&apos;</span><br><span class="line">    || v41[3] != &apos;4&apos;</span><br><span class="line">    || v41[4] != &apos;3&apos;</span><br><span class="line">    || v41[5] != &apos;8&apos;</span><br><span class="line">    || v41[6] != &apos;d&apos;</span><br><span class="line">    || v41[7] != &apos;5&apos;</span><br><span class="line">    || v41[8] != &apos;b&apos;</span><br><span class="line">    || v41[9] != &apos;6&apos;</span><br><span class="line">    || v41[10] != &apos;e&apos;</span><br><span class="line">    || v41[11] != &apos;2&apos;</span><br><span class="line">    || v41[12] != &apos;9&apos;</span><br><span class="line">    || v41[13] != &apos;d&apos;</span><br><span class="line">    || v41[14] != &apos;b&apos;</span><br><span class="line">    || v41[15] != &apos;0&apos;</span><br><span class="line">    || v41[16] != &apos;8&apos;</span><br><span class="line">    || v41[17] != &apos;9&apos;</span><br><span class="line">    || v41[18] != &apos;8&apos;</span><br><span class="line">    || v41[19] != &apos;b&apos;</span><br><span class="line">    || v41[20] != &apos;c&apos;</span><br><span class="line">    || v41[21] != &apos;4&apos;</span><br><span class="line">    || v41[22] != &apos;f&apos;</span><br><span class="line">    || v41[23] != &apos;0&apos;</span><br><span class="line">    || v41[24] != &apos;2&apos;</span><br><span class="line">    || v41[25] != &apos;2&apos;</span><br><span class="line">    || v41[26] != &apos;5&apos;</span><br><span class="line">    || v41[27] != &apos;9&apos;</span><br><span class="line">    || v41[28] != &apos;3&apos;</span><br><span class="line">    || v41[29] != &apos;5&apos;</span><br><span class="line">    || v41[30] != &apos;c&apos;</span><br><span class="line">    || v41[31] != &apos;0&apos; )</span><br><span class="line">  &#123;</span><br><span class="line">    v23 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(&amp;std::cout, 73LL);</span><br><span class="line">    v24 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v23, 110LL);</span><br><span class="line">    v25 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v24, 118LL);</span><br><span class="line">    v26 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v25, 97LL);</span><br><span class="line">    v27 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v26, 108LL);</span><br><span class="line">    v28 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v27, 105LL);</span><br><span class="line">    v29 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v28, 100LL);</span><br><span class="line">    v30 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v29, 32LL);</span><br><span class="line">    v31 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v30, 75LL);</span><br><span class="line">    v32 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v31, 101LL);</span><br><span class="line">    v33 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v32, 121LL);</span><br><span class="line">    v34 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v33, 33LL);</span><br><span class="line">    v35 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v34, 32LL);</span><br><span class="line">    v36 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v35, 58LL);</span><br><span class="line">    v37 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v36, 40LL);</span><br><span class="line">    std::ostream::operator&lt;&lt;(v37, &amp;std::endl&lt;char,std::char_traits&lt;char&gt;&gt;);</span><br><span class="line">    result = 0;</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(&amp;std::cout, 84LL);</span><br><span class="line">    v4 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v3, 104LL);</span><br><span class="line">    v5 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v4, 101LL);</span><br><span class="line">    v6 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v5, 32LL);</span><br><span class="line">    v7 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v6, 107LL);</span><br><span class="line">    v8 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v7, 101LL);</span><br><span class="line">    v9 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v8, 121LL);</span><br><span class="line">    v10 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v9, 32LL);</span><br><span class="line">    v11 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v10, 105LL);</span><br><span class="line">    v12 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v11, 115LL);</span><br><span class="line">    v13 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v12, 32LL);</span><br><span class="line">    v14 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v13, 118LL);</span><br><span class="line">    v15 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v14, 97LL);</span><br><span class="line">    v16 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v15, 108LL);</span><br><span class="line">    v17 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v16, 105LL);</span><br><span class="line">    v18 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v17, 100LL);</span><br><span class="line">    v19 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v18, 32LL);</span><br><span class="line">    v20 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v19, 58LL);</span><br><span class="line">    v21 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v20, 41LL);</span><br><span class="line">    std::ostream::operator&lt;&lt;(v21, &amp;std::endl&lt;char,std::char_traits&lt;char&gt;&gt;);</span><br><span class="line">    result = 0;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要逻辑：<br>对我们输入字符串进行md5加密<br>如果加密后  为 上面一串值<br>则   正确    不然错</p>
+<p>我们把提取出来，<br>得到：780438d5b6e29db0898bc4f0225935c0</p>
+<p>类似于MD5<br>找个网站md5解密<br>网站：<a href="https://www.somd5.com/" target="_blank" rel="noopener">https://www.somd5.com/</a></p>
+<p>经过MD5解码得到：b781cbb29054db12f88f08c6e161c199</p>
+<h1 id="0x02-re2-cpp-is-awesome"><a href="#0x02-re2-cpp-is-awesome" class="headerlink" title="0x02 re2-cpp-is-awesome"></a>0x02 re2-cpp-is-awesome</h1><p>攻防世界 re2-cpp-is-awesome     题目来源：alexctf-2017<br>题目描述：他们说c++是复杂的，证明他们说的是错的！<br>题目地址：<a href="https://adworld.xctf.org.cn/task/answer?type=reverse&amp;number=4&amp;grade=1&amp;id=5031" target="_blank" rel="noopener">https://adworld.xctf.org.cn/task/answer?type=reverse&amp;number=4&amp;grade=1&amp;id=5031</a></p>
+<h2 id="这里涉及到-字节对齐"><a href="#这里涉及到-字节对齐" class="headerlink" title="这里涉及到  字节对齐"></a>这里涉及到  字节对齐<br></h2><p>链接：<a href="https://www.jianshu.com/p/c42599622c31" target="_blank" rel="noopener">https://www.jianshu.com/p/c42599622c31</a></p>
+<h2 id="和-C-逆向之容器vector知识"><a href="#和-C-逆向之容器vector知识" class="headerlink" title="和  C++逆向之容器vector知识 "></a>和  C++逆向之容器vector知识 <br></h2><p>贴上一则链接：<br><a href="https://juejin.im/entry/5cbd4a94f265da039f0f1003" target="_blank" rel="noopener">https://juejin.im/entry/5cbd4a94f265da039f0f1003</a><br><br>平时没事可以多看下<br><br><br><br><br><br></p>
+<p>拖入ida64<br><img src="https://s2.ax1x.com/2019/07/30/eJO5dO.png" alt="eJO5dO.png"><br>f12 查看字符串<br><img src="https://s2.ax1x.com/2019/07/30/eJOTFe.png" alt="eJOTFe.png"><br>按y<br><img src="https://s2.ax1x.com/2019/07/30/eJOHWd.png" alt="eJOHWd.png"></p>
+<p>首先：对main函数反编译<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall main(int a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  char *v3; // rbx</span><br><span class="line">  __int64 v4; // rax</span><br><span class="line">  __int64 v5; // rdx</span><br><span class="line">  __int64 v6; // rax</span><br><span class="line">  __int64 v7; // rdx</span><br><span class="line">  _BYTE *v8; // rax</span><br><span class="line">  __int64 i; // [rsp+10h] [rbp-60h]</span><br><span class="line">  char v11; // [rsp+20h] [rbp-50h]</span><br><span class="line">  char v12; // [rsp+4Fh] [rbp-21h]</span><br><span class="line">  __int64 v13; // [rsp+50h] [rbp-20h]</span><br><span class="line">  int v14; // [rsp+5Ch] [rbp-14h]</span><br><span class="line"></span><br><span class="line">  if ( a1 != 2 )</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = *a2;</span><br><span class="line">    v4 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(&amp;std::cout, &quot;Usage: &quot;, a3);</span><br><span class="line">    v6 = std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v4, v3, v5);</span><br><span class="line">    std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(v6, &quot; flag\n&quot;, v7);</span><br><span class="line">    exit(0);</span><br><span class="line">  &#125;</span><br><span class="line">  std::allocator&lt;char&gt;::allocator(&amp;v12, a2, a3);</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::basic_string(&amp;v11, a2[1], &amp;v12);</span><br><span class="line">  std::allocator&lt;char&gt;::~allocator(&amp;v12);</span><br><span class="line">  v14 = 0;</span><br><span class="line">  for ( i = std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::begin(&amp;v11); ; sub_400D7A(&amp;i) )</span><br><span class="line">  &#123;</span><br><span class="line">    v13 = std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::end(&amp;v11);</span><br><span class="line">    if ( !(unsigned __int8)sub_400D3D(&amp;i, &amp;v13) )// 判断是否是结尾，这里其实是  c++ 迭代器循环</span><br><span class="line">      break;</span><br><span class="line">    v8 = (_BYTE *)sub_400D9A(&amp;i);               // 如果不是结尾，取指针所指地址的值</span><br><span class="line">    if ( *v8 != off_6020A0[dword_6020C0[v14]] ) // 数组偏移比较</span><br><span class="line">      sub_400B56();</span><br><span class="line">    ++v14;</span><br><span class="line">  &#125;</span><br><span class="line">  sub_400B73();</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::~basic_string(&amp;v11);</span><br><span class="line">  return 0LL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/07/30/eJO4eK.png" alt="eJO4eK.png"><br>这里是关键</p>
+<p>双击v15  发现是数据<br><img src="https://s2.ax1x.com/2019/07/30/eJOIoD.png" alt="eJOIoD.png"><br>注意  align 8//这个是字节对齐   上面<br>我们在  hex窗口 查看     提取出来<br><img src="https://s2.ax1x.com/2019/07/30/eJO7JH.png" alt="eJO7JH.png"><br>同时  把602010地址  的字符串  也提取出来  </p>
+<p>于是  python脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xia = [0x24,0x00,0x05,0x36,0x65,0x07,0x27,0x26,0x2D,0x01,0x03,0x00,0x0D,0x56,0x01,0x03,0x65,0x03,0x2D,0x16,0x02,0x15,0x03,0x65,0x00,0x29,0x44,0x44,0x01,0x44,0x2B]</span><br><span class="line">str = &apos;L3t_ME_T3ll_Y0u_S0m3th1ng_1mp0rtant_A_&#123;FL4G&#125;_W0nt_b3_3X4ctly_th4t_345y_t0_c4ptur3_H0wev3r_1T_w1ll_b3_C00l_1F_Y0u_g0t_1t&apos;</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;;</span><br><span class="line">for i in xia:</span><br><span class="line">    flag+=str[i]</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+
+<p>其实它的正常代码是这样写的（代码来自xctf wp）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;windows.h&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int _tmain(int argc,_TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int i=0;</span><br><span class="line">	const char *szText=&quot;L3t_ME_T3ll_Y0u_S0m3th1ng_1mp0rtant_A_&#123;FL4G&#125;_W0nt_b3_3X4ctly_th4t_345y_t0_c4ptur3_H0wev3r_1T_w1ll_b3_C00l_1F_Y0u_g0t_1t&quot;;</span><br><span class="line">	BYTE dword_6020C0[]=&#123;0x24,0x00,0x05,0x36,0x65,0x07,0x27,0x26,0x2D,0x01,0x03,0x00,0x0D,0x56,0x01,0x03,0x65,0x03,0x2D,0x16,0x02,0x15,0x03,0x65,0x00,0x29,0x44,0x44,0x01,0x44,0x2B&#125;;</span><br><span class="line"></span><br><span class="line">for(i=0;i&lt;sizeof(dword_6020C0)/4;i++)</span><br><span class="line">&#123;</span><br><span class="line">	int nIndex=((PDWORD)dword_6020C0)[i];</span><br><span class="line">	printf(&quot;%c&quot;,szText[nIndex]);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="0x03-c-64"><a href="#0x03-c-64" class="headerlink" title="0x03 c_64"></a>0x03 c_64</h1><p>题目来源：2018上海CTF<br>首先拖入ida64<br>嗯，首先还是贴上一则链接吧，</p>
+<p><a href="http://radishes.top/2018/11/16/2018-11-11-%E4%B8%8A%E6%B5%B7CTF%E9%80%86%E5%90%91/" target="_blank" rel="noopener">http://radishes.top/2018/11/16/2018-11-11-%E4%B8%8A%E6%B5%B7CTF%E9%80%86%E5%90%91/</a></p>
+<p>main函数 反编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall main(__int64 a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  char v4; // [rsp+0h] [rbp-80h]</span><br><span class="line">  char v5; // [rsp+20h] [rbp-60h]</span><br><span class="line">  char v6; // [rsp+40h] [rbp-40h]</span><br><span class="line">  unsigned __int64 v7; // [rsp+68h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  v7 = __readfsqword(0x28u);</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::basic_string(&amp;v4, a2, a3);</span><br><span class="line">  std::operator&lt;&lt;&lt;std::char_traits&lt;char&gt;&gt;(&amp;std::cout, &quot;input flag:&quot;);</span><br><span class="line">  std::operator&gt;&gt;&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;(&amp;std::cin, &amp;v4);</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::basic_string(&amp;v6, &amp;v4);</span><br><span class="line">  sub_4010A2((__int64)&amp;v5, (__int64)&amp;v6, (__int64)&amp;v6);</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::~basic_string(&amp;v6);</span><br><span class="line">  sub_401332((__int64)&amp;v5);</span><br><span class="line">  sub_40154E((__int64)&amp;v5);</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::~basic_string(&amp;v4);</span><br><span class="line">  return 0LL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑分析：</p>
+<p>首先输入  字符串v4，让v6=v4，然后对v6在4010A函数处理后返回给了v5，该函数结束后，撤销v6，然后再通过401330函数和40154E函数处理下v5</p>
+<p>我们进去4010A函数看下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall sub_4010A2(__int64 a1, __int64 a2, __int64 a3)</span><br><span class="line">&#123;</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::basic_string(a1, a2, a3);</span><br><span class="line">  std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator=(a1, a2);</span><br><span class="line">  sub_40111A(a1);</span><br><span class="line">  return sub_40110E(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出将v5=v6；然后将v5在函数sub_40111A()进行处理<br>然后再进去sub_40111A函数中看下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">unsigned __int64 __fastcall sub_40111A(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  _BYTE *v1; // rbx</span><br><span class="line">  int v2; // er12</span><br><span class="line">  const char *v3; // rax</span><br><span class="line">  int i; // [rsp+1Ch] [rbp-54h]</span><br><span class="line">  char s1; // [rsp+20h] [rbp-50h]</span><br><span class="line">  char v7; // [rsp+21h] [rbp-4Fh]</span><br><span class="line">  char v8; // [rsp+22h] [rbp-4Eh]</span><br><span class="line">  char v9; // [rsp+23h] [rbp-4Dh]</span><br><span class="line">  char v10; // [rsp+24h] [rbp-4Ch]</span><br><span class="line">  char v11; // [rsp+25h] [rbp-4Bh]</span><br><span class="line">  char v12; // [rsp+26h] [rbp-4Ah]</span><br><span class="line">  char v13; // [rsp+27h] [rbp-49h]</span><br><span class="line">  char v14; // [rsp+28h] [rbp-48h]</span><br><span class="line">  char v15; // [rsp+29h] [rbp-47h]</span><br><span class="line">  char v16; // [rsp+2Ah] [rbp-46h]</span><br><span class="line">  char v17; // [rsp+2Bh] [rbp-45h]</span><br><span class="line">  char v18; // [rsp+2Ch] [rbp-44h]</span><br><span class="line">  char v19; // [rsp+2Dh] [rbp-43h]</span><br><span class="line">  char v20; // [rsp+2Eh] [rbp-42h]</span><br><span class="line">  char v21; // [rsp+2Fh] [rbp-41h]</span><br><span class="line">  char v22; // [rsp+30h] [rbp-40h]</span><br><span class="line">  char v23; // [rsp+31h] [rbp-3Fh]</span><br><span class="line">  char v24; // [rsp+32h] [rbp-3Eh]</span><br><span class="line">  char v25; // [rsp+33h] [rbp-3Dh]</span><br><span class="line">  char v26; // [rsp+34h] [rbp-3Ch]</span><br><span class="line">  char v27; // [rsp+35h] [rbp-3Bh]</span><br><span class="line">  char v28; // [rsp+36h] [rbp-3Ah]</span><br><span class="line">  char v29; // [rsp+37h] [rbp-39h]</span><br><span class="line">  char v30; // [rsp+38h] [rbp-38h]</span><br><span class="line">  char v31; // [rsp+39h] [rbp-37h]</span><br><span class="line">  char v32; // [rsp+3Ah] [rbp-36h]</span><br><span class="line">  char v33; // [rsp+3Bh] [rbp-35h]</span><br><span class="line">  char v34; // [rsp+3Ch] [rbp-34h]</span><br><span class="line">  char v35; // [rsp+3Dh] [rbp-33h]</span><br><span class="line">  char v36; // [rsp+3Eh] [rbp-32h]</span><br><span class="line">  char v37; // [rsp+3Fh] [rbp-31h]</span><br><span class="line">  char v38; // [rsp+40h] [rbp-30h]</span><br><span class="line">  char v39; // [rsp+41h] [rbp-2Fh]</span><br><span class="line">  char v40; // [rsp+42h] [rbp-2Eh]</span><br><span class="line">  char v41; // [rsp+43h] [rbp-2Dh]</span><br><span class="line">  char v42; // [rsp+44h] [rbp-2Ch]</span><br><span class="line">  char v43; // [rsp+45h] [rbp-2Bh]</span><br><span class="line">  char v44; // [rsp+46h] [rbp-2Ah]</span><br><span class="line">  char v45; // [rsp+47h] [rbp-29h]</span><br><span class="line">  char v46; // [rsp+48h] [rbp-28h]</span><br><span class="line">  char v47; // [rsp+49h] [rbp-27h]</span><br><span class="line">  char v48; // [rsp+4Ah] [rbp-26h]</span><br><span class="line">  unsigned __int64 v49; // [rsp+58h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  v49 = __readfsqword(0x28u);</span><br><span class="line">  s1 = 153;</span><br><span class="line">  v7 = 176;</span><br><span class="line">  v8 = 135;</span><br><span class="line">  v9 = -98;</span><br><span class="line">  v10 = -124;</span><br><span class="line">  v11 = -96;</span><br><span class="line">  v12 = -53;</span><br><span class="line">  v13 = -17;</span><br><span class="line">  v14 = -120;</span><br><span class="line">  v15 = -112;</span><br><span class="line">  v16 = -69;</span><br><span class="line">  v17 = -114;</span><br><span class="line">  v18 = -111;</span><br><span class="line">  v19 = -32;</span><br><span class="line">  v20 = -46;</span><br><span class="line">  v21 = -82;</span><br><span class="line">  v22 = -44;</span><br><span class="line">  v23 = -59;</span><br><span class="line">  v24 = 111;</span><br><span class="line">  v25 = -41;</span><br><span class="line">  v26 = -64;</span><br><span class="line">  v27 = 104;</span><br><span class="line">  v28 = 198;</span><br><span class="line">  v29 = 106;</span><br><span class="line">  v30 = -127;</span><br><span class="line">  v31 = -55;</span><br><span class="line">  v32 = -73;</span><br><span class="line">  v33 = -41;</span><br><span class="line">  v34 = 97;</span><br><span class="line">  v35 = 4;</span><br><span class="line">  v36 = -38;</span><br><span class="line">  v37 = -49;</span><br><span class="line">  v38 = 61;</span><br><span class="line">  v39 = 92;</span><br><span class="line">  v40 = -42;</span><br><span class="line">  v41 = -17;</span><br><span class="line">  v42 = -48;</span><br><span class="line">  v43 = 88;</span><br><span class="line">  v44 = -17;</span><br><span class="line">  v45 = -14;</span><br><span class="line">  v46 = -83;</span><br><span class="line">  v47 = -83;</span><br><span class="line">  v48 = -33;</span><br><span class="line">  for ( i = 0;</span><br><span class="line">        i &lt; (unsigned __int64)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::length(a1);</span><br><span class="line">        ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    v1 = (_BYTE *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](a1, i);</span><br><span class="line">    v2 = 4 * *(char *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](a1, i);</span><br><span class="line">    *v1 = ((*(_BYTE *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](a1, i) &gt;&gt; 6) | v2) ^ i;</span><br><span class="line">  &#125;</span><br><span class="line">  v3 = (const char *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::c_str(a1);</span><br><span class="line">  if ( strcmp(&amp;s1, v3) == 0 )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_4012CE(a1);</span><br><span class="line">    exit(0);</span><br><span class="line">  &#125;</span><br><span class="line">  return __readfsqword(0x28u) ^ v49;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里有个坑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v2 = 4 * *(char *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](a1, i);</span><br></pre></td></tr></table></figure>
+
+<p>这里并不是a[i]*4的意思    我们看它的汇编代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.text:000000000040122F E8 FC FB FF FF    call    __ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEixEm ; std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](ulong)</span><br><span class="line">.text:0000000000401234 0F B6 00          movzx   eax, byte ptr [rax]</span><br><span class="line">.text:0000000000401237 0F BE C0          movsx   eax, al</span><br><span class="line">.text:000000000040123A C1 E0 02          shl     eax, 2</span><br><span class="line">.text:000000000040123D 41 89 C4          mov     r12d, eax</span><br><span class="line">.text:0000000000401240 8B 45 AC          mov     eax, [rbp+var_54]</span><br><span class="line">.text:0000000000401243 48 63 D0          movsxd  rdx, eax</span><br><span class="line">.text:0000000000401246 48 8B 45 98       mov     rax, [rbp+var_68]</span><br><span class="line">.text:000000000040124A 48 89 D6          mov     rsi, rdx</span><br><span class="line">.text:000000000040124D 48 89 C7          mov     rdi, rax</span><br></pre></td></tr></table></figure>
+
+<p>发现是将a[i]&lt;&lt; 2 </p>
+<blockquote>
+<p>SHL是一个汇编指令，作用是逻辑左移指令，将目的操作数顺序左移1位或CL寄存器中指定的位数。左移一位时，操作数的最高位移入进位标志位CF，最低位补零。</p>
+</blockquote>
+<p>所以现在 我们可以明白 这个函数做了什么</p>
+<p>a[i]=(a[i]&lt;&lt; 2|a[i]&gt;&gt;6)^i</p>
+<blockquote>
+<p>SAR是算数右移指令，SAR右移的时候，最高位不变，最低位移入CF，填充的时候用最高为填充，还有一个右移指令为SHR,这个指令为逻辑右移指令，SHR右移的时候，它的最高位用0填补，最低位移入CF，填充时总是用0来填充</p>
+</blockquote>
+<p>然后经处理后的a1赋值给了v3  然后让v3与s1比较   </p>
+<p>我们把s1提取出来</p>
+<p>s1 = [0x99,0xB0,0x87,0x9E, 0x84, 0xA0, 0xCB, 0xEF, 0x88, 0x90, 0xBB, 0x8E, 0x91, 0xE0, 0xD2, 0xAE, 0xD4, 0xC5, 0x6F, 0xD7, 0xC0, 0x68, 0xC6, 0x6A, 0x81, 0xC9, 0xB7, 0xD7, 0x61, 4, 0xDA, 0xCF, 0x3D, 0x5C, 0xD6, 0xEF, 0xD0, 0x58, 0xEF, 0xF2, 0xAD, 0xAD, 0xDF]</p>
+<blockquote>
+<p>这里我自己做少量的感觉：比如说ida中的数据是-98   按r 转成char  会是乱码，那么做题时就把它转成16进制数， 题目经过脚本处理后再使用chr函数一定转成正常的字符。</p>
+</blockquote>
+<p>上脚本：(脚本来自一筐萝卜)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s1 = [0x99,0xB0,0x87,0x9E, 0x84, 0xA0, 0xCB, 0xEF, 0x88, 0x90, 0xBB, 0x8E, 0x91, 0xE0, 0xD2, 0xAE, 0xD4, 0xC5, 0x6F, 0xD7, 0xC0, 0x68, 0xC6, 0x6A, 0x81, 0xC9, 0xB7, 0xD7, 0x61, 4, 0xDA, 0xCF, 0x3D, 0x5C, 0xD6, 0xEF, 0xD0, 0x58, 0xEF, 0xF2, 0xAD, 0xAD, 0xDF]</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">for x in range(0,len(s1)):</span><br><span class="line">	for asc in range(32,128):</span><br><span class="line">    	if (asc&gt;&gt;6|asc&lt;&lt;2)&amp;0xff==s1[x]^x:</span><br><span class="line">	    	flag+= chr(asc)</span><br><span class="line">            break</span><br><span class="line">print flag</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里涉及到一个&amp;0xff知识，值得记录下</p>
+</blockquote>
+<ol>
+<li><p>首先数据在计算机中存储是以二进制的方式，正数存储的二进制原码,负数存储的是二进制的补码，补码是负数的绝对值反码加1，比如-12 的绝对值原码是：0000 1100 取反： 1111 0011 加1： 1111 0100</p>
+</li>
+<li><p>byte类型的数字要&amp;0xff再赋值给int类型，其本质原因就是想保持二进制补码的一致性，所以我们上述的运算过程中牵扯到移位，所以我们要进行&amp;0xff运算</p>
+</li>
+</ol>
+<p>跑出 结果为：<br>“flag is: flag{7h15_15_4_f4k3_F14G_=3=_rua!}”</p>
+<p>但这是个假的flag<br>因为再接下来的函数sub_4012CE()输出了“good job，but …..”</p>
+<p>所以继续   分析：</p>
+<p>我们现在进入sub_401332()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">unsigned __int64 __fastcall sub_401332(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  _BYTE *v1; // r12</span><br><span class="line">  int v2; // ebx</span><br><span class="line">  char v3; // r13</span><br><span class="line">  const char *v4; // rax</span><br><span class="line">  signed int i; // [rsp+18h] [rbp-58h]</span><br><span class="line">  signed int j; // [rsp+1Ch] [rbp-54h]</span><br><span class="line">  char s[8]; // [rsp+20h] [rbp-50h]</span><br><span class="line">  __int64 v9; // [rsp+28h] [rbp-48h]</span><br><span class="line">  __int64 v10; // [rsp+30h] [rbp-40h]</span><br><span class="line">  __int64 v11; // [rsp+38h] [rbp-38h]</span><br><span class="line">  char v12; // [rsp+40h] [rbp-30h]</span><br><span class="line">  unsigned __int64 v13; // [rsp+48h] [rbp-28h]</span><br><span class="line"></span><br><span class="line">  v13 = __readfsqword(0x28u);</span><br><span class="line">  v12 = 0;</span><br><span class="line">  s[0] = -103;</span><br><span class="line">  s[1] = -80;</span><br><span class="line">  s[2] = -121;</span><br><span class="line">  s[3] = -98;</span><br><span class="line">  s[4] = 112;</span><br><span class="line">  s[5] = -24;</span><br><span class="line">  s[6] = 65;</span><br><span class="line">  s[7] = 68;</span><br><span class="line">  v9 = 6365200857353094149LL;</span><br><span class="line">  v10 = -1920493130842480203LL;</span><br><span class="line">  v11 = -3031743088776258207LL;</span><br><span class="line">  for ( i = 0; i &lt;= 3; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    for ( j = 1; j &lt; strlen(s); ++j )</span><br><span class="line">    &#123;</span><br><span class="line">      v1 = (_BYTE *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](a1, j);</span><br><span class="line">      v2 = *(unsigned __int8 *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](</span><br><span class="line">                                 a1,</span><br><span class="line">                                 j);</span><br><span class="line">      v3 = *(_BYTE *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](a1, j - 1) | v2;</span><br><span class="line">      LOBYTE(v2) = *(_BYTE *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](</span><br><span class="line">                               a1,</span><br><span class="line">                               j);</span><br><span class="line">      *v1 = v3 &amp; ~(v2 &amp; *(_BYTE *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::operator[](</span><br><span class="line">                                    a1,</span><br><span class="line">                                    j - 1));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  v4 = (const char *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::c_str(a1);</span><br><span class="line">  if ( strncmp(v4, s, 0x20uLL) == 0 )</span><br><span class="line">    sub_401522();</span><br><span class="line">  return __readfsqword(0x28u) ^ v13;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>嗯，看来这应该是这题的核心了吧！<br>分析下逻辑：</p>
+<p>一个大循环（4次）套着小循环（32次：s1的长度）</p>
+<p>最后是我们输入的字符串经过上面一系列处理后与s1[32]数组一致，即成功，</p>
+<p>也可以认为是 s1数组经过上面的反运算即得到我们要输入的字符串</p>
+<p>chr(((list1[x]^x)&lt;&lt;6|(list1[x]^x)&gt;&gt;2)&amp;0xff)</p>
+<p>脚本如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">list1 = [0x99,0xB0,0x87,0x9E,0x70,0xE8,0x41,0x44,5,4,0x8B,0x9A,0x74,0xBC,0x55,0x58,0xB5,0x61,0x8E,0x36,0xAC,9,0x59,0xE5,0x61,0xDD,0x3E,0x3F,0xB9,0x15,0xED,0xD5]</span><br><span class="line"></span><br><span class="line">for x in range(4):</span><br><span class="line">	for x in range(31,0,-1):</span><br><span class="line">		list1[x] = list1[x]^list1[x-1]</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">for x in range(len(list1)):</span><br><span class="line">	flag+=chr(((list1[x]^x)&lt;&lt;6|(list1[x]^x)&gt;&gt;2)&amp;0xff)</span><br><span class="line">print flag</span><br></pre></td></tr></table></figure>
+
+<h1 id="0x04-2019-西湖论剑之EasyCpp"><a href="#0x04-2019-西湖论剑之EasyCpp" class="headerlink" title="0x04 2019 西湖论剑之EasyCpp"></a>0x04 2019 西湖论剑之EasyCpp</h1><p>额，还没看明白！<br>以后懂了，再更！</p>
+<p><img src="https://s2.ax1x.com/2019/07/30/eJzjIK.jpg" alt="eJzjIK.jpg"></p>
+<p>说到做到，是我的忍道！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag">#re</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/30/re日常练习00/" rel="next" title="re2-cpp-is-awesome">
+                <i class="fa fa-chevron-left"></i> re2-cpp-is-awesome
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/08/OD热键/" rel="prev" title="OD热键">
+                OD热键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-dmd-50"><span class="nav-number">1.</span> <span class="nav-text">0x01 dmd-50</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-re2-cpp-is-awesome"><span class="nav-number">2.</span> <span class="nav-text">0x02 re2-cpp-is-awesome</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这里涉及到-字节对齐"><span class="nav-number">2.1.</span> <span class="nav-text">这里涉及到  字节对齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和-C-逆向之容器vector知识"><span class="nav-number">2.2.</span> <span class="nav-text">和  C++逆向之容器vector知识 </span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-c-64"><span class="nav-number">3.</span> <span class="nav-text">0x03 c_64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-2019-西湖论剑之EasyCpp"><span class="nav-number">4.</span> <span class="nav-text">0x04 2019 西湖论剑之EasyCpp</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

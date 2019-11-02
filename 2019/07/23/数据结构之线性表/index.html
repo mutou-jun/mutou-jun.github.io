@@ -1,0 +1,638 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="数据结构,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="这俩三天发小来学校找我来玩， 加上又去了驾校，学习进度慢了些，还遇到了不太愉快的事情，嗯，有种巧合叫巧到手机没电，唉！！！更新18号未完成的尾巴！！">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之线性表">
+<meta property="og:url" content="http://yoursite.com/2019/07/23/数据结构之线性表/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="这俩三天发小来学校找我来玩， 加上又去了驾校，学习进度慢了些，还遇到了不太愉快的事情，嗯，有种巧合叫巧到手机没电，唉！！！更新18号未完成的尾巴！！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/23/eAZRsg.jpg">
+<meta property="og:updated_time" content="2019-07-23T13:20:49.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构之线性表">
+<meta name="twitter:description" content="这俩三天发小来学校找我来玩， 加上又去了驾校，学习进度慢了些，还遇到了不太愉快的事情，嗯，有种巧合叫巧到手机没电，唉！！！更新18号未完成的尾巴！！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/23/eAZRsg.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数据结构之线性表 | mutou-jun's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构之线性表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-07-23T21:13:57+08:00" content="2019-07-23">
+              2019-07-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这俩三天发小来学校找我来玩， 加上又去了驾校，学习进度慢了些，还遇到了不太愉快的事情，嗯，有种巧合叫巧到手机没电，唉！！！更新18号未完成的尾巴！！</p>
+<a id="more"></a>
+
+<h3 id="学习链接（推荐C语言中文网）："><a href="#学习链接（推荐C语言中文网）：" class="headerlink" title="学习链接（推荐C语言中文网）："></a>学习链接（推荐C语言中文网）：</h3><p><a href="http://data.biancheng.net/view/157.html" target="_blank" rel="noopener">http://data.biancheng.net/view/157.html</a></p>
+<h5 id="线性表的存储结构有"><a href="#线性表的存储结构有" class="headerlink" title="线性表的存储结构有"></a>线性表的存储结构有</h5><ul>
+<li>顺序存储结</li>
+<li>和链式存储结构</li>
+</ul>
+<h5 id="而链式存储结构又包含有："><a href="#而链式存储结构又包含有：" class="headerlink" title="而链式存储结构又包含有："></a>而链式存储结构又包含有：</h5><ul>
+<li>单链表</li>
+<li>静态链表（顺序链表以及单链表的升级版）</li>
+<li>循环链表</li>
+<li>双向链表。</li>
+</ul>
+<h3 id="表的操作"><a href="#表的操作" class="headerlink" title="表的操作"></a>表的操作</h3><p>表的操作其实主要分为4种：</p>
+<ul>
+<li>查找（查）</li>
+<li>插入（增）</li>
+<li>删除（删）</li>
+<li>更改（增）</li>
+</ul>
+<p> 使用顺序表存储数据之前，除了要申请足够大小的物理空间之外，为了方便后期使用表中的数据，顺序表还需要实时记录以下 2 项数据：<br></p>
+<ol>
+<li>顺序表申请的存储容量；</li>
+<li>顺序表的长度，也就是表中存储数据元素的个数；</li>
+</ol>
+<h2 id="顺序表及其初始化"><a href="#顺序表及其初始化" class="headerlink" title="顺序表及其初始化"></a>顺序表及其初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#define zui 10</span><br><span class="line">typedef struct Table</span><br><span class="line">&#123;</span><br><span class="line">	int *head;//指针</span><br><span class="line">	int length;//当前长度</span><br><span class="line">	int size;//最大长度 </span><br><span class="line">&#125;table;</span><br><span class="line"></span><br><span class="line">table initTable()//对象函数 </span><br><span class="line">&#123;</span><br><span class="line">	table mutou;</span><br><span class="line">	mutou.head=(int *)malloc(zui*sizeof(int));</span><br><span class="line">	 if(!mutou.head)</span><br><span class="line">	 	&#123; printf(&quot;申请内存失败！&quot;);exit(0);&#125;</span><br><span class="line">	mutou.length=0;</span><br><span class="line">	mutou.size=zui;</span><br><span class="line">	return mutou;	</span><br><span class="line">&#125; </span><br><span class="line">void shuchu(table mutou)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=0;i&lt;mutou.length;i++)</span><br><span class="line">		printf(&quot;%d &quot;,mutou.head[i]);</span><br><span class="line">	printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	table mutou=initTable();</span><br><span class="line">	for(int i=1;i&lt;=zui;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		mutou.head[i-1]=i;</span><br><span class="line">		mutou.length++;	</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;顺序表mutou存储的元素分别是：\n&quot;);</span><br><span class="line">	shuchu(mutou);</span><br><span class="line">	</span><br><span class="line">	return 0;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="顺序表的增删改查"><a href="#顺序表的增删改查" class="headerlink" title="顺序表的增删改查"></a>顺序表的增删改查</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#define zui 10</span><br><span class="line"></span><br><span class="line">typedef struct Table</span><br><span class="line">&#123;</span><br><span class="line">	int *head;</span><br><span class="line">	int length;</span><br><span class="line">	int size;</span><br><span class="line"> &#125; table;</span><br><span class="line"> /*初始化*/</span><br><span class="line"> table chushi()</span><br><span class="line"> &#123;</span><br><span class="line"> 	table mutou;</span><br><span class="line"> 	mutou.head=(int *)malloc(zui*sizeof(int));</span><br><span class="line"> 	if(!mutou.head)</span><br><span class="line">	 &#123;</span><br><span class="line">	 	printf(&quot;申请内存失败！&quot;);exit(0);</span><br><span class="line">	  &#125; </span><br><span class="line"> 	mutou.length=0;</span><br><span class="line"> 	mutou.size=zui;</span><br><span class="line"> 	return mutou;</span><br><span class="line"> &#125;</span><br><span class="line"> /*增*/</span><br><span class="line"> table zeng(table mutou,int zhi,int wei)//先判断位置插入是否合法！ </span><br><span class="line"> &#123;</span><br><span class="line"> 	if(wei&gt;mutou.length+1||wei&lt;1)</span><br><span class="line"> 		printf(&quot;插入位置不合法！&quot;);</span><br><span class="line">	if(wei&gt;=mutou.size)</span><br><span class="line">	&#123;</span><br><span class="line">		mutou.head=(int *)realloc(mutou.head,(mutou.size+1)*sizeof(int));</span><br><span class="line">		if(!mutou.head)</span><br><span class="line">			printf(&quot;申请内存失败！&quot;); </span><br><span class="line">		mutou.size+=1;</span><br><span class="line">	 &#125; </span><br><span class="line">	 for(int i=mutou.length-1;i&gt;=wei-1;i--)</span><br><span class="line">	 	mutou.head[i+1]=mutou.head[i];</span><br><span class="line">	mutou.head[wei-1]=zhi;</span><br><span class="line">	mutou.length++;</span><br><span class="line">	return mutou;</span><br><span class="line"> &#125;</span><br><span class="line"> /*删*/</span><br><span class="line"> table shan(table mutou,int wei) //删除顺序表中第wei位个元素 </span><br><span class="line">&#123;</span><br><span class="line">	if(wei&gt;mutou.length||wei&lt;1)</span><br><span class="line">		&#123;printf(&quot;这个位置里的内容不能删除哦，它不在我的地盘！&quot;);exit(0);&#125;</span><br><span class="line">	for(int i=wei;i&lt;mutou.length;i++)</span><br><span class="line">		mutou.head[i-1]=mutou.head[i];</span><br><span class="line">	mutou.length--;</span><br><span class="line">	return mutou;		</span><br><span class="line">&#125;</span><br><span class="line">/*查*/</span><br><span class="line">int cha(table mutou,int zhi)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=0;i&lt;mutou.length;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(mutou.head[i]==zhi)</span><br><span class="line">		return i+1;	</span><br><span class="line">	&#125;</span><br><span class="line">	return -1;	</span><br><span class="line"> &#125; </span><br><span class="line"> /*改*/</span><br><span class="line"> table gai(table mutou,int oldzhi,int xinzhi)</span><br><span class="line"> &#123;</span><br><span class="line">	int wei=cha(mutou,oldzhi);</span><br><span class="line">	mutou.head[wei-1]=xinzhi;</span><br><span class="line">	return mutou;</span><br><span class="line">  &#125; </span><br><span class="line">/*输出*/</span><br><span class="line">void shuchu(table mutou)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=0;i&lt;mutou.length;i++)</span><br><span class="line">		printf(&quot;%d &quot;,mutou.head[i]);</span><br><span class="line">	printf(&quot;\n&quot;);</span><br><span class="line"> &#125; </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> int main()</span><br><span class="line"> &#123;</span><br><span class="line"> 	/*初始化*/</span><br><span class="line"> 	table mutoujun=chushi();</span><br><span class="line"> 	for(int i=1;i&lt;=zui;i++)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		mutoujun.head[i-1]=i;mutoujun.length++;</span><br><span class="line">	 &#125;</span><br><span class="line">	printf(&quot;初始化的mutoujun为：\n&quot;);</span><br><span class="line">	shuchu(mutoujun);</span><br><span class="line">	printf(&quot;\n&quot;);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	/*删*/</span><br><span class="line">	printf(&quot;删除mutoujun的2就有点缺二了，哈哈！，不过不该这样去理解的，是没有了2，更智慧！\n&quot;);</span><br><span class="line">	mutoujun=shan(mutoujun,2);</span><br><span class="line">	shuchu(mutoujun);</span><br><span class="line">	printf(&quot;\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*增*/</span><br><span class="line">	printf(&quot;在第2个的位置（注意，是第二个元素的位置，不是下表为2的位置;//第二个以及所有后继都后退1个）插入元素2:\n&quot;);</span><br><span class="line">	mutoujun=zeng(mutoujun,2,2);</span><br><span class="line">	shuchu(mutoujun);</span><br><span class="line">	printf(&quot;\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*查*/</span><br><span class="line">	printf(&quot;查找元素6在第几个位置&quot;);</span><br><span class="line">	int wei=cha(mutoujun,6);</span><br><span class="line">	printf(&quot;%d&quot;,wei);</span><br><span class="line">	</span><br><span class="line">	/*改*/</span><br><span class="line">	printf(&quot;将9变成6\n&quot;);</span><br><span class="line">	mutoujun=gai(mutoujun,9,6);</span><br><span class="line">	shuchu(mutoujun);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态链表及其初始化"><a href="#静态链表及其初始化" class="headerlink" title="静态链表及其初始化"></a>静态链表及其初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#define zui 7</span><br><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">	int shu;</span><br><span class="line">	int cur;</span><br><span class="line"> &#125;component;</span><br><span class="line"> /*将结构体数组中所有分量链接到备用链表中*/</span><br><span class="line"> void beiyong(component *array)</span><br><span class="line"> &#123;</span><br><span class="line"> 	for(int i=0;i&lt;zui;i++)//将每个数组分量链接到一起</span><br><span class="line"> 		array[i].cur=i+1;</span><br><span class="line"> 	array[zui-1].cur=0;//链表最后一个结点的游标值为0</span><br><span class="line">  &#125; </span><br><span class="line">  int mallocArr(component * array)</span><br><span class="line">  &#123;</span><br><span class="line">  	//若备用链表非空，则返回分配的结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0）</span><br><span class="line">  	int i=array[0].cur;</span><br><span class="line">  	if(array[0].cur)</span><br><span class="line">  		array[0].cur=array[i].cur;</span><br><span class="line">  	return i;</span><br><span class="line">   &#125; </span><br><span class="line"></span><br><span class="line">int initArr(component *array)</span><br><span class="line">&#123;</span><br><span class="line">	beiyong(array);</span><br><span class="line">	int body=mallocArr(array);</span><br><span class="line">	//声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合</span><br><span class="line">	int tempBody=body;</span><br><span class="line">    for (int i=1; i&lt;5; i++) </span><br><span class="line">	&#123;</span><br><span class="line">        int j=mallocArr(array);//从备用链表中拿出空闲的分量</span><br><span class="line">        array[tempBody].cur=j;//将申请的空闲分量链接在链表的最后一个结点后面</span><br><span class="line">        array[j].shu=i;//给新申请的分量的数据域初始化</span><br><span class="line">        tempBody=j;//将指向链表最后一个结点的指针后移</span><br><span class="line">    &#125;</span><br><span class="line">    array[tempBody].cur=0;//新的链表最后一个结点的指针设置为0</span><br><span class="line">    return body;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void displayArr(component * array,int body)</span><br><span class="line">&#123;</span><br><span class="line">    int tempBody=body;//tempBody准备做遍历使用</span><br><span class="line">    while (array[tempBody].cur) &#123;</span><br><span class="line">        printf(&quot;%d,%d &quot;,array[tempBody].shu,array[tempBody].cur);</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d,%d\n&quot;,array[tempBody].shu,array[tempBody].cur);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">    component array[zui];</span><br><span class="line">    int body=initArr(array);</span><br><span class="line">    printf(&quot;静态链表为：\n&quot;);</span><br><span class="line">    displayArr(array, body);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="链表的增删改查"><a href="#链表的增删改查" class="headerlink" title="链表的增删改查"></a>链表的增删改查</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">typedef struct Link</span><br><span class="line">&#123;</span><br><span class="line">	int shu;</span><br><span class="line">	struct Link *next;</span><br><span class="line"> &#125; link;</span><br><span class="line"> 	/*初始化函数*/</span><br><span class="line"> link *initLink()</span><br><span class="line"> &#123;</span><br><span class="line"> 	link *p=(link*)malloc(sizeof(link));</span><br><span class="line"> 	link *temp=p;</span><br><span class="line"> </span><br><span class="line"> 	for(int i=1;i&lt;5;i++)</span><br><span class="line">	 &#123;</span><br><span class="line">	 	link *a=(link*)malloc(sizeof(link));</span><br><span class="line">	 	a-&gt;shu=i;</span><br><span class="line">	 	a-&gt;next=NULL;</span><br><span class="line">	 	temp-&gt;next=a;</span><br><span class="line">	 	temp=a;</span><br><span class="line">	  &#125; </span><br><span class="line">	  return p;</span><br><span class="line"> &#125;</span><br><span class="line"> link * zeng(link *p,int zengshu,int wei)</span><br><span class="line"> &#123;</span><br><span class="line"> 	link *temp=p;</span><br><span class="line"> 	//找到插入节点的上一个节点 </span><br><span class="line"> 	for(int i=1;i&lt;wei;i++)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		if(temp==NULL)</span><br><span class="line"> 		&#123;</span><br><span class="line"> 			printf(&quot;插入位置无效\n&quot;);</span><br><span class="line"> 			return p;</span><br><span class="line">		 &#125;</span><br><span class="line">		 temp=temp-&gt;next;</span><br><span class="line">	 &#125;</span><br><span class="line">	 //创建插入点c</span><br><span class="line">	 link *c=(link*)malloc(sizeof(link));</span><br><span class="line">	 c-&gt;shu=zengshu;</span><br><span class="line">	 </span><br><span class="line">	 c-&gt;next=temp-&gt;next;</span><br><span class="line">	 temp-&gt;next=c;</span><br><span class="line">	 return p; </span><br><span class="line"> &#125;</span><br><span class="line"> link *shan(link *p,int shanzhi)</span><br><span class="line"> &#123;</span><br><span class="line"> 	link *temp=p;</span><br><span class="line"> 	//找到插入节点的上一个节点</span><br><span class="line"> 	for(int i=1;i&lt;shanzhi;i++)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		temp=temp-&gt;next;</span><br><span class="line">	 &#125;</span><br><span class="line">	 link *shan=temp-&gt;next;</span><br><span class="line">	 temp-&gt;next=temp-&gt;next-&gt;next;</span><br><span class="line">	 free(shan);</span><br><span class="line">	 return p; </span><br><span class="line"> &#125;</span><br><span class="line"> /*查函数*/</span><br><span class="line"> int cha(link *p,int chazhi)</span><br><span class="line"> &#123;</span><br><span class="line"> 	link *temp=p;</span><br><span class="line"> 	int i=1;</span><br><span class="line"> 	while(temp-&gt;next)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		temp=temp-&gt;next;</span><br><span class="line"> 		if(temp-&gt;shu==chazhi)</span><br><span class="line"> 			return i;</span><br><span class="line"> 		i++;</span><br><span class="line">	 &#125;</span><br><span class="line">	 return -1;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> /*改函数*/</span><br><span class="line"> link *gai(link *p,int gaiwei,int gaizhi)</span><br><span class="line"> &#123;</span><br><span class="line"> 	link *temp=p;</span><br><span class="line"> 	temp=temp-&gt;next;//指向首元结点</span><br><span class="line">	 /*temp指向被删除节点*/ </span><br><span class="line">	   for(int i=1;i&lt;gaiwei;i++)</span><br><span class="line">  &#123;</span><br><span class="line">  	temp=temp-&gt;next;</span><br><span class="line">   &#125; </span><br><span class="line">   temp-&gt;shu=gaizhi;</span><br><span class="line">   return p;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   	&#125;</span><br><span class="line">   /*输出函数*/</span><br><span class="line">   void shuchu(link *p)</span><br><span class="line">   &#123;</span><br><span class="line">   	link* temp=p;</span><br><span class="line">   	while(temp-&gt;next)</span><br><span class="line">   	&#123;</span><br><span class="line">   		temp=temp-&gt;next;</span><br><span class="line">   		printf(&quot;%d&quot;,temp-&gt;shu);</span><br><span class="line">	   &#125;</span><br><span class="line">   	printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	 </span><br><span class="line">	 </span><br><span class="line"></span><br><span class="line">	int main()</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;初始化链表为：\n&quot;);</span><br><span class="line">		link *p=initLink();</span><br><span class="line">		shuchu(p); </span><br><span class="line">		</span><br><span class="line">		printf(&quot;第4个位置插入元素5：\n&quot;); </span><br><span class="line">		p=zeng(p,5,4);</span><br><span class="line">		shuchu(p);</span><br><span class="line">		</span><br><span class="line">		printf(&quot;删除元素3: \n&quot;);</span><br><span class="line">	    p=shan(p, 3);</span><br><span class="line">	    shuchu(p);</span><br><span class="line">		</span><br><span class="line">		 printf(&quot;查找元素2的位置为：\n&quot;);</span><br><span class="line">   		 int address=cha(p,2);</span><br><span class="line">   		 </span><br><span class="line">    	 if (address==-1) </span><br><span class="line">        	printf(&quot;没有该元素&quot;);</span><br><span class="line">    	 else</span><br><span class="line">       		 printf(&quot;元素2的位置为：%d\n&quot;,address);</span><br><span class="line"> 		/*改函数*/</span><br><span class="line">		printf(&quot;更改第3的位置上的数据为7:\n&quot;);</span><br><span class="line">	    p=gai(p, 3, 7);</span><br><span class="line">		shuchu(p);</span><br><span class="line">	  </span><br><span class="line">	    return 0;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态链表及其初始化-1"><a href="#静态链表及其初始化-1" class="headerlink" title="静态链表及其初始化"></a>静态链表及其初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#define zui 7</span><br><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">	int shu;</span><br><span class="line">	int cur;</span><br><span class="line"> &#125;component;</span><br><span class="line"> /*将结构体数组中所有分量链接到备用链表中*/</span><br><span class="line"> void beiyong(component *array)</span><br><span class="line"> &#123;</span><br><span class="line"> 	for(int i=0;i&lt;zui;i++)//将每个数组分量链接到一起</span><br><span class="line"> 		array[i].cur=i+1;</span><br><span class="line"> 	array[zui-1].cur=0;//链表最后一个结点的游标值为0</span><br><span class="line">  &#125; </span><br><span class="line">  int mallocArr(component * array)</span><br><span class="line">  &#123;</span><br><span class="line">  	//若备用链表非空，则返回分配的结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0）</span><br><span class="line">  	int i=array[0].cur;</span><br><span class="line">  	if(array[0].cur)</span><br><span class="line">  		array[0].cur=array[i].cur;</span><br><span class="line">  	return i;</span><br><span class="line">   &#125; </span><br><span class="line"></span><br><span class="line">int initArr(component *array)</span><br><span class="line">&#123;</span><br><span class="line">	beiyong(array);</span><br><span class="line">	int body=mallocArr(array);</span><br><span class="line">	//声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合</span><br><span class="line">	int tempBody=body;</span><br><span class="line">    for (int i=1; i&lt;5; i++) </span><br><span class="line">	&#123;</span><br><span class="line">        int j=mallocArr(array);//从备用链表中拿出空闲的分量</span><br><span class="line">        array[tempBody].cur=j;//将申请的空闲分量链接在链表的最后一个结点后面</span><br><span class="line">        array[j].shu=i;//给新申请的分量的数据域初始化</span><br><span class="line">        tempBody=j;//将指向链表最后一个结点的指针后移</span><br><span class="line">    &#125;</span><br><span class="line">    array[tempBody].cur=0;//新的链表最后一个结点的指针设置为0</span><br><span class="line">    return body;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void displayArr(component * array,int body)</span><br><span class="line">&#123;</span><br><span class="line">    int tempBody=body;//tempBody准备做遍历使用</span><br><span class="line">    while (array[tempBody].cur) &#123;</span><br><span class="line">        printf(&quot;%d,%d &quot;,array[tempBody].shu,array[tempBody].cur);</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d,%d\n&quot;,array[tempBody].shu,array[tempBody].cur);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">    component array[zui];</span><br><span class="line">    int body=initArr(array);</span><br><span class="line">    printf(&quot;静态链表为：\n&quot;);</span><br><span class="line">    displayArr(array, body);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态链表的增删改查"><a href="#静态链表的增删改查" class="headerlink" title="静态链表的增删改查"></a>静态链表的增删改查</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define maxSize 7</span><br><span class="line">typedef struct &#123;</span><br><span class="line">    char data;</span><br><span class="line">    int cur;</span><br><span class="line">&#125;component;</span><br><span class="line">//将结构体数组中所有分量链接到备用链表中</span><br><span class="line">void reserveArr(component *array);</span><br><span class="line">//初始化静态链表</span><br><span class="line">int initArr(component *array);</span><br><span class="line">//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，a表示要插入的数据</span><br><span class="line">void insertArr(component * array,int body,int add,char a);</span><br><span class="line">//删除链表中含有字符a的结点</span><br><span class="line">void deletArr(component * array,int body,char a);</span><br><span class="line">//查找存储有字符elem的结点在数组的位置</span><br><span class="line">int selectElem(component * array,int body,char elem);</span><br><span class="line">//将链表中的字符oldElem改为newElem</span><br><span class="line">void amendElem(component * array,int body,char oldElem,char newElem);</span><br><span class="line">//输出函数</span><br><span class="line">void displayArr(component * array,int body);</span><br><span class="line">//从备用链表中摘除空闲节点的实现函数</span><br><span class="line">int mallocArr(component * array);</span><br><span class="line">//将摘除下来的节点链接到备用链表上</span><br><span class="line">void freeArr(component * array,int k);</span><br><span class="line">int main() &#123;</span><br><span class="line">    component array[maxSize];</span><br><span class="line">    int body=initArr(array);</span><br><span class="line">    printf(&quot;静态链表为：\n&quot;);</span><br><span class="line">    displayArr(array, body);</span><br><span class="line">  </span><br><span class="line">    printf(&quot;在第3的位置上插入结点‘e’:\n&quot;);</span><br><span class="line">    insertArr(array, body, 3,&apos;e&apos;);</span><br><span class="line">    displayArr(array, body);</span><br><span class="line">  </span><br><span class="line">    printf(&quot;删除数据域为‘a’的结点:\n&quot;);</span><br><span class="line">    deletArr(array, body, &apos;a&apos;);</span><br><span class="line">    displayArr(array, body);</span><br><span class="line">  </span><br><span class="line">    printf(&quot;查找数据域为‘e’的结点的位置:\n&quot;);</span><br><span class="line">    int selectAdd=selectElem(array,body ,&apos;e&apos;);</span><br><span class="line">    printf(&quot;%d\n&quot;,selectAdd);</span><br><span class="line">    printf(&quot;将结点数据域为‘e’改为‘h’:\n&quot;);</span><br><span class="line">    amendElem(array, body, &apos;e&apos;, &apos;h&apos;);</span><br><span class="line">    displayArr(array, body);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">//创建备用链表</span><br><span class="line">void reserveArr(component *array)&#123;</span><br><span class="line">    for (int i=0; i&lt;maxSize; i++) &#123;</span><br><span class="line">        array[i].cur=i+1;//将每个数组分量链接到一起</span><br><span class="line">    &#125;</span><br><span class="line">    array[maxSize-1].cur=0;//链表最后一个结点的游标值为0</span><br><span class="line">&#125;</span><br><span class="line">//初始化静态链表</span><br><span class="line">int initArr(component *array)&#123;</span><br><span class="line">    reserveArr(array);</span><br><span class="line">    int body=mallocArr(array);</span><br><span class="line">    //声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合</span><br><span class="line">    int tempBody=body;</span><br><span class="line">    for (int i=1; i&lt;5; i++) &#123;</span><br><span class="line">        int j=mallocArr(array);//从备用链表中拿出空闲的分量</span><br><span class="line">        array[tempBody].cur=j;//将申请的空线分量链接在链表的最后一个结点后面</span><br><span class="line">        array[j].data=&apos;a&apos;+i-1;//给新申请的分量的数据域初始化</span><br><span class="line">        tempBody=j;//将指向链表最后一个结点的指针后移</span><br><span class="line">    &#125;</span><br><span class="line">    array[tempBody].cur=0;//新的链表最后一个结点的指针设置为0</span><br><span class="line">    return body;</span><br><span class="line">&#125;</span><br><span class="line">void insertArr(component * array,int body,int add,char a)&#123;</span><br><span class="line">    int tempBody=body;</span><br><span class="line">    for (int i=1; i&lt;add; i++) &#123;</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    int insert=mallocArr(array);</span><br><span class="line">    array[insert].cur=array[tempBody].cur;</span><br><span class="line">    array[insert].data=a;</span><br><span class="line">    array[tempBody].cur=insert;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">void deletArr(component * array,int body,char a)&#123;</span><br><span class="line">    int tempBody=body;</span><br><span class="line">    //找到被删除结点的位置</span><br><span class="line">    while (array[tempBody].data!=a) &#123;</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点</span><br><span class="line">        if (tempBody==0) &#123;</span><br><span class="line">            printf(&quot;链表中没有此数据&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //运行到此，证明有该结点</span><br><span class="line">    int del=tempBody;</span><br><span class="line">    tempBody=body;</span><br><span class="line">    //找到该结点的上一个结点，做删除操作</span><br><span class="line">    while (array[tempBody].cur!=del) &#123;</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    //将被删除结点的游标直接给被删除结点的上一个结点</span><br><span class="line">    array[tempBody].cur=array[del].cur;</span><br><span class="line">  </span><br><span class="line">    freeArr(array, del);</span><br><span class="line">&#125;</span><br><span class="line">int selectElem(component * array,int body,char elem)&#123;</span><br><span class="line">    int tempBody=body;</span><br><span class="line">    //当游标值为0时，表示链表结束</span><br><span class="line">    while (array[tempBody].cur!=0) &#123;</span><br><span class="line">        if (array[tempBody].data==elem) &#123;</span><br><span class="line">            return tempBody;</span><br><span class="line">        &#125;</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;//返回-1，表示在链表中没有找到该元素</span><br><span class="line">&#125;</span><br><span class="line">void amendElem(component * array,int body,char oldElem,char newElem)&#123;</span><br><span class="line">    int add=selectElem(array, body, oldElem);</span><br><span class="line">    if (add==-1) &#123;</span><br><span class="line">        printf(&quot;无更改元素&quot;);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    array[add].data=newElem;</span><br><span class="line">&#125;</span><br><span class="line">void displayArr(component * array,int body)&#123;</span><br><span class="line">    int tempBody=body;//tempBody准备做遍历使用</span><br><span class="line">    while (array[tempBody].cur) &#123;</span><br><span class="line">        printf(&quot;%c,%d &quot;,array[tempBody].data,array[tempBody].cur);</span><br><span class="line">        tempBody=array[tempBody].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%c,%d\n&quot;,array[tempBody].data,array[tempBody].cur);</span><br><span class="line">&#125;</span><br><span class="line">//提取分配空间</span><br><span class="line">int mallocArr(component * array)&#123;</span><br><span class="line">    //若备用链表非空，则返回分配的结点下标，否则返回0（当分配最后一个结点时，该结点的游标值为0）</span><br><span class="line">    int i=array[0].cur;</span><br><span class="line">    if (array[0].cur) &#123;</span><br><span class="line">        array[0].cur=array[i].cur;</span><br><span class="line">    &#125;</span><br><span class="line">    return i;</span><br><span class="line">&#125;</span><br><span class="line">//将摘除下来的节点链接到备用链表上</span><br><span class="line">void freeArr(component * array,int k)&#123;</span><br><span class="line">    array[k].cur=array[0].cur;</span><br><span class="line">    array[0].cur=k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="循环链表（约瑟夫环问题）"><a href="#循环链表（约瑟夫环问题）" class="headerlink" title="循环链表（约瑟夫环问题）"></a>循环链表（约瑟夫环问题）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">typedef struct node&#123;</span><br><span class="line">    int number;</span><br><span class="line">    struct node * next;</span><br><span class="line">&#125;person;</span><br><span class="line">person * initLink(int n)&#123;</span><br><span class="line">    person * head=(person*)malloc(sizeof(person));</span><br><span class="line">    head-&gt;number=1;</span><br><span class="line">    head-&gt;next=NULL;</span><br><span class="line">    person * cyclic=head;</span><br><span class="line">    for (int i=2; i&lt;=n; i++) &#123;</span><br><span class="line">        person * body=(person*)malloc(sizeof(person));</span><br><span class="line">        body-&gt;number=i;</span><br><span class="line">        body-&gt;next=NULL; </span><br><span class="line">        cyclic-&gt;next=body;</span><br><span class="line">        cyclic=cyclic-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cyclic-&gt;next=head;//首尾相连</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br><span class="line">void findAndKillK(person * head,int k,int m)&#123;</span><br><span class="line">    person * tail=head;</span><br><span class="line">    //找到链表第一个结点的上一个结点，为删除操作做准备</span><br><span class="line">    while (tail-&gt;next!=head) &#123;</span><br><span class="line">        tail=tail-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    person * p=head;</span><br><span class="line">    //找到编号为k的人</span><br><span class="line">    while (p-&gt;number!=k) &#123;</span><br><span class="line">        tail=p;</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    //从编号为k的人开始，只有符合p-&gt;next==p时，说明链表中除了p结点，所有编号都出列了，</span><br><span class="line">    while (p-&gt;next!=p) &#123;</span><br><span class="line">        //找到从p报数1开始，报m的人，并且还要知道数m-1de人的位置tail，方便做删除操作。</span><br><span class="line">        for (int i=1; i&lt;m; i++) &#123;</span><br><span class="line">            tail=p;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        tail-&gt;next=p-&gt;next;//从链表上将p结点摘下来</span><br><span class="line">        printf(&quot;出列人的编号为:%d\n&quot;,p-&gt;number);</span><br><span class="line">        free(p);</span><br><span class="line">        p=tail-&gt;next;//继续使用p指针指向出列编号的下一个编号，游戏继续</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;出列人的编号为:%d\n&quot;,p-&gt;number);</span><br><span class="line">    free(p);</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    printf(&quot;输入圆桌上的人数n:&quot;);</span><br><span class="line">    int n;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    person * head=initLink(n);</span><br><span class="line">    printf(&quot;从第k人开始报数(k&gt;1且k&lt;%d)：&quot;,n);</span><br><span class="line">    int k;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;k);</span><br><span class="line">    printf(&quot;数到m的人出列：&quot;);</span><br><span class="line">    int m;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;m);</span><br><span class="line">    findAndKillK(head, k, m);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="双向链表及其初始化"><a href="#双向链表及其初始化" class="headerlink" title="双向链表及其初始化"></a>双向链表及其初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">//结点结构</span><br><span class="line">typedef struct line</span><br><span class="line">&#123;</span><br><span class="line">	struct line *prior;</span><br><span class="line">	int data;</span><br><span class="line">	struct line *next; </span><br><span class="line">&#125; line;</span><br><span class="line">/*初始化*/</span><br><span class="line">line* initLine(line * head)</span><br><span class="line">&#123;</span><br><span class="line">	//创建一个首元节点，链表的头指针为head</span><br><span class="line">    head=(line*)malloc(sizeof(line));</span><br><span class="line">    //对节点进行初始化</span><br><span class="line">    head-&gt;prior=NULL;</span><br><span class="line">    head-&gt;next=NULL;</span><br><span class="line">    head-&gt;data=1;</span><br><span class="line">    //声明一个指向首元节点的指针，方便后期向链表中添加新创建的节点</span><br><span class="line">    line * list=head;</span><br><span class="line">    for (int i=2; i&lt;=5; i++) &#123;</span><br><span class="line">        //创建新的节点并初始化</span><br><span class="line">        line * body=(line*)malloc(sizeof(line));</span><br><span class="line">        body-&gt;prior=NULL;</span><br><span class="line">        body-&gt;next=NULL;</span><br><span class="line">        body-&gt;data=i;</span><br><span class="line">        //新节点与链表最后一个节点建立关系</span><br><span class="line">        list-&gt;next=body;</span><br><span class="line">        body-&gt;prior=list;</span><br><span class="line">        //list永远指向链表中最后一个节点</span><br><span class="line">        list=list-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    //返回新创建的链表</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br><span class="line">/*输出函数*/</span><br><span class="line">void display(line * head)</span><br><span class="line">&#123;</span><br><span class="line">    line * temp=head;</span><br><span class="line">    while (temp) </span><br><span class="line">	&#123;</span><br><span class="line">        //如果该节点无后继节点，说明此节点是链表的最后一个节点</span><br><span class="line">        if (temp-&gt;next==NULL) </span><br><span class="line">            printf(&quot;%d\n&quot;,temp-&gt;data);</span><br><span class="line">      	else</span><br><span class="line">            printf(&quot;%d &lt;-&gt; &quot;,temp-&gt;data);</span><br><span class="line">            </span><br><span class="line">        temp=temp-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/*主函数*/</span><br><span class="line">int main() &#123;</span><br><span class="line">    //创建一个头指针</span><br><span class="line">    line * head=NULL;</span><br><span class="line">    //调用链表创建函数</span><br><span class="line">    head=initLine(head);</span><br><span class="line">    //输出创建好的链表</span><br><span class="line">    display(head);</span><br><span class="line">    //显示双链表的优点</span><br><span class="line">    printf(&quot;链表中第 4 个节点的直接前驱是：%d&quot;,head-&gt;next-&gt;next-&gt;next-&gt;prior-&gt;data);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="双向链表的增删改查"><a href="#双向链表的增删改查" class="headerlink" title="双向链表的增删改查"></a>双向链表的增删改查</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">typedef struct line&#123;</span><br><span class="line">    struct line * prior;</span><br><span class="line">    int data;</span><br><span class="line">    struct line * next;</span><br><span class="line">&#125;line;</span><br><span class="line">//双链表的创建</span><br><span class="line">line* initLine(line * head);</span><br><span class="line">//双链表插入元素，add表示插入位置</span><br><span class="line">line * insertLine(line * head,int data,int add);</span><br><span class="line">//双链表删除指定元素</span><br><span class="line">line * delLine(line * head,int data);</span><br><span class="line">//双链表中查找指定元素</span><br><span class="line">int selectElem(line * head,int elem);</span><br><span class="line">//双链表中更改指定位置节点中存储的数据，add表示更改位置</span><br><span class="line">line *amendElem(line * p,int add,int newElem);</span><br><span class="line">//输出双链表的实现函数</span><br><span class="line">void display(line * head);</span><br><span class="line">int main() &#123;</span><br><span class="line">    line * head=NULL;</span><br><span class="line">    //创建双链表</span><br><span class="line">    head=initLine(head);</span><br><span class="line">    display(head);</span><br><span class="line">    //在表中第 3 的位置插入元素 7</span><br><span class="line">    head=insertLine(head, 7, 3);</span><br><span class="line">    display(head);</span><br><span class="line">    //表中删除元素 2</span><br><span class="line">    head=delLine(head, 2);</span><br><span class="line">    display(head);</span><br><span class="line"></span><br><span class="line">    printf(&quot;元素 3 的位置是：%d\n&quot;,selectElem(head,3));</span><br><span class="line">    //表中第 3 个节点中的数据改为存储 6</span><br><span class="line">    head = amendElem(head,3,6);</span><br><span class="line">    display(head);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">line* initLine(line * head)&#123;</span><br><span class="line">    head=(line*)malloc(sizeof(line));</span><br><span class="line">    head-&gt;prior=NULL;</span><br><span class="line">    head-&gt;next=NULL;</span><br><span class="line">    head-&gt;data=1;</span><br><span class="line">    line * list=head;</span><br><span class="line">    for (int i=2; i&lt;=5; i++) &#123;</span><br><span class="line">        line * body=(line*)malloc(sizeof(line));</span><br><span class="line">        body-&gt;prior=NULL;</span><br><span class="line">        body-&gt;next=NULL;</span><br><span class="line">        body-&gt;data=i;</span><br><span class="line"></span><br><span class="line">        list-&gt;next=body;</span><br><span class="line">        body-&gt;prior=list;</span><br><span class="line">        list=list-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br><span class="line">line * insertLine(line * head,int data,int add)&#123;</span><br><span class="line">    //新建数据域为data的结点</span><br><span class="line">    line * temp=(line*)malloc(sizeof(line));</span><br><span class="line">    temp-&gt;data=data;</span><br><span class="line">    temp-&gt;prior=NULL;</span><br><span class="line">    temp-&gt;next=NULL;</span><br><span class="line">    //插入到链表头，要特殊考虑</span><br><span class="line">    if (add==1) &#123;</span><br><span class="line">        temp-&gt;next=head;</span><br><span class="line">        head-&gt;prior=temp;</span><br><span class="line">        head=temp;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        line * body=head;</span><br><span class="line">        //找到要插入位置的前一个结点</span><br><span class="line">        for (int i=1; i&lt;add-1; i++) &#123;</span><br><span class="line">            body=body-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        //判断条件为真，说明插入位置为链表尾</span><br><span class="line">        if (body-&gt;next==NULL) &#123;</span><br><span class="line">            body-&gt;next=temp;</span><br><span class="line">            temp-&gt;prior=body;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            body-&gt;next-&gt;prior=temp;</span><br><span class="line">            temp-&gt;next=body-&gt;next;</span><br><span class="line">            body-&gt;next=temp;</span><br><span class="line">            temp-&gt;prior=body;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br><span class="line">line * delLine(line * head,int data)&#123;</span><br><span class="line">    line * temp=head;</span><br><span class="line">    //遍历链表</span><br><span class="line">    while (temp) &#123;</span><br><span class="line">        //判断当前结点中数据域和data是否相等，若相等，摘除该结点</span><br><span class="line">        if (temp-&gt;data==data) &#123;</span><br><span class="line">            temp-&gt;prior-&gt;next=temp-&gt;next;</span><br><span class="line">            temp-&gt;next-&gt;prior=temp-&gt;prior;</span><br><span class="line">            free(temp);</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        temp=temp-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;链表中无该数据元素&quot;);</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br><span class="line">//head为原双链表，elem表示被查找元素</span><br><span class="line">int selectElem(line * head,int elem)&#123;</span><br><span class="line">//新建一个指针t，初始化为头指针 head</span><br><span class="line">    line * t=head;</span><br><span class="line">    int i=1;</span><br><span class="line">    while (t) &#123;</span><br><span class="line">        if (t-&gt;data==elem) &#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">        t=t-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    //程序执行至此处，表示查找失败</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line">//更新函数，其中，add 表示更改结点在双链表中的位置，newElem 为新数据的值</span><br><span class="line">line *amendElem(line * p,int add,int newElem)&#123;</span><br><span class="line">    line * temp=p;</span><br><span class="line">    //遍历到被删除结点</span><br><span class="line">    for (int i=1; i&lt;add; i++) &#123;</span><br><span class="line">        temp=temp-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    temp-&gt;data=newElem;</span><br><span class="line">    return p;</span><br><span class="line">&#125;</span><br><span class="line">//输出链表的功能函数</span><br><span class="line">void display(line * head)&#123;</span><br><span class="line">    line * temp=head;</span><br><span class="line">    while (temp) &#123;</span><br><span class="line">        if (temp-&gt;next==NULL) &#123;</span><br><span class="line">            printf(&quot;%d\n&quot;,temp-&gt;data);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            printf(&quot;%d-&gt;&quot;,temp-&gt;data);</span><br><span class="line">        &#125;</span><br><span class="line">        temp=temp-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/07/23/eAZRsg.jpg" alt="eAZRsg.jpg"><br>人生就像随风飘散的蒲公英，看似自由，却身不由己！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/18/数据结构/" rel="next" title="数据结构">
+                <i class="fa fa-chevron-left"></i> 数据结构
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/27/疯狂的木头02/" rel="prev" title="疯狂的木头02">
+                疯狂的木头02 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习链接（推荐C语言中文网）："><span class="nav-number">1.</span> <span class="nav-text">学习链接（推荐C语言中文网）：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线性表的存储结构有"><span class="nav-number">1.0.1.</span> <span class="nav-text">线性表的存储结构有</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#而链式存储结构又包含有："><span class="nav-number">1.0.2.</span> <span class="nav-text">而链式存储结构又包含有：</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#表的操作"><span class="nav-number">2.</span> <span class="nav-text">表的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表及其初始化"><span class="nav-number"></span> <span class="nav-text">顺序表及其初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表的增删改查"><span class="nav-number"></span> <span class="nav-text">顺序表的增删改查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态链表及其初始化"><span class="nav-number"></span> <span class="nav-text">静态链表及其初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表的增删改查"><span class="nav-number"></span> <span class="nav-text">链表的增删改查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态链表及其初始化-1"><span class="nav-number"></span> <span class="nav-text">静态链表及其初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态链表的增删改查"><span class="nav-number"></span> <span class="nav-text">静态链表的增删改查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表（约瑟夫环问题）"><span class="nav-number"></span> <span class="nav-text">循环链表（约瑟夫环问题）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向链表及其初始化"><span class="nav-number"></span> <span class="nav-text">双向链表及其初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向链表的增删改查"><span class="nav-number"></span> <span class="nav-text">双向链表的增删改查</span></a></li></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
