@@ -1,0 +1,642 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="ctf比赛 re,">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="红帽杯的参加，发现自己，太多知识没有掌握了！记录下！这里有个将 内存型数据 准转化为 正常型的代码！然后，对未知字符爆破的脚本，以及xxTea的快速解密代码！">
+<meta name="keywords" content="ctf比赛 re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019redhat之re XXctf">
+<meta property="og:url" content="http://yoursite.com/2019/11/16/2019redhat之re XXctf/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="红帽杯的参加，发现自己，太多知识没有掌握了！记录下！这里有个将 内存型数据 准转化为 正常型的代码！然后，对未知字符爆破的脚本，以及xxTea的快速解密代码！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/02/KLIbfP.md.png">
+<meta property="og:updated_time" content="2019-11-16T04:18:20.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019redhat之re XXctf">
+<meta name="twitter:description" content="红帽杯的参加，发现自己，太多知识没有掌握了！记录下！这里有个将 内存型数据 准转化为 正常型的代码！然后，对未知字符爆破的脚本，以及xxTea的快速解密代码！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/02/KLIbfP.md.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 2019redhat之re XXctf | mutou-jun's blog </title>
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2019redhat之re XXctf
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-11-16T12:12:03+08:00" content="2019-11-16">
+              2019-11-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>红帽杯的参加，发现自己，太多知识没有掌握了！记录下！<br>这里有个将 内存型数据 准转化为 正常型的代码！然后，对未知字符爆破的脚本，以及xxTea的快速解密代码！</p>
+<a id="more"></a>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//github</span>.com/Prowes5/Prowes5.github.io/blob/faf93e17bc0632e5ac6dbd60efef274d87105133/<span class="number">2019</span>/<span class="number">11</span>/<span class="number">14</span>/%E7%BA%A2%E5%B8%BD%E6%9D%AFReverse-writeup%E5%8F%8A%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%9B%98/index.html</span><br><span class="line">//上面是个  html文件   保存在 本地，再在浏览器打开就好！</span><br><span class="line">https:<span class="regexp">//impakho</span>.com/post/redhat-<span class="number">2019</span>-online-writeup<span class="comment">#toc-4</span></span><br><span class="line">https:<span class="regexp">//xz</span>.aliyun.com/t/<span class="number">6746</span><span class="comment">#toc-6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="拖入ida-64"><a href="#拖入ida-64" class="headerlink" title="拖入ida 64"></a>拖入ida 64</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall sub_1400011A0(__int64 a1, __int64 a2)</span><br><span class="line">&#123;</span><br><span class="line">  unsigned __int64 v2; // rbx</span><br><span class="line">  signed __int64 v3; // rax</span><br><span class="line">  __int128 *v4; // rax</span><br><span class="line">  __int64 v5; // r11</span><br><span class="line">  __int128 *v6; // r14</span><br><span class="line"> <span class="built_in"> int </span>v7; // edi</span><br><span class="line">  __int128 *v8; // rsi</span><br><span class="line">  char v9; // r10</span><br><span class="line"> <span class="built_in"> int </span>v10; // edx</span><br><span class="line">  __int64 v11; // r8</span><br><span class="line">  unsigned __int64 v12; // rcx</span><br><span class="line">  signed __int64 v13; // rcx</span><br><span class="line">  unsigned __int64 v14; // rax</span><br><span class="line">  unsigned __int64 i; // rax</span><br><span class="line">  _BYTE *v16; // rax</span><br><span class="line">  size_t size_24; // rsi</span><br><span class="line">  _BYTE *v18; // rbx</span><br><span class="line">  _BYTE *v19; // r9</span><br><span class="line">  signed<span class="built_in"> int </span>ii; // er11</span><br><span class="line">  char *v21; // r8</span><br><span class="line">  signed __int64 jj; // rcx</span><br><span class="line">  char s_i; // al</span><br><span class="line">  signed __int64 v24; // r9</span><br><span class="line">  signed __int64 v25; // rdx</span><br><span class="line">  _QWORD *v26; // rax</span><br><span class="line">  size_t Size; // [rsp+20h] [rbp-48h]</span><br><span class="line">  __int128 v29; // [rsp+28h] [rbp-40h]</span><br><span class="line"> <span class="built_in"> int </span>v30; // [rsp+38h] [rbp-30h]</span><br><span class="line"> <span class="built_in"> int </span>v31; // [rsp+3Ch] [rbp-2Ch]</span><br><span class="line"> <span class="built_in"> int </span>Code[4]; // [rsp+40h] [rbp-28h]</span><br><span class="line"> <span class="built_in"> int </span>v33; // [rsp+50h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  *(_OWORD *)Code = 0i64;</span><br><span class="line">  v33 = 0;</span><br><span class="line">  sub_1400018C0(std::cin, a2, Code);</span><br><span class="line">  v2 = -1i64;</span><br><span class="line">  v3 = -1i64;</span><br><span class="line">  do</span><br><span class="line">    ++v3;</span><br><span class="line">  while ( *((_BYTE *)Code + v3) );</span><br><span class="line"> <span class="built_in"> if </span>( v3 != 19 )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_140001620(std::cout, (__int64)<span class="string">"error\n"</span>);</span><br><span class="line">    _exit((unsigned __int64)Code);</span><br><span class="line">  &#125;                                             // 输入字符串    19位</span><br><span class="line">  v4 = (__int128 *)sub_140001E5C(5ui64);        // 000001621880CE40</span><br><span class="line">  v5 = *(_QWORD *)&amp;::Code;                      // qwertyuiopasdfghjklzxcvbnm1234567890</span><br><span class="line">  v6 = v4;</span><br><span class="line">  v7 = 0;</span><br><span class="line">  v8 = v4;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">    v9 = *((_BYTE *)v8 + (char *)Code - (char *)v4);// 0</span><br><span class="line">    v10 = 0;                                    // 0</span><br><span class="line">    *(_BYTE *)v8 = v9;                          // 0</span><br><span class="line">    v11 = 0i64;</span><br><span class="line">    v12 = -1i64;</span><br><span class="line">    do</span><br><span class="line">      ++v12;</span><br><span class="line">    while ( *(_BYTE *)(v5 + v12) );</span><br><span class="line">   <span class="built_in"> if </span>( v12 )</span><br><span class="line">    &#123;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">       <span class="built_in"> if </span>( v9 == *(_BYTE *)(v5 + v11) )</span><br><span class="line">          break;</span><br><span class="line">        ++v10;</span><br><span class="line">        ++v11;</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v10 &lt; v12 );</span><br><span class="line">    &#125;</span><br><span class="line">    v13 = -1i64;</span><br><span class="line">    do</span><br><span class="line">      ++v13;</span><br><span class="line">    while ( *(_BYTE *)(v5 + v13) );</span><br><span class="line">   <span class="built_in"> if </span>( v10 == v13 )</span><br><span class="line">      _exit(v5);</span><br><span class="line">    v8 = (__int128 *)((char *)v8 + 1);</span><br><span class="line">  &#125;</span><br><span class="line">  while ( (char *)v8 - (char *)v4 &lt; 4 );</span><br><span class="line">  *((_BYTE *)v4 + 4) = 0;</span><br><span class="line">  do</span><br><span class="line">    ++v2;</span><br><span class="line">  while ( *((_BYTE *)Code + v2) );</span><br><span class="line">  v14 = 0i64;</span><br><span class="line">  v29 = *v6;</span><br><span class="line">  while ( *((_BYTE *)&amp;v29 + v14) )</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in"> if </span>( !*((_BYTE *)&amp;v29 + v14 + 1) )</span><br><span class="line">    &#123;</span><br><span class="line">      ++v14;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="built_in"> if </span>( !*((_BYTE *)&amp;v29 + v14 + 2) )</span><br><span class="line">    &#123;</span><br><span class="line">      v14 += 2i64;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="built_in"> if </span>( !*((_BYTE *)&amp;v29 + v14 + 3) )</span><br><span class="line">    &#123;</span><br><span class="line">      v14 += 3i64;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">    v14 += 4i64;</span><br><span class="line">   <span class="built_in"> if </span>( v14 &gt;= 0x10 )</span><br><span class="line">      break;</span><br><span class="line">  &#125;</span><br><span class="line">  for ( i = v14 + 1; i &lt; 0x10; ++i )</span><br><span class="line">    *((_BYTE *)&amp;v29 + i) = 0;</span><br><span class="line">  v16 = sub_140001AB0((__int64)Code, v2, (unsigned __int8 *)&amp;v29, &amp;Size);// 前   4个 字节  作为 xxTea 密钥   </span><br><span class="line">  size_24 = Size;</span><br><span class="line">  v18 = v16;                                    // xxtea  加密后的 24字节 </span><br><span class="line">  v19 = sub_140001E5C(Size);</span><br><span class="line">  ii = 1;</span><br><span class="line">  *v19 = v18[2];</span><br><span class="line">  v21 = v19 + 1;</span><br><span class="line">  v19[1] = *v18;</span><br><span class="line">  v19[2] = v18[3];</span><br><span class="line">  v19[3] = v18[1];</span><br><span class="line">  v19[4] = v18[6];</span><br><span class="line">  v19[5] = v18[4];</span><br><span class="line">  v19[6] = v18[7];</span><br><span class="line">  v19[7] = v18[5];</span><br><span class="line">  v19[8] = v18[10];</span><br><span class="line">  v19[9] = v18[8];</span><br><span class="line">  v19[10] = v18[11];</span><br><span class="line">  v19[11] = v18[9];</span><br><span class="line">  v19[12] = v18[14];</span><br><span class="line">  v19[13] = v18[12];</span><br><span class="line">  v19[14] = v18[15];</span><br><span class="line">  v19[15] = v18[13];</span><br><span class="line">  v19[16] = v18[18];</span><br><span class="line">  v19[17] = v18[16];</span><br><span class="line">  v19[18] = v18[19];</span><br><span class="line">  v19[19] = v18[17];</span><br><span class="line">  v19[20] = v18[22];                            // 加密后  密文   重新排 了 序</span><br><span class="line">  v19[21] = v18[20];</span><br><span class="line">  v19[22] = v18[23];</span><br><span class="line">  for ( v19[23] = v18[21]; ii &lt; size_24; ++v21 )</span><br><span class="line">  &#123;</span><br><span class="line">    jj = 0i64;</span><br><span class="line">   <span class="built_in"> if </span>( ii / 3 &gt; 0 )</span><br><span class="line">    &#123;</span><br><span class="line">      s_i = *v21;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        s_i ^= v19[jj++];</span><br><span class="line">        *v21 = s_i;</span><br><span class="line">      &#125;</span><br><span class="line">      while ( jj &lt; ii / 3 );</span><br><span class="line">    &#125;</span><br><span class="line">    ++ii;</span><br><span class="line">  &#125;</span><br><span class="line">  *(_QWORD *)&amp;v29 = 0xC0953A7C6B40BCCEi64;</span><br><span class="line">  v24 = v19 - (_BYTE *)&amp;v29;</span><br><span class="line">  *((_QWORD *)&amp;v29 + 1) = 0x3502F79120209BEFi64;</span><br><span class="line">  v25 = 0i64;</span><br><span class="line">  v30 = 0xC8021823;</span><br><span class="line">  v31 = 0xFA5656E7;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="built_in"> if </span>( *((_BYTE *)&amp;v29 + v25) != *((_BYTE *)&amp;v29 + v25 + v24) )</span><br><span class="line">      _exit(v7 * v7);</span><br><span class="line">    ++v7;</span><br><span class="line">    ++v25;</span><br><span class="line">  &#125;</span><br><span class="line">  while ( v25 &lt; 24 );</span><br><span class="line">  v26 = sub_140001620(std::cout, (__int64)<span class="string">"You win!"</span>);</span><br><span class="line">  std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v26, sub_1400017F0);</span><br><span class="line"> <span class="built_in"> return </span>0i64;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="其中sub-140001AB0-函数-是xxtea-算法"><a href="#其中sub-140001AB0-函数-是xxtea-算法" class="headerlink" title="其中sub_140001AB0  函数     是xxtea 算法"></a>其中sub_140001AB0  函数     是xxtea 算法</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line">_BYTE *__fastcall sub_140001AB0(__int64 a1, unsigned __int64 a2, unsigned __int8 *a3, unsigned __int64 *a4)</span><br><span class="line">&#123;</span><br><span class="line">  unsigned __int64 *v4; // r13</span><br><span class="line">  unsigned __int8 *v5; // rbp</span><br><span class="line">  unsigned __int64 v6; // rbx</span><br><span class="line">  __int64 v7; // rsi</span><br><span class="line">  unsigned __int64 v8; // rdi</span><br><span class="line">  size_t v9; // rcx</span><br><span class="line">  _DWORD *v10; // rax</span><br><span class="line">  _DWORD *v11; // r15</span><br><span class="line">  signed __int64 v12; // r14</span><br><span class="line">  unsigned __int64 v13; // rdi</span><br><span class="line">  unsigned __int64 v14; // r9</span><br><span class="line"> <span class="built_in"> int </span>v15; // edx</span><br><span class="line">  _DWORD *v16; // r8</span><br><span class="line">  char v17; // cl</span><br><span class="line">  _DWORD *v18; // r12</span><br><span class="line"> <span class="built_in"> int </span>v19; // ecx</span><br><span class="line"> <span class="built_in"> int </span>v20; // eax</span><br><span class="line"> <span class="built_in"> int </span>v21; // ecx</span><br><span class="line"> <span class="built_in"> int </span>v22; // eax</span><br><span class="line"> <span class="built_in"> int </span>v23; // ecx</span><br><span class="line"> <span class="built_in"> int </span>v24; // eax</span><br><span class="line"> <span class="built_in"> int </span>v25; // ecx</span><br><span class="line"> <span class="built_in"> int </span>v26; // eax</span><br><span class="line">  unsigned<span class="built_in"> int </span>v27; // ebp</span><br><span class="line">  __int64 v28; // rcx</span><br><span class="line">  unsigned<span class="built_in"> int </span>v29; // er10</span><br><span class="line">  unsigned<span class="built_in"> int </span>v30; // eax</span><br><span class="line">  __int64 v31; // r9</span><br><span class="line">  unsigned<span class="built_in"> int </span>*v32; // rbx</span><br><span class="line">  __int64 v33; // r11</span><br><span class="line">  _DWORD *v34; // rax</span><br><span class="line">  __int64 v35; // rsi</span><br><span class="line">  __int64 v36; // r14</span><br><span class="line">  char v37; // r13</span><br><span class="line">  unsigned<span class="built_in"> int </span>v38; // er8</span><br><span class="line">  __int64 v39; // rcx</span><br><span class="line">  unsigned __int64 v40; // rbx</span><br><span class="line">  size_t v41; // rcx</span><br><span class="line">  _BYTE *v42; // rax</span><br><span class="line">  _BYTE *v43; // rsi</span><br><span class="line">  _BYTE *result; // rax</span><br><span class="line">  char v45; // [rsp+20h] [rbp-58h]</span><br><span class="line">  __int64 v46; // [rsp+28h] [rbp-50h]</span><br><span class="line">  signed __int64 v47; // [rsp+30h] [rbp-48h]</span><br><span class="line"> <span class="built_in"> int </span>v48; // [rsp+88h] [rbp+10h]</span><br><span class="line">  unsigned __int64 *v49; // [rsp+98h] [rbp+20h]</span><br><span class="line"></span><br><span class="line">  v49 = a4;</span><br><span class="line">  v4 = a4;</span><br><span class="line">  v5 = a3;</span><br><span class="line">  v6 = a2;</span><br><span class="line">  v7 = a1;</span><br><span class="line"> <span class="built_in"> if </span>( !a2 )</span><br><span class="line">   <span class="built_in"> return </span>0i64;</span><br><span class="line">  v8 = a2 &gt;&gt; 2;</span><br><span class="line"> <span class="built_in"> if </span>( a2 &amp; 3 )</span><br><span class="line">    v8 = (a2 &gt;&gt; 2) + 1;</span><br><span class="line">  v9 = v8 + 1;</span><br><span class="line"> <span class="built_in"> if </span>( v8 &gt;= 0xFFFFFFFFFFFFFFFFui64 )</span><br><span class="line">    v9 = -1i64;</span><br><span class="line">  v10 = calloc(v9, 4ui64);</span><br><span class="line">  v11 = v10;</span><br><span class="line"> <span class="built_in"> if </span>( !v10 )</span><br><span class="line">   <span class="built_in"> return </span>0i64;</span><br><span class="line">  v12 = v8 + 1;</span><br><span class="line">  v10[v8] = v6;</span><br><span class="line">  v13 = 0i64;</span><br><span class="line">  v47 = v12;</span><br><span class="line">  v14 = 0i64;</span><br><span class="line"> <span class="built_in"> if </span>( v6 )</span><br><span class="line">  &#123;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">      v15 = *(unsigned __int8 *)(v14 + v7);</span><br><span class="line">      v16 = &amp;v10[v14 &gt;&gt; 2];</span><br><span class="line">      v17 = v14++ &amp; 3;</span><br><span class="line">      *v16 |= v15 &lt;&lt; 8 * v17;</span><br><span class="line">    &#125;</span><br><span class="line">    while ( v14 &lt; v6 );</span><br><span class="line">  &#125;</span><br><span class="line">  v18 = calloc(4ui64, 4ui64);</span><br><span class="line"> <span class="built_in"> if </span>( v18 )</span><br><span class="line">  &#123;</span><br><span class="line">    v19 = v5[7] &lt;&lt; 8;</span><br><span class="line">    v20 = v5[6];</span><br><span class="line">    *v18 |= *v5 | ((v5[1] | (*((unsigned __int16 *)v5 + 1) &lt;&lt; 8)) &lt;&lt; 8);</span><br><span class="line">    v21 = v5[4] | ((v5[5] | ((v20 | v19) &lt;&lt; 8)) &lt;&lt; 8);</span><br><span class="line">    v22 = v5[10];</span><br><span class="line">    v18[1] |= v21;</span><br><span class="line">    v23 = v5[8] | ((v5[9] | ((v22 | (v5[11] &lt;&lt; 8)) &lt;&lt; 8)) &lt;&lt; 8);</span><br><span class="line">    v24 = v5[14];</span><br><span class="line">    v18[2] |= v23;</span><br><span class="line">    v25 = v5[13] | ((v24 | (v5[15] &lt;&lt; 8)) &lt;&lt; 8);</span><br><span class="line">    v26 = v5[12];</span><br><span class="line">    v27 = 0;</span><br><span class="line">    v18[3] |= v26 | (v25 &lt;&lt; 8);</span><br><span class="line">    v28 = (unsigned int)(v12 - 1);</span><br><span class="line">    v29 = v11[v28];</span><br><span class="line">    v30 = 0x34 / (unsigned int)v12 + 6;</span><br><span class="line">    v31 = (unsigned int)(v12 - 1);</span><br><span class="line">    v45 = v12 - 1;</span><br><span class="line">    v46 = (unsigned int)(v12 - 1);</span><br><span class="line">   <span class="built_in"> if </span>( (unsigned int)v28 &gt;= 1 &amp;&amp; 0x34 / (unsigned int)v12 != -6 )</span><br><span class="line">    &#123;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v32 = v11 + 1;</span><br><span class="line">        v27 -= 1640531527;</span><br><span class="line">        v48 = v30 - 1;</span><br><span class="line">        v33 = 0i64;</span><br><span class="line">        v34 = v11;</span><br><span class="line">        v35 = (v27 &gt;&gt; 2) &amp; 3;</span><br><span class="line">        v36 = v31;</span><br><span class="line">        v37 = v28;</span><br><span class="line">        do</span><br><span class="line">        &#123;</span><br><span class="line">          v38 = *v32;</span><br><span class="line">          ++v32;</span><br><span class="line">          ++v34;</span><br><span class="line">          v39 = v35 ^ v33++ &amp; 3;</span><br><span class="line">          *(v34 - 1) += ((v27 ^ v38) + (v29 ^ v18[v39])) ^ ((16 * v29 ^ (v38 &gt;&gt; 3)) + ((v29 &gt;&gt; 5) ^ 4 * v38));</span><br><span class="line">          v29 = *(v34 - 1);</span><br><span class="line">          --v36;</span><br><span class="line">        &#125;</span><br><span class="line">        while ( v36 );</span><br><span class="line">        v31 = v46;</span><br><span class="line">        LOBYTE(v28) = v45;</span><br><span class="line">        v30 = v48;</span><br><span class="line">        v11[v31] += ((v27 ^ *v11) + (v29 ^ v18[v35 ^ v37 &amp; 3])) ^ ((4 * *v11 ^ (v29 &gt;&gt; 5)) + ((*v11 &gt;&gt; 3) ^ 16 * v29));</span><br><span class="line">        v29 = v11[v46];</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v48 );</span><br><span class="line">      v12 = v47;</span><br><span class="line">      v4 = v49;</span><br><span class="line">    &#125;</span><br><span class="line">    v40 = 4 * v12;</span><br><span class="line">    v41 = 4 * v12 + 1;</span><br><span class="line">   <span class="built_in"> if </span>( (unsigned __int64)(4 * v12) &gt;= 0xFFFFFFFFFFFFFFFFui64 )</span><br><span class="line">      v41 = -1i64;</span><br><span class="line">    v42 = malloc(v41);</span><br><span class="line">    v43 = v42;</span><br><span class="line">   <span class="built_in"> if </span>( v40 )</span><br><span class="line">    &#123;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v42[v13] = v11[v13 &gt;&gt; 2] &gt;&gt; 8 * (v13 &amp; 3);</span><br><span class="line">        ++v13;</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v13 &lt; v40 );</span><br><span class="line">    &#125;</span><br><span class="line">    v42[v40] = 0;</span><br><span class="line">    *v4 = v40;</span><br><span class="line">    free(v11);</span><br><span class="line">    free(v18);</span><br><span class="line">    result = v43;</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    free(v11);</span><br><span class="line">    result = 0i64;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="built_in"> return </span>result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="程序大概流程"><a href="#程序大概流程" class="headerlink" title="程序大概流程"></a>程序大概流程</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入<span class="number">19</span>字节</span><br><span class="line">取前四个字节 作为  xxtea 加解密算法 的密钥</span><br><span class="line">以 输入的<span class="number">19</span>个字符串为明文 ，与前四个字节为密钥，通过xxtea 加密后得到 <span class="number">24</span>字节密文</span><br><span class="line">密文<span class="number">24</span>字节 做置换    一系列的复制操作</span><br><span class="line">经处理过的密文  再次  通过 一系列 亦或 处理</span><br><span class="line">然后将再次经过的密文  与内置的密文作比较</span><br><span class="line"></span><br><span class="line">我们的思路就是 反着来！</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一步：提取-内置密文-（），"><a href="#第一步：提取-内置密文-（），" class="headerlink" title="第一步：提取 内置密文  （），"></a>第一步：提取 内置密文  （），</h2><blockquote>
+<p>即 经过 xxTea算法加密后再置换再亦或的24位 数据<br>（这里要注意下   要将反编译得到的是   内存形式存放的密文），<br>但我没想到一个好的提取方法，写了个 简单代码（不断复制粘贴就好），<br>其实  数据不多，完全可以 纯手打的！</p>
+</blockquote>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf8</span><br><span class="line">ida2list=[]</span><br><span class="line">zui=<span class="string">''</span></span><br><span class="line">ida=<span class="string">"FA5656E7"</span></span><br><span class="line">print(ida)</span><br><span class="line">for i <span class="keyword">in</span> range(<span class="number">0</span>,len(ida),<span class="number">2</span>):</span><br><span class="line">    ida2list.append(ida[i:i+<span class="number">2</span>])</span><br><span class="line">ida2list.reverse()</span><br><span class="line">print(ida2list)</span><br><span class="line">for x <span class="keyword">in</span> range(len(ida2list)):</span><br><span class="line">	zui+=ida2list[x]</span><br><span class="line">print(zui)</span><br><span class="line">#C0953A7C6B40BCCE-------------------》CEBC406B7C3A95C0</span><br><span class="line">#<span class="number">3502</span>F79120209BEF------------------》EF9B202091F70235</span><br><span class="line">##C8021823------------------》<span class="number">231802</span>C8</span><br><span class="line">##FA5656E7------------------》E75656FA</span><br><span class="line">#</span><br><span class="line">#CEBC406B7C3A95C0EF9B202091F70235231802C8E75656FA</span><br><span class="line">#</span><br><span class="line"># [<span class="string">'CE'</span>, <span class="string">'BC'</span>, <span class="string">'40'</span>, <span class="string">'6B'</span>, <span class="string">'7C'</span>, <span class="string">'3A'</span>, <span class="string">'95'</span>, <span class="string">'C0'</span>]</span><br><span class="line"># [<span class="string">'EF'</span>, <span class="string">'9B'</span>, <span class="string">'20'</span>, <span class="string">'20'</span>, <span class="string">'91'</span>, <span class="string">'F7'</span>, <span class="string">'02'</span>, <span class="string">'35'</span>]</span><br><span class="line"># [<span class="string">'23'</span>, <span class="string">'18'</span>, <span class="string">'02'</span>, <span class="string">'C8'</span>]</span><br><span class="line"># [<span class="string">'E7'</span>, <span class="string">'56'</span>, <span class="string">'56'</span>, <span class="string">'FA'</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步：通过-亦或后的数据-逆推处-置换后的24-位-数据"><a href="#第二步：通过-亦或后的数据-逆推处-置换后的24-位-数据" class="headerlink" title="第二步：通过  亦或后的数据  逆推处   置换后的24 位 数据"></a>第二步：通过  亦或后的数据  逆推处   置换后的24 位 数据</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">flagg=[<span class="string">'CE'</span>, <span class="string">'BC'</span>, <span class="string">'40'</span>, <span class="string">'6B'</span>, <span class="string">'7C'</span>, <span class="string">'3A'</span>, <span class="string">'95'</span>, <span class="string">'C0'</span>,<span class="string">'EF'</span>, <span class="string">'9B'</span>, <span class="string">'20'</span>, <span class="string">'20'</span>, <span class="string">'91'</span>, <span class="string">'F7'</span>, <span class="string">'02'</span>, <span class="string">'35'</span>,<span class="string">'23'</span>, <span class="string">'18'</span>, <span class="string">'02'</span>, <span class="string">'C8'</span>,<span class="string">'E7'</span>, <span class="string">'56'</span>, <span class="string">'56'</span>, <span class="string">'FA'</span>]</span><br><span class="line"></span><br><span class="line">flagg = [<span class="number">0xCE</span>,<span class="number">0xBC</span>,<span class="number">0x40</span>,<span class="number">0x6B</span>,<span class="number">0x7C</span>,<span class="number">0x3A</span>,<span class="number">0x95</span>,<span class="number">0xC0</span>,<span class="number">0xEF</span>,<span class="number">0x9B</span>,<span class="number">0x20</span>,<span class="number">0x20</span>,<span class="number">0x91</span>,<span class="number">0xF7</span>,<span class="number">0x02</span>,<span class="number">0x35</span>,<span class="number">0x23</span>,<span class="number">0x18</span>,<span class="number">0x02</span>,<span class="number">0xC8</span>,<span class="number">0xE7</span>,<span class="number">0x56</span>,<span class="number">0x56</span>,<span class="number">0xFA</span>]</span><br><span class="line">flagfan = [<span class="number">0</span>]*<span class="number">24</span></span><br><span class="line">for i in range(len(flagg)):</span><br><span class="line">    flagfan[i] = flagg[i]</span><br><span class="line">for i in range(<span class="number">1</span>,len(flagg)):</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    if i/<span class="number">3</span> &gt; <span class="number">0</span>:</span><br><span class="line">        while(j&lt;(i/<span class="number">3</span>)):</span><br><span class="line">            flagfan[i] = flagfan[i] ^ flagg[j]    ##<span class="number">0</span>^?=?</span><br><span class="line">            j = j + <span class="number">1</span></span><br><span class="line">print flagfan</span><br><span class="line">#[<span class="number">206</span>, <span class="number">188</span>, <span class="number">64</span>, <span class="number">165</span>, <span class="number">178</span>, <span class="number">244</span>, <span class="number">231</span>, <span class="number">178</span>, <span class="number">157</span>, <span class="number">169</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">200</span>, <span class="number">174</span>, <span class="number">91</span>, <span class="number">16</span>, <span class="number">6</span>, <span class="number">61</span>, <span class="number">29</span>, <span class="number">215</span>, <span class="number">248</span>, <span class="number">220</span>, <span class="number">220</span>, <span class="number">112</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步：通过-置换后的数据-逆推处-xxTEA加密后的的24-位-数据"><a href="#第三步：通过-置换后的数据-逆推处-xxTEA加密后的的24-位-数据" class="headerlink" title="第三步：通过  置换后的数据  逆推处   xxTEA加密后的的24 位 数据"></a>第三步：通过  置换后的数据  逆推处   xxTEA加密后的的24 位 数据</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="string">flagfan=[206,</span> <span class="number">188</span><span class="string">,</span> <span class="number">64</span><span class="string">,</span> <span class="number">165</span><span class="string">,</span> <span class="number">178</span><span class="string">,</span> <span class="number">244</span><span class="string">,</span> <span class="number">231</span><span class="string">,</span> <span class="number">178</span><span class="string">,</span> <span class="number">157</span><span class="string">,</span> <span class="number">169</span><span class="string">,</span> <span class="number">18</span><span class="string">,</span> <span class="number">18</span><span class="string">,</span> <span class="number">200</span><span class="string">,</span> <span class="number">174</span><span class="string">,</span> <span class="number">91</span><span class="string">,</span> <span class="number">16</span><span class="string">,</span> <span class="number">6</span><span class="string">,</span> <span class="number">61</span><span class="string">,</span> <span class="number">29</span><span class="string">,</span> <span class="number">215</span><span class="string">,</span> <span class="number">248</span><span class="string">,</span> <span class="number">220</span><span class="string">,</span> <span class="number">220</span><span class="string">,</span> <span class="number">112</span><span class="string">]</span></span><br><span class="line"><span class="string">l</span> <span class="string">=</span> <span class="string">[2,0,3,1,6,4,7,5,10,8,11,9,14,12,15,13,18,16,19,17,22,20,23,21]</span></span><br><span class="line"><span class="string">flagzhi=[0]*24</span></span><br><span class="line"><span class="string">flagzhii=''</span></span><br><span class="line"><span class="string">for</span> <span class="string">i</span> <span class="string">in</span> <span class="string">range(len(l)):</span></span><br><span class="line">    <span class="string">flagzhi[l[i]]=flagfan[i]</span></span><br><span class="line"><span class="string">print</span> <span class="string">flagzhi</span></span><br><span class="line"><span class="comment">#[188, 165, 206, 64, 244, 178, 178, 231, 169, 18, 157, 18, 174, 16, 200, 91, 61, 215, 6, 29, 220, 112, 248, 220]</span></span><br><span class="line"></span><br><span class="line"><span class="string">for</span> <span class="string">i</span> <span class="string">in</span> <span class="string">range(len(flagzhi)):</span></span><br><span class="line">	<span class="string">flagzhii+=hex(flagzhi[i])+','</span></span><br><span class="line"><span class="string">print</span> <span class="string">flagzhii</span></span><br><span class="line"><span class="comment">#0xbc,0xa5,0xce,0x40,0xf4,0xb2,0xb2,0xe7,0xa9,0x12,0x9d,0x12,0xae,0x10,0xc8,0x5b,0x3d,0xd7,0x6,0x1d,0xdc,0x70,0xf8,0xdc,</span></span><br><span class="line"><span class="comment">#我们将  它整理下</span></span><br><span class="line"><span class="comment">#bca5ce40f4b2b2e7a9129d12ae10c85b3dd7061ddc70f8dc</span></span><br><span class="line"><span class="comment">#\xbc\xa5\xce\x40\xf4\xb2\xb2\xe7\xa9\x12\x9d\x12\xae\x10\xc8\x5b\x3d\xd7\x06\x1d\xdc\x70\xf8\xdc</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>现在 只需   将  上面得到的<br>“bca5ce40f4b2b2e7a9129d12ae10c85b3dd7061ddc70f8dc”<br>进行  xxTea  解密  即可   但 我们并不能知道  密钥（我们输入的前四位是什么!）</p>
+</blockquote>
+<blockquote>
+<p>所以  两种  放式<br>1是  猜 是 flag<br>这种  其实  或许  更快，当然  ，在我们才对的情况下：</p>
+</blockquote>
+<p>这里附上  链接：<a href="https://github.com/xxtea/xxtea-python/blob/master/README_zh_CN.md" target="_blank" rel="noopener">https://github.com/xxtea/xxtea-python/blob/master/README_zh_CN.md</a></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line">import xxtea</span><br><span class="line">key = <span class="string">"flag"</span></span><br><span class="line">encrypt_data = 'bca5ce40f4b2b2e7a9129d12ae10c85b3dd7061ddc70f8dc'.decode('hex')</span><br><span class="line">decrypt_data = xxtea.decrypt(encrypt_data, key)</span><br><span class="line">print decrypt_data</span><br><span class="line"></span><br><span class="line"><span class="comment">#flag&#123;CXX_and_++tea&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.是爆破   //这里 参考了   上面链接 里的代码<br>写xxtea解密脚本就可以得到flag，这里有个问题，就是输入前四位为key，那并不知道key实际为多少，这里我想了一下其实有两个思路。第一就是猜测，既然是CTF，规定的格式一定为flag{xxxx}，所以前四位为flag，这点在后来也得到了验证，猜测是对的。第二种方法就是对前四位进行爆破，这里给出爆破脚本</p>
+</blockquote>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># author: Prowes5</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import xxtea</span><br><span class="line"></span><br><span class="line">data1 = '<span class="symbol">\x</span>bc<span class="symbol">\x</span>a5<span class="symbol">\x</span>ce<span class="symbol">\x</span>40<span class="symbol">\x</span>f4<span class="symbol">\x</span>b2<span class="symbol">\x</span>b2<span class="symbol">\x</span>e7<span class="symbol">\x</span>a9<span class="symbol">\x</span>12<span class="symbol">\x</span>9d<span class="symbol">\x</span>12<span class="symbol">\x</span>ae<span class="symbol">\x</span>10<span class="symbol">\x</span>c8<span class="symbol">\x</span>5b<span class="symbol">\x</span>3d<span class="symbol">\x</span>d7<span class="symbol">\x</span>06<span class="symbol">\x</span>1d<span class="symbol">\x</span>dc<span class="symbol">\x</span>70<span class="symbol">\x</span>f8<span class="symbol">\x</span>dc'</span><br><span class="line">table = 'qwertyuiopasdfghjklzxcvbnm1234567890'</span><br><span class="line"></span><br><span class="line">for x in table:</span><br><span class="line">    for y in table:</span><br><span class="line">        for z in table:</span><br><span class="line">            for m in table:</span><br><span class="line">                key = x+y+z+m + "<span class="symbol">\x</span>00"*12</span><br><span class="line">                data = xxtea.decrypt(data1,key,padding = False)</span><br><span class="line">                #print data.encode('hex')</span><br><span class="line">                #print key</span><br><span class="line">                if data[0:4].encode('hex') == key[0:4].encode('hex'):</span><br><span class="line">                    print 'success'</span><br><span class="line">                    print 'key:'+key</span><br><span class="line">                    print 'flag:'+data</span><br><span class="line">                    raw_input()</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgchr.com/i/KLIbfP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/02/KLIbfP.md.png" alt="KLIbfP.md.png"></a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf比赛-re/" rel="tag">#ctf比赛 re</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/04/2019 湖湘杯 初赛/" rel="next" title="2019 湖湘杯 初赛">
+                <i class="fa fa-chevron-left"></i> 2019 湖湘杯 初赛
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">1.</span> <span class="nav-text">参考链接：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拖入ida-64"><span class="nav-number">2.</span> <span class="nav-text">拖入ida 64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其中sub-140001AB0-函数-是xxtea-算法"><span class="nav-number">3.</span> <span class="nav-text">其中sub_140001AB0  函数     是xxtea 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序大概流程"><span class="nav-number">4.</span> <span class="nav-text">程序大概流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：提取-内置密文-（），"><span class="nav-number">5.</span> <span class="nav-text">第一步：提取 内置密文  （），</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：通过-亦或后的数据-逆推处-置换后的24-位-数据"><span class="nav-number">6.</span> <span class="nav-text">第二步：通过  亦或后的数据  逆推处   置换后的24 位 数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：通过-置换后的数据-逆推处-xxTEA加密后的的24-位-数据"><span class="nav-number">7.</span> <span class="nav-text">第三步：通过  置换后的数据  逆推处   xxTEA加密后的的24 位 数据</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
